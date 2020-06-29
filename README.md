@@ -25,10 +25,10 @@
 
 **项目结构** 
 ```
-renren-security
+ypmm-platform
 ├─renren-common     公共模块
 │ 
-├─renren-admin      管理后台
+├─platform-admin      管理后台
 │    ├─db  数据库SQL脚本
 │    │ 
 │    ├─modules  模块
@@ -84,13 +84,13 @@ renren-security
 - 创建数据库renren_security，数据库编码为UTF-8
 - 执行db/mysql.sql文件，初始化数据【按需导入表结构及数据】
 - 修改application-dev.yml文件，更新MySQL账号和密码
-- 在renren-security目录下，执行mvn clean install
+- 在ypmm-platform目录下，执行mvn clean install
 <br>
 
-- Eclipse、IDEA运行AdminApplication.java，则可启动项目【renren-admin】
-- renren-admin访问路径：http://localhost:8080/renren-admin
-- swagger文档路径：http://localhost:8080/renren-admin/swagger/index.html
-- swagger注解路径：http://localhost:8080/renren-admin/swagger-ui.html
+- Eclipse、IDEA运行AdminApplication.java，则可启动项目【platform-admin】
+- platform-admin访问路径：http://localhost:8080/platform-admin
+- swagger文档路径：http://localhost:8080/platform-admin/swagger/index.html
+- swagger注解路径：http://localhost:8080/platform-admin/swagger-ui.html
 - 账号密码：admin/admin
 
 <br>
@@ -114,7 +114,7 @@ renren-security
 <br>
 
  **项目演示**
-- 演示地址：http://demo.open.renren.io/renren-security
+- 演示地址：http://demo.open.renren.io/ypmm-platform
 - 账号密码：admin/admin
 
 <br>
@@ -122,8 +122,8 @@ renren-security
 **如何交流、反馈、参与贡献？** 
 - 开发文档：https://www.renren.io/guide/security
 - 官方社区：https://www.renren.io/community
-- gitee仓库：https://gitee.com/renrenio/renren-security
-- github仓库：https://github.com/renrenio/renren-security
+- gitee仓库：https://gitee.com/renrenio/ypmm-platform
+- github仓库：https://github.com/renrenio/ypmm-platform
 - [人人开源](https://www.renren.io)：https://www.renren.io   
 - 官方QQ群：324780204、145799952
 - 如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持

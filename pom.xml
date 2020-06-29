@@ -2,11 +2,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.renren</groupId>
-    <artifactId>renren-security</artifactId>
+    <artifactId>ypm-platform</artifactId>
     <version>4.0.0</version>
     <packaging>pom</packaging>
 
-    <name>renren-security</name>
+    <name>ypmm-platform</name>
     <url>https://www.renren.io</url>
 
 	<parent>
@@ -16,11 +16,11 @@
 	</parent>
 
     <modules>
-        <module>renren-common</module>
-        <module>renren-admin</module>
-        <module>renren-api</module>
-		<module>renren-dynamic-datasource</module>
-        <module>renren-generator</module>
+        <module>platform-common</module>
+        <module>platform-admin</module>
+        <module>platform-api</module>
+		<module>platform-dynamic-datasource</module>
+        <module>platform-generator</module>
     </modules>
 
     <properties>
