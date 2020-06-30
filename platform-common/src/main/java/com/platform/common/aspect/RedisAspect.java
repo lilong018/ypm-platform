@@ -1,7 +1,7 @@
 /**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ * Copyright (c) 2016-2019 有票么 All rights reserved.
  *
- * https://www.renren.io
+ *
  *
  * 版权所有，侵权必究！
  */
@@ -29,7 +29,7 @@ public class RedisAspect {
     /**
      * 是否开启redis缓存  true开启   false关闭
      */
-    @Value("${renren.redis.open: false}")
+    @Value("${platform.redis.open: false}")
     private boolean open;
 
     @Around("execution(* com.platform.common.utils.RedisUtils.*(..))")

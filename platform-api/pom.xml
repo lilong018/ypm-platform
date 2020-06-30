@@ -7,7 +7,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>platform-api</artifactId>
 	<packaging>jar</packaging>
-	<description>renren-api</description>
+	<description>platform-api</description>
 
 
 	<dependencies>
@@ -38,7 +38,7 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.4.14</version>
 				<configuration>
-					<imageName>renren/api</imageName>
+					<imageName>platform/api</imageName>
 					<dockerDirectory>${project.basedir}</dockerDirectory>
 					<resources>
 						<resource>
