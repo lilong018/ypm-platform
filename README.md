@@ -154,5 +154,3 @@ ypmm-platform
 ![输入图片说明](http://cdn.draftex/img/5d8e7243d30a4421b90f15394b6d1ccd "在这里输入图片标题")
 
 <br>
-
-![捐赠](http://cdn.draftex/donate.jpg "捐赠") 
