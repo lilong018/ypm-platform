@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("bank:bank:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("bank:bank:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("bank:bank:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">账户类型 （1） 体现户 （2）签收户</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.type" placeholder="账户类型 （1） 体现户 （2）签收户"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">渠道类型 （1） 京东智票 （2）京东智付</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.channeltype" placeholder="渠道类型 （1） 京东智票 （2）京东智付"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">银行新增来源 1)企业实名认证, (2)銀行卡管理打款</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.banksource" placeholder="银行新增来源 1)企业实名认证, (2)銀行卡管理打款"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">银行名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.name" placeholder="银行名称"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">银行行号</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.number" placeholder="银行行号"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">开户行名称-同企业名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.accountname" placeholder="开户行名称-同企业名称"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">开户账户</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.accountnumber" placeholder="开户账户"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">银行编码</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.occbankcode" placeholder="银行编码"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">银行名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.occbankname" placeholder="银行名称"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">银行支行银联号</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.occbankcnap" placeholder="银行支行银联号"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label"></div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.occbankchildcode" placeholder=""/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">支行银行全称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.occbankchildname" placeholder="支行银行全称"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">省份id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.provinceid" placeholder="省份id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">省份名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.provincename" placeholder="省份名称"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">城市id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.cityid" placeholder="城市id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">城市名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.cityname" placeholder="城市名称"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">创建时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.createtimeinmillis" placeholder="创建时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">认证状态 - (0)待鉴权 (1)审核不通过 (2)审核通过</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="bank.status" placeholder="认证状态 - (0)待鉴权 (1)审核不通过 (2)审核通过"/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" id="btnSaveOrUpdate" data-loading-text="保存中..." @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/bank/bank.js?_${.now?long}"></script>
+</body>
+</html>
