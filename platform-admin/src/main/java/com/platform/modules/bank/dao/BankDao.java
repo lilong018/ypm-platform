@@ -4,6 +4,8 @@ import com.platform.modules.bank.entity.BankEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 
  * 
@@ -13,5 +15,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface BankDao extends BaseMapper<BankEntity> {
-	
+
+     List<BankEntity> getByEnterpriseId(String enterpriseId);
 }

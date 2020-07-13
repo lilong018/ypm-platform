@@ -25,153 +25,93 @@
     <div v-show="!showList" class="panel panel-default">
         <div class="panel-heading">{{title}}</div>
         <form class="form-horizontal">
-														                    <div class="form-group">
-                        <div class="col-sm-2 control-label">企业姓名</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.name" placeholder="企业姓名"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">统一社会信用代码-营业执照</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.uscc" placeholder="统一社会信用代码-营业执照"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">公司详细地址</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.address" placeholder="公司详细地址"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">营业执照图片</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.businesslicenseurl" placeholder="营业执照图片"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">开户许可证图片</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.accountopeninglicenseurl" placeholder="开户许可证图片"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">法人姓名</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.legalrepname" placeholder="法人姓名"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">法人身份证</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.legalrepid" placeholder="法人身份证"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">法人手机号码</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.legalrepphoneno" placeholder="法人手机号码"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">法人身份证正面照片</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.legalrepidpicfronturl" placeholder="法人身份证正面照片"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">法人身份证背面照片</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.legalrepidpicbackurl" placeholder="法人身份证背面照片"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">省份</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.province" placeholder="省份"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">市</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.city" placeholder="市"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">营业执照到期时间</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.businessexpirationdate" placeholder="营业执照到期时间"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">法人身份证到期时间</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.idcardexpirationdate" placeholder="法人身份证到期时间"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">创建时间</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.createtime" placeholder="创建时间"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">修改时间</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.updatetime" placeholder="修改时间"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">企业状态</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.status" placeholder="企业状态"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">备注</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.remark" placeholder="备注"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">原因</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.reason" placeholder="原因"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">用户id</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.userid" placeholder="用户id"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">用户账号-注册手机号</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.useraccount" placeholder="用户账号-注册手机号"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">操作人员标识</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.operatorid" placeholder="操作人员标识"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">平台ID</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.platformid" placeholder="平台ID"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">用户角色 1：买方&卖方 2：卖方</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="enterprise.roletype" placeholder="用户角色 1：买方&卖方 2：卖方"/>
-                        </div>
-                    </div>
-							            <div class="form-group">
+            <div class="panel-heading text-info font-weight-bold">企业信息</div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">企业名称</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="enterprise.name" placeholder="企业名称"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">统一社会信用代码</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="enterprise.uscc" placeholder="统一社会信用代码"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">公司地址</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="enterprise.address" placeholder="公司地址"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">营业执照图片</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="enterprise.businesslicenseurl" placeholder="营业执照图片"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">开户许可证图片</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="enterprise.accountopeninglicenseurl"
+                           placeholder="开户许可证图片"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">平台ID</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="enterprise.platformid" placeholder="平台ID"/>
+                </div>
+            </div>
+            <div class="panel-heading">法人信息</div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">法人姓名</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="enterprise.legalrepname" placeholder="法人姓名"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">法人身份证</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="enterprise.legalrepid" placeholder="法人身份证"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">法人手机号码</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="enterprise.legalrepphoneno" placeholder="法人手机号码"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">法人身份证正面照片</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="enterprise.legalrepidpicfronturl"
+                           placeholder="法人身份证正面照片"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">法人身份证背面照片</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="enterprise.legalrepidpicbackurl"
+                           placeholder="法人身份证背面照片"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">企业状态</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="enterprise.status" placeholder="企业状态"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">用户角色</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="enterprise.roleName" placeholder="用户角色 1：买方&卖方 2：卖方"/>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-sm-2 control-label"></div>
-                <input type="button" class="btn btn-primary" id="btnSaveOrUpdate" data-loading-text="保存中..." @click="saveOrUpdate" value="确定"/>
+                <input type="button" class="btn btn-primary" id="btnSaveOrUpdate" data-loading-text="保存中..."
+                       @click="saveOrUpdate" value="确定"/>
                 &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
             </div>
         </form>

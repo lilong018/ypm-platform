@@ -14,7 +14,6 @@ import java.util.Date;
  * @email 
  * @date 2020-07-08 09:03:00
  */
-@Data
 @TableName("tb_enterprise")
 public class EnterpriseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -121,4 +120,207 @@ public class EnterpriseEntity implements Serializable {
 	 */
 	private Integer roletype;
 
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getUscc() {
+		return uscc;
+	}
+
+	public void setUscc(String uscc) {
+		this.uscc = uscc;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getBusinesslicenseurl() {
+		return businesslicenseurl;
+	}
+
+	public void setBusinesslicenseurl(String businesslicenseurl) {
+		this.businesslicenseurl = businesslicenseurl;
+	}
+
+	public String getAccountopeninglicenseurl() {
+		return accountopeninglicenseurl;
+	}
+
+	public void setAccountopeninglicenseurl(String accountopeninglicenseurl) {
+		this.accountopeninglicenseurl = accountopeninglicenseurl;
+	}
+
+	public String getLegalrepname() {
+		return legalrepname;
+	}
+
+	public void setLegalrepname(String legalrepname) {
+		this.legalrepname = legalrepname;
+	}
+
+	public String getLegalrepid() {
+		return legalrepid;
+	}
+
+	public void setLegalrepid(String legalrepid) {
+		this.legalrepid = legalrepid;
+	}
+
+	public String getLegalrepphoneno() {
+		return legalrepphoneno;
+	}
+
+	public void setLegalrepphoneno(String legalrepphoneno) {
+		this.legalrepphoneno = legalrepphoneno;
+	}
+
+	public String getLegalrepidpicfronturl() {
+		return legalrepidpicfronturl;
+	}
+
+	public void setLegalrepidpicfronturl(String legalrepidpicfronturl) {
+		this.legalrepidpicfronturl = legalrepidpicfronturl;
+	}
+
+	public String getLegalrepidpicbackurl() {
+		return legalrepidpicbackurl;
+	}
+
+	public void setLegalrepidpicbackurl(String legalrepidpicbackurl) {
+		this.legalrepidpicbackurl = legalrepidpicbackurl;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getBusinessexpirationdate() {
+		return businessexpirationdate;
+	}
+
+	public void setBusinessexpirationdate(String businessexpirationdate) {
+		this.businessexpirationdate = businessexpirationdate;
+	}
+
+	public String getIdcardexpirationdate() {
+		return idcardexpirationdate;
+	}
+
+	public void setIdcardexpirationdate(String idcardexpirationdate) {
+		this.idcardexpirationdate = idcardexpirationdate;
+	}
+
+	public Date getCreatetime() {
+		return createtime;
+	}
+
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
+	}
+
+	public Date getUpdatetime() {
+		return updatetime;
+	}
+
+	public void setUpdatetime(Date updatetime) {
+		this.updatetime = updatetime;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getUseraccount() {
+		return useraccount;
+	}
+
+	public void setUseraccount(String useraccount) {
+		this.useraccount = useraccount;
+	}
+
+	public String getOperatorid() {
+		return operatorid;
+	}
+
+	public void setOperatorid(String operatorid) {
+		this.operatorid = operatorid;
+	}
+
+	public String getPlatformid() {
+		return platformid;
+	}
+
+	public void setPlatformid(String platformid) {
+		this.platformid = platformid;
+	}
+
+	public Integer getRoletype() {
+		return roletype;
+	}
+
+	public void setRoletype(Integer roletype) {
+		this.roletype = roletype;
+	}
 }

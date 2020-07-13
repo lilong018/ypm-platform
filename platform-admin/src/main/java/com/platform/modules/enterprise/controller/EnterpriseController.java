@@ -1,9 +1,13 @@
 package com.platform.modules.enterprise.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import com.platform.common.validator.ValidatorUtils;
+import com.platform.modules.bank.entity.BankEntity;
+import com.platform.modules.bank.service.BankService;
+import com.platform.modules.enterprise.entity.EnteroriseInfo;
 import com.platform.modules.enterprise.entity.EnterpriseEntity;
 import com.platform.modules.enterprise.service.EnterpriseService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -31,6 +35,8 @@ import com.platform.common.utils.R;
 public class EnterpriseController {
     @Autowired
     private EnterpriseService enterpriseService;
+    @Autowired
+    private BankService bankService;
 
     /**
      * 列表
@@ -39,7 +45,6 @@ public class EnterpriseController {
     @RequiresPermissions("enterprise:enterprise:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = enterpriseService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
@@ -51,8 +56,9 @@ public class EnterpriseController {
     @RequiresPermissions("enterprise:enterprise:info")
     public R info(@PathVariable("id") String id){
         EnterpriseEntity enterprise = enterpriseService.getById(id);
-
-        return R.ok().put("enterprise", enterprise);
+        List<BankEntity> banks = bankService.getByEnterpriseId(id);
+        EnteroriseInfo enteroriseInfo = new EnteroriseInfo(enterprise,banks);
+        return R.ok().put("enterprise", enteroriseInfo);
     }
 
     /**

@@ -24,7 +24,14 @@
         <result property="cityname" column="cityName"/>
         <result property="createtimeinmillis" column="createTimeInMillis"/>
         <result property="status" column="status"/>
+        <result property="enterpriseId" column="enterpriseId"/>
     </resultMap>
 
+    <sql id="Base_Column_List">
+		id, type, channeltype, name, number,accountname,accountnumber,occbankcode,occbankcode,occbankname,occbankcnap,occbankchildcode,occbankchildname,createtimeinmillis,status
+	</sql>
 
+    <select id="getByEnterpriseId" parameterType="java.lang.String" resultMap="bankMap">
+        select <include refid="Base_Column_List" /> from tb_bank where enterpriseId = #{enterpriseId}
+    </select>
 </mapper>
