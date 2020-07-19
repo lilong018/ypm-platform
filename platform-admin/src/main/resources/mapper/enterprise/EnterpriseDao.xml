@@ -30,6 +30,10 @@
         <result property="operatorid" column="operatorId"/>
         <result property="platformid" column="platformId"/>
         <result property="roletype" column="roleType"/>
+        <result property="handlername" column="handlerName"/>
+        <result property="handlerid" column="handlerId"/>
+        <result property="handlerphoneno" column="handlerPhoneNo"/>
+        <result property="handleremail" column="handlerEmail"/>
     </resultMap>
 
 

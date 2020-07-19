@@ -28,6 +28,10 @@ public class EnteroriseInfo {
         this.legalrepphoneno = enterpriseEntity.getLegalrepphoneno();
         this.legalrepidpicfronturl = enterpriseEntity.getLegalrepidpicfronturl();
         this.legalrepidpicbackurl = enterpriseEntity.getLegalrepidpicbackurl();
+        this.handlername = enterpriseEntity.getHandlername();
+        this.handlerid = enterpriseEntity.getHandlerid();
+        this.handlerphoneno = enterpriseEntity.getHandlerphoneno();
+        this.handleremail = enterpriseEntity.getHandleremail();
         this.businessexpirationdate = enterpriseEntity.getBusinessexpirationdate();
         this.idcardexpirationdate = enterpriseEntity.getIdcardexpirationdate();
         this.createtime = enterpriseEntity.getCreatetime();
@@ -150,6 +154,23 @@ public class EnteroriseInfo {
      * 用户角色 1：买方&卖方 2：卖方
      */
     private Integer roletype;
+
+    /**
+     * 经办人姓名
+     */
+    private String handlername;
+    /**
+     * 经办人身份证号
+     */
+    private String handlerid;
+    /**
+     * 经办人手机号
+     */
+    private String handlerphoneno;
+    /**
+     * 经办人邮箱地址
+     */
+    private String handleremail;
 
     //平台名称
     private String platformName;
@@ -380,5 +401,37 @@ public class EnteroriseInfo {
 
     public void setBanks(List<BankEntity> banks) {
         this.banks = banks;
+    }
+
+    public String getHandlername() {
+        return handlername;
+    }
+
+    public void setHandlername(String handlername) {
+        this.handlername = handlername;
+    }
+
+    public String getHandlerid() {
+        return handlerid;
+    }
+
+    public void setHandlerid(String handlerid) {
+        this.handlerid = handlerid;
+    }
+
+    public String getHandlerphoneno() {
+        return handlerphoneno;
+    }
+
+    public void setHandlerphoneno(String handlerphoneno) {
+        this.handlerphoneno = handlerphoneno;
+    }
+
+    public String getHandleremail() {
+        return handleremail;
+    }
+
+    public void setHandleremail(String handleremail) {
+        this.handleremail = handleremail;
     }
 }

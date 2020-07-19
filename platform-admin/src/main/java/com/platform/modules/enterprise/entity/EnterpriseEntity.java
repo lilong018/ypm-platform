@@ -8,11 +8,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 
- * 
+ *
+ *
  * @author ll
- * @email 
- * @date 2020-07-08 09:03:00
+ * @email
+ * @date 2020-07-19 15:05:02
  */
 @TableName("tb_enterprise")
 public class EnterpriseEntity implements Serializable {
@@ -119,6 +119,22 @@ public class EnterpriseEntity implements Serializable {
 	 * 用户角色 1：买方&卖方 2：卖方
 	 */
 	private Integer roletype;
+	/**
+	 * 经办人姓名
+	 */
+	private String handlername;
+	/**
+	 * 经办人身份证号
+	 */
+	private String handlerid;
+	/**
+	 * 经办人手机号
+	 */
+	private String handlerphoneno;
+	/**
+	 * 经办人邮箱地址
+	 */
+	private String handleremail;
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
@@ -322,5 +338,37 @@ public class EnterpriseEntity implements Serializable {
 
 	public void setRoletype(Integer roletype) {
 		this.roletype = roletype;
+	}
+
+	public String getHandlername() {
+		return handlername;
+	}
+
+	public void setHandlername(String handlername) {
+		this.handlername = handlername;
+	}
+
+	public String getHandlerid() {
+		return handlerid;
+	}
+
+	public void setHandlerid(String handlerid) {
+		this.handlerid = handlerid;
+	}
+
+	public String getHandlerphoneno() {
+		return handlerphoneno;
+	}
+
+	public void setHandlerphoneno(String handlerphoneno) {
+		this.handlerphoneno = handlerphoneno;
+	}
+
+	public String getHandleremail() {
+		return handleremail;
+	}
+
+	public void setHandleremail(String handleremail) {
+		this.handleremail = handleremail;
 	}
 }

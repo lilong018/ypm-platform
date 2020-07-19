@@ -2,120 +2,263 @@
 <html>
 <head>
     <title></title>
-		<#include "/header.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/modules/enterprise/enterprise.css">
+    <#include "/header.html">
 </head>
 <body>
 <div id="rrapp" v-cloak>
     <div v-show="showList">
         <div class="grid-btn">
-			<#if shiro.hasPermission("enterprise:enterprise:save")>
+            <#if shiro.hasPermission("enterprise:enterprise:save")>
             <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
-			</#if>
-			<#if shiro.hasPermission("enterprise:enterprise:update")>
-            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
-			</#if>
-			<#if shiro.hasPermission("enterprise:enterprise:delete")>
-            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
-			</#if>
-        </div>
-        <table id="jqGrid"></table>
-        <div id="jqGridPager"></div>
-    </div>
+        </#if>
+        <#if shiro.hasPermission("enterprise:enterprise:update")>
+        <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+    </#if>
+    <#if shiro.hasPermission("enterprise:enterprise:delete")>
+    <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+</#if>
+</div>
+<table id="jqGrid"></table>
+<div id="jqGridPager"></div>
+</div>
 
-    <div v-show="!showList" class="panel panel-default">
-        <div class="panel-heading">{{title}}</div>
-        <form class="form-horizontal">
-            <div class="panel-heading text-info font-weight-bold">企业信息</div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label">企业名称</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="enterprise.name" placeholder="企业名称"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label">统一社会信用代码</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="enterprise.uscc" placeholder="统一社会信用代码"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label">公司地址</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="enterprise.address" placeholder="公司地址"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label">营业执照图片</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="enterprise.businesslicenseurl" placeholder="营业执照图片"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label">开户许可证图片</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="enterprise.accountopeninglicenseurl"
-                           placeholder="开户许可证图片"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label">平台ID</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="enterprise.platformid" placeholder="平台ID"/>
-                </div>
-            </div>
-            <div class="panel-heading">法人信息</div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label">法人姓名</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="enterprise.legalrepname" placeholder="法人姓名"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label">法人身份证</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="enterprise.legalrepid" placeholder="法人身份证"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label">法人手机号码</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="enterprise.legalrepphoneno" placeholder="法人手机号码"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label">法人身份证正面照片</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="enterprise.legalrepidpicfronturl"
-                           placeholder="法人身份证正面照片"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label">法人身份证背面照片</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="enterprise.legalrepidpicbackurl"
-                           placeholder="法人身份证背面照片"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label">企业状态</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="enterprise.status" placeholder="企业状态"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label">用户角色</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="enterprise.roleName" placeholder="用户角色 1：买方&卖方 2：卖方"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2 control-label"></div>
-                <input type="button" class="btn btn-primary" id="btnSaveOrUpdate" data-loading-text="保存中..."
-                       @click="saveOrUpdate" value="确定"/>
-                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
-            </div>
-        </form>
+<div v-show="!showList" class="panel panel-default">
+    <div class="center">
+        <div class="content ">
+            <div class="panel-heading">企业信息</div>
+            <form action="${request.contextPath}/enterprise/approve" id="inputForm" method="post"
+                  class="form-horizontal" style="width: 100%" enctype="multipart/form-data">
+                <table class="enter-table mt-5 w-100">
+                    <tr>
+                        <td colspan="12" class="p-3">
+                            <span class="text-info font-weight-bold">企业资料</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" width="85%">
+                            <div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <div class="col-sm-2 pr-0 pt-1">企业名称：</div>
+                                        <div class="col-sm-10  pl-0 pr-0">
+                                            <span>{{ enterprise.name }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <div class="col-sm-2 pr-0 pt-1">统一社会信用代码：</div>
+                                        <div class="col-sm-10  pl-0 pr-0">
+                                            <span>{{ enterprise.uscc }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <div class="col-sm-2 pr-0 pt-1">公司地址：</div>
+                                        <div class="col-sm-10  pl-0 pr-0">
+                                            <span>{{ enterprise.address }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="col-sm-2">
+                                        <div class="col-12 pr-0 pt-1">企业授权书：</div>
+                                    </div>
+                                    <div class="col-sm-10  pl-0 pr-0">
+                                        <a href="/" title="">查看企业授权书</a>
+                                    </div>
+
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <div class="col-sm-2 pr-0 pt-1">所属平台：</div>
+                                        <div class="col-sm-10  pl-0 pr-0">
+                                            <a href="/" title="">有票么</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td colspan="2" rowspan="1">
+                            <div class="text-center">
+                                <div class="upload-avatar">
+                                    <img src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1089874897,1268118658&fm=26&gp=0.jpg"
+                                         alt="..." width="100px" height="100px" class="layui-upload-img"
+                                         onclick="previewImg(this)">
+                                    <p class="text-black-50 mt-2">营业执照</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td colspan="2" rowspan="1">
+                            <div class="text-center">
+                                <div class="upload-avatar">
+                                    <img src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1089874897,1268118658&fm=26&gp=0.jpg"
+                                         alt="..." width="100px" height="100px" class="layui-upload-img"
+                                         onclick="previewImg(this)">
+                                    <p class="text-black-50 mt-2">开户许可证</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12" class="p-3">
+                            <span class="text-info font-weight-bold">法人资料</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" width="85%">
+                            <div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <div class="col-sm-2 pr-0 pt-1">法人名称：</div>
+                                        <div class="col-sm-10  pl-0 pr-0">
+                                            <span>{{ enterprise.legalrepname }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <div class="col-sm-2 pr-0 pt-1">法人身份证号：</div>
+                                        <div class="col-sm-10  pl-0 pr-0">
+                                            <span>{{ enterprise.legalrepid }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td colspan="2" rowspan="1">
+                            <div class="text-center">
+                                <div class="upload-avatar">
+                                    <img src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1089874897,1268118658&fm=26&gp=0.jpg"
+                                         alt="..." width="100px" height="100px" class="layui-upload-img"
+                                         onclick="previewImg(this)">
+                                    <p class="text-black-50 mt-2">身份证正面</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td colspan="2" rowspan="1">
+                            <div class="text-center">
+                                <div class="upload-avatar">
+                                    <img src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1089874897,1268118658&fm=26&gp=0.jpg"
+                                         alt="..." width="100px" height="100px" class="layui-upload-img"
+                                         onclick="previewImg(this)">
+                                    <p class="text-black-50 mt-2">身份证背面</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12" class="p-3">
+                            <span class="text-info font-weight-bold">银行资料</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12" class="p-3">
+                            <span class="text-info font-weight-bold">京东智票</span>&nbsp;&nbsp;&nbsp;
+                            <span class="text-info font-weight-bold" style="margin-left: 50px;">京东智付</span>
+                        </td>
+                    </tr>
+                    <tr v-for="bank in enterprise.banks">
+                        <td colspan="12" >
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-2 pr-0 pt-1">开户行全称：</div>
+                                    <div class="col-sm-10  pl-0 pr-0">
+                                        <span>{{ bank.name }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-2 pr-0 pt-1">银行行号：</div>
+                                    <div class="col-sm-10  pl-0 pr-0">
+                                        <span>{{ bank.number }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-2 pr-0 pt-1">户名：</div>
+                                    <div class="col-sm-10  pl-0 pr-0">
+                                        <span>{{ bank.accountname }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-2 pr-0 pt-1">角色类型：</div>
+                                    <div class="col-sm-10  pl-0 pr-0">
+                                        <span>{{ bank.type }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-2 pr-0 pt-1">状态：</div>
+                                    <div class="col-sm-10  pl-0 pr-0">
+                                        <span>{{ bank.status }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-2 pr-0 pt-1">银行账号：</div>
+                                    <div class="col-sm-10  pl-0 pr-0">
+                                        <span>{{ bank.accountnumber }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12" class="p-3">
+                            <span class="text-info font-weight-bold">经办人信息</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-2 pr-0 pt-1">经办人姓名：</div>
+                                    <div class="col-sm-10  pl-0 pr-0">
+                                        <span>{{ enterprise.handlername }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-2 pr-0 pt-1">经办人身份证号：</div>
+                                    <div class="col-sm-10  pl-0 pr-0">
+                                        <span>{{ enterprise.handlerid }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-2 pr-0 pt-1">经办人电话：</div>
+                                    <div class="col-sm-10  pl-0 pr-0">
+                                        <span>{{ enterprise.handlerphoneno }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-2 pr-0 pt-1">经办人邮箱：</div>
+                                    <div class="col-sm-10  pl-0 pr-0">
+                                        <span>{{ enterprise.handleremail }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </div>
+</div>
 </div>
 
 <script src="${request.contextPath}/statics/js/modules/enterprise/enterprise.js?_${.now?long}"></script>
