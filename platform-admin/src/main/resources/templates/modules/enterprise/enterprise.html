@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
     <link rel="stylesheet" href="${request.contextPath}/statics/css/modules/enterprise/enterprise.css">
@@ -84,7 +84,8 @@
                         <td colspan="2" rowspan="1">
                             <div class="text-center">
                                 <div class="upload-avatar">
-                                    <img src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1089874897,1268118658&fm=26&gp=0.jpg"
+<!--                                    <img v-bind:src="imgUrl"/>-->
+                                    <img  v-bind:src= "enterprise.businesslicenseurl"
                                          alt="..." width="100px" height="100px" class="layui-upload-img"
                                          onclick="previewImg(this)">
                                     <p class="text-black-50 mt-2">营业执照</p>
@@ -94,7 +95,7 @@
                         <td colspan="2" rowspan="1">
                             <div class="text-center">
                                 <div class="upload-avatar">
-                                    <img src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1089874897,1268118658&fm=26&gp=0.jpg"
+                                    <img v-bind:src= "enterprise.accountopeninglicenseurl"
                                          alt="..." width="100px" height="100px" class="layui-upload-img"
                                          onclick="previewImg(this)">
                                     <p class="text-black-50 mt-2">开户许可证</p>
@@ -131,7 +132,7 @@
                         <td colspan="2" rowspan="1">
                             <div class="text-center">
                                 <div class="upload-avatar">
-                                    <img src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1089874897,1268118658&fm=26&gp=0.jpg"
+                                    <img v-bind:src= "enterprise.legalrepidpicfronturl"
                                          alt="..." width="100px" height="100px" class="layui-upload-img"
                                          onclick="previewImg(this)">
                                     <p class="text-black-50 mt-2">身份证正面</p>
@@ -141,7 +142,7 @@
                         <td colspan="2" rowspan="1">
                             <div class="text-center">
                                 <div class="upload-avatar">
-                                    <img src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1089874897,1268118658&fm=26&gp=0.jpg"
+                                    <img v-bind:src= "enterprise.legalrepidpicbackurl"
                                          alt="..." width="100px" height="100px" class="layui-upload-img"
                                          onclick="previewImg(this)">
                                     <p class="text-black-50 mt-2">身份证背面</p>
@@ -160,57 +161,56 @@
                             <span class="text-info font-weight-bold" style="margin-left: 50px;">京东智付</span>
                         </td>
                     </tr>
-                    <tr v-for="bank in enterprise.banks">
-                        <td colspan="12" >
+                    <tr>
+                        <td  colspan="4" v-for="bank in enterprise.banks" >
                             <div class="col-3">
                                 <div class="form-group">
-                                    <div class="col-sm-2 pr-0 pt-1">开户行全称：</div>
-                                    <div class="col-sm-10  pl-0 pr-0">
+                                    <div class="col-sm-5 pr-0 pt-1">开户行全称：</div>
+                                    <div class="col-sm-7  pl-0 pr-0">
                                         <span>{{ bank.name }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="form-group">
-                                    <div class="col-sm-2 pr-0 pt-1">银行行号：</div>
-                                    <div class="col-sm-10  pl-0 pr-0">
+                                    <div class="col-sm-5  pr-0 pt-1">银行行号：</div>
+                                    <div class="col-sm-7  pl-0 pr-0">
                                         <span>{{ bank.number }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="form-group">
-                                    <div class="col-sm-2 pr-0 pt-1">户名：</div>
-                                    <div class="col-sm-10  pl-0 pr-0">
+                                    <div class="col-sm-5 pr-0 pt-1">银行账号：</div>
+                                    <div class="col-sm-7  pl-0 pr-0">
+                                        <span>{{ bank.accountnumber }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-5 pr-0 pt-1">户名：</div>
+                                    <div class="col-sm-7  pl-0 pr-0">
                                         <span>{{ bank.accountname }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="form-group">
-                                    <div class="col-sm-2 pr-0 pt-1">角色类型：</div>
-                                    <div class="col-sm-10  pl-0 pr-0">
+                                    <div class="col-sm-5 pr-0 pt-1">角色类型：</div>
+                                    <div class="col-sm-7  pl-0 pr-0">
                                         <span>{{ bank.type }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="form-group">
-                                    <div class="col-sm-2 pr-0 pt-1">状态：</div>
-                                    <div class="col-sm-10  pl-0 pr-0">
+                                    <div class="col-sm-5 pr-0 pt-1">状态：</div>
+                                    <div class="col-sm-7  pl-0 pr-0">
                                         <span>{{ bank.status }}</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <div class="form-group">
-                                    <div class="col-sm-2 pr-0 pt-1">银行账号：</div>
-                                    <div class="col-sm-10  pl-0 pr-0">
-                                        <span>{{ bank.accountnumber }}</span>
-                                    </div>
-                                </div>
-                            </div>
-
                         </td>
                     </tr>
                     <tr>
@@ -249,6 +249,25 @@
                                     <div class="col-sm-2 pr-0 pt-1">经办人邮箱：</div>
                                     <div class="col-sm-10  pl-0 pr-0">
                                         <span>{{ enterprise.handleremail }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12" class="p-3">
+                            <span class="text-info font-weight-bold">记录</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-6 pr-0 pt-1">
+                                        <span>{{ enterprise.handlername }}</span>
+                                    </div>
+                                    <div class="col-sm-6  pl-0 pr-0">
+                                        <span>{{ enterprise.handlername }}</span>
                                     </div>
                                 </div>
                             </div>
