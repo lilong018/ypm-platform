@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <title></title>
-    <link rel="stylesheet" href="${request.contextPath}/statics/css/modules/enterprise/enterprise.css">
     <#include "/header.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/modules/enterprise/enterprise.css">
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap-select.min.css">
+    <script src="${request.contextPath}/statics/libs/bootstrapSelect/bootstrap-select.min.js"></script>
+    <script src="${request.contextPath}/statics/libs/bootstrapSelect/defaults-zh_CN.js"></script>
 </head>
 <body>
 <div id="rrapp" v-cloak>
@@ -264,16 +267,50 @@
                             <div class="col-3">
                                 <div class="form-group">
                                     <div class="col-sm-6 pr-0 pt-1">
-                                        <span>{{ enterprise.handlername }}</span>
+                                        <span>提交企业资料</span>
                                     </div>
                                     <div class="col-sm-6  pl-0 pr-0">
-                                        <span>{{ enterprise.handlername }}</span>
+                                        <span>2020-07-20 12:25:13</span>
                                     </div>
                                 </div>
                             </div>
                         </td>
                     </tr>
                 </table>
+                <div class="form-group">
+                    <label><input type="radio" v-model="approveStatus" value="1" >审核通过</label>
+                </div>
+                <div>
+                    <label><input type="radio" v-model="approveStatus" value="2" onclick="generateReason()" >审核不通过</label>
+                </div>
+                <div v-if="approveStatus==2" >
+                    <div class="form-group">
+                        <div class="col-sm-5">
+                            <select id="reason" class="selectpicker show-tick form-control" data-live-search="true" multiple>
+                                <option value="1">企业信息不完善</option>
+                                <option value="2">银行信息不完善</option>
+                                <option value="3">法人信息不完善</option>
+                                <option value="4">请上传营业执照正本</option>
+                                <option value="5">营业执照不清晰</option>
+                                <option value="6">开户许可证不清晰</option>
+                                <option value="7">法人身份证正面照不清晰</option>
+                                <option value="8">法人身份证背面照不清晰</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="remark" name="remark" value="" placeholder="其它原因"/>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group" style="margin-top: 20px;">
+                    <div class="col-sm-2 control-label"></div>
+                    <input type="button" class="btn btn-primary" id="examine" data-loading-text="审核中..."
+                           @click="examine(approveStatus)" value="确定"/>
+                    &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+                </div>
             </form>
         </div>
     </div>
@@ -281,5 +318,26 @@
 </div>
 
 <script src="${request.contextPath}/statics/js/modules/enterprise/enterprise.js?_${.now?long}"></script>
+<script>
+    $(function() {
+        $("#reason").selectpicker({
+            noneSelectedText: '请选择'//默认显示内容
+        });
+        //初始化刷新数据
+        $(window).on('load', function() {
+            $('#reason').selectpicker('val', '');
+            $('#reason').selectpicker('refresh');
+
+        });
+    })
+
+    function generateReason() {
+        setTimeout(function(){
+            $('#reason').selectpicker('val', '');
+            $('#reason').selectpicker('refresh');
+        }, 1);
+
+    }
+</script>
 </body>
 </html>

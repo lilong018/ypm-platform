@@ -8,6 +8,7 @@ import com.platform.common.validator.ValidatorUtils;
 import com.platform.modules.bank.entity.BankEntity;
 import com.platform.modules.bank.service.BankService;
 import com.platform.modules.enterprise.entity.EnteroriseInfo;
+import com.platform.modules.enterprise.entity.EnteroriseRejectEntity;
 import com.platform.modules.enterprise.entity.EnterpriseEntity;
 import com.platform.modules.enterprise.service.EnterpriseService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.platform.common.utils.PageUtils;
 import com.platform.common.utils.R;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -92,6 +94,15 @@ public class EnterpriseController {
     public R delete(@RequestBody String[] ids){
         enterpriseService.removeByIds(Arrays.asList(ids));
 
+        return R.ok();
+    }
+
+    /**
+     * 保存
+     */
+    @RequestMapping("/noPass")
+    public R noPass(@RequestBody EnteroriseRejectEntity req){
+        System.out.println(req);
         return R.ok();
     }
 

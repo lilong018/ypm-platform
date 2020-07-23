@@ -63,6 +63,7 @@ var vm = new Vue({
 	data:{
 		showList: true,
 		title: null,
+        approveStatus:1,
 		enterprise: {}
 	},
 	methods: {
@@ -138,7 +139,6 @@ var vm = new Vue({
 		},
 		getInfo: function(id){
 			$.get(baseURL + "enterprise/enterprise/info/"+id, function(r){
-                console.log(r.enterprise);
                 vm.enterprise = r.enterprise;
             });
 		},
@@ -148,7 +148,42 @@ var vm = new Vue({
 			$("#jqGrid").jqGrid('setGridParam',{ 
                 page:page
             }).trigger("reloadGrid");
-		}
+		},
+        toPass: function (status) {
+
+        },
+        examine:function (status) {
+            console.log(status);
+            let reasons = $('#reason').val();
+            let remark = $('#remark').val();
+            if (status == 2){
+                $('#examine').button('loading').delay(1000).queue(function() {
+                    var url =  "enterprise/enterprise/noPass";
+                    var ajData = {};
+                    ajData.id = vm.enterprise.id;
+                    ajData.reasons = reasons;
+                    ajData.remark = remark;
+                    $.ajax({
+                        type: "POST",
+                        url: baseURL + url,
+                        contentType: "application/json",
+                        data: JSON.stringify(ajData),
+                        success: function(r){
+                            if(r.code === 0){
+                                layer.msg("操作成功", {icon: 1});
+                                vm.reload();
+                                $('#examine').button('reset');
+                                $('#examine').dequeue();
+                            }else{
+                                layer.alert(r.msg);
+                                $('#examine').button('reset');
+                                $('#examine').dequeue();
+                            }
+                        }
+                    });
+                });
+            }
+        }
 	}
 });
 function previewImg(obj) {
