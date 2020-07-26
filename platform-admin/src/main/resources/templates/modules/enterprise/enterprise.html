@@ -7,20 +7,21 @@
     <link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap-select.min.css">
     <script src="${request.contextPath}/statics/libs/bootstrapSelect/bootstrap-select.min.js"></script>
     <script src="${request.contextPath}/statics/libs/bootstrapSelect/defaults-zh_CN.js"></script>
+   <!-- <script src="${request.contextPath}/statics/libs/pdf.js"></script>-->
 </head>
 <body>
 <div id="rrapp" v-cloak>
     <div v-show="showList">
         <div class="grid-btn">
-            <#if shiro.hasPermission("enterprise:enterprise:save")>
+            <!--<#if shiro.hasPermission("enterprise:enterprise:save")>
             <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
-        </#if>
+        </#if>-->
         <#if shiro.hasPermission("enterprise:enterprise:update")>
         <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
     </#if>
-    <#if shiro.hasPermission("enterprise:enterprise:delete")>
+   <!-- <#if shiro.hasPermission("enterprise:enterprise:delete")>
     <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
-</#if>
+</#if>-->
 </div>
 <table id="jqGrid"></table>
 <div id="jqGridPager"></div>
@@ -70,7 +71,7 @@
                                         <div class="col-12 pr-0 pt-1">企业授权书：</div>
                                     </div>
                                     <div class="col-sm-10  pl-0 pr-0">
-                                        <a href="/" title="">查看企业授权书</a>
+                                        <a href="${request.contextPath}/statics/doc/1.pdf"  target="_blank" title="">查看企业授权书</a>
                                     </div>
 
                                 </div>
@@ -336,7 +337,6 @@
             $('#reason').selectpicker('val', '');
             $('#reason').selectpicker('refresh');
         }, 1);
-
     }
 </script>
 </body>

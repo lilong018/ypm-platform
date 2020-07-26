@@ -1,219 +1,297 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <title></title>
-		<#include "/header.html">
+    <#include "/header.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/modules/main.css">
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap-select.min.css">
+    <script src="${request.contextPath}/statics/libs/bootstrapSelect/bootstrap-select.min.js"></script>
+    <script src="${request.contextPath}/statics/libs/bootstrapSelect/defaults-zh_CN.js"></script>
 </head>
 <body>
 <div id="rrapp" v-cloak>
     <div v-show="showList">
         <div class="grid-btn">
-			<#if shiro.hasPermission("bill:bill:save")>
-            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
-			</#if>
-			<#if shiro.hasPermission("bill:bill:update")>
-            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
-			</#if>
-			<#if shiro.hasPermission("bill:bill:delete")>
-            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
-			</#if>
-        </div>
-        <table id="jqGrid"></table>
-        <div id="jqGridPager"></div>
+        <#if shiro.hasPermission("bill:bill:update")>
+         <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+        </#if>
     </div>
+    <table id="jqGrid"></table>
+    <div id="jqGridPager"></div>
+</div>
 
-    <div v-show="!showList" class="panel panel-default">
-        <div class="panel-heading">{{title}}</div>
-        <form class="form-horizontal">
-														                    <div class="form-group">
-                        <div class="col-sm-2 control-label">票号</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.number" placeholder="票号"/>
+<div v-show="!showList" class="panel panel-default">
+    <div class="center">
+        <div class="content ">
+            <div class="panel-heading">票据信息</div>
+            <form action="${request.contextPath}/bill/save" id="inputForm" method="post"
+                  class="form-horizontal" style="width: 100%" enctype="multipart/form-data">
+                <table class="enter-table mt-5 w-100" style="width: 100%">
+                    <tr>
+                        <td colspan="12" class="p-3">
+                            <span class="text-info font-weight-bold">票面信息</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12">
+                            <div >
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">票号：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>{{ bill.number }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">是否回头背书：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>否</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">票面金额：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>{{ bill.amount }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">是否可转让：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>是</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">承兑行名称：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>{{ bill.acceptingbankname }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">票据类型：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>{{ bill.acceptingbankname }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">承兑行行号：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>{{ bill.type }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">承兑机构：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>{{ bill.acceptingbanktype }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">到期日：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>{{ bill.duedate }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12" class="p-3">
+                            <span class="text-info font-weight-bold">票据截图</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12">
+                            <div class="col-lg-6">
+                                <div class="upload-avatar">
+                                    <img v-bind:src= "bill.coverfrontpictureurl"
+                                         alt="..." width="100px" height="100px" class="layui-upload-img"
+                                         onclick="previewImg(this)">
+                                    <p class="text-black-50 mt-2">票据正面</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="upload-avatar">
+                                    <img v-bind:src= "bill.coverbackpictures"
+                                         alt="..." width="100px" height="100px" class="layui-upload-img"
+                                         onclick="previewImg(this)">
+                                    <p class="text-black-50 mt-2">票据背面</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12" class="p-3">
+                            <span class="text-info font-weight-bold">卖方信息</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12">
+                            <div >
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">卖方公司名称：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>{{ bill.number }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">担保渠道：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>京东智票、京东智付</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">卖方账号：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>18868986868</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">背书账户：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>{{ bill.endorsebank }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">发布平台：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>有票么</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12" class="p-3">
+                            <span class="text-info font-weight-bold">经办人信息</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12">
+                            <div >
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">经办人姓名：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>张三</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 pr-0 pt-1">经办人电话：</div>
+                                        <div class="col-sm-6  pl-0 pr-0">
+                                            <span>18659685698</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="form-group">
+                    <label><input type="radio" v-model="approveStatus" value="1" >审核通过</label>
+                </div>
+                <div>
+                    <label><input type="radio" v-model="approveStatus" value="2" onclick="generateReason()" >审核不通过</label>
+                </div>
+                <div v-if="approveStatus==2" >
+                    <div class="form-group">
+                        <div class="col-sm-5">
+                            <select id="reason" class="selectpicker show-tick form-control" data-live-search="true" multiple>
+                                <option value="1">请上传票据正面截图</option>
+                                <option value="2">票据正面截图不清晰</option>
+                                <option value="3">票据到期日已过</option>
+                            </select>
                         </div>
                     </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">票据类型</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.type" placeholder="票据类型"/>
+                    <div class="form-group">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="remark" name="remark" value="" placeholder="其它原因"/>
                         </div>
                     </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">出票人姓名</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.drawername" placeholder="出票人姓名"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">收票人姓名</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.draweename" placeholder="收票人姓名"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">承兑银行名称</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.acceptingbankname" placeholder="承兑银行名称"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">承兑银行行号</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.acceptingbanknumber" placeholder="承兑银行行号"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">承兑银行类型</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.acceptingbanktype" placeholder="承兑银行类型"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">票面金额</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.amount" placeholder="票面金额"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">签发日</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.issuedate" placeholder="签发日"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">到期日</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.duedate" placeholder="到期日"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">票据正面图URL</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.coverfrontpictureurl" placeholder="票据正面图URL"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">票据背面图URL</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.coverbackpictures" placeholder="票据背面图URL"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">担保渠道</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.channeltype" placeholder="担保渠道"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">回款银行账户资讯</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.transferbank" placeholder="回款银行账户资讯"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">背书户银行资讯</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.endorsebank" placeholder="背书户银行资讯"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">背书次数</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.endorsecount" placeholder="背书次数"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">回出票人状态 |-1|取消/未知 |0|否/无 |1|是/有</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.returndrawerstatus" placeholder="回出票人状态 |-1|取消/未知 |0|否/无 |1|是/有"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">回收款人状态 |-1|取消/未知 |0|否/无 |1|是/有</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.returndraweestatus" placeholder="回收款人状态 |-1|取消/未知 |0|否/无 |1|是/有"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">回头背书状态 |-1|取消/未知 |0|否/无 |1|是/有</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.returnendorsementstatus" placeholder="回头背书状态 |-1|取消/未知 |0|否/无 |1|是/有"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">重复背书状态 |-1|取消/未知 |0|否/无 |1|是/有</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.doubleendorsementstatus" placeholder="重复背书状态 |-1|取消/未知 |0|否/无 |1|是/有"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">质押状态 |-1|取消/未知 |0|否/无 |1|是/有</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.pledgestatus" placeholder="质押状态 |-1|取消/未知 |0|否/无 |1|是/有"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">保证状态 |-1|取消/未知 |0|否/无 |1|是/有</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.guaranteestatus" placeholder="保证状态 |-1|取消/未知 |0|否/无 |1|是/有"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">上下不一致状态 |-1|取消/未知 |0|否/无 |1|是/有</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.inconsistentstatus" placeholder="上下不一致状态 |-1|取消/未知 |0|否/无 |1|是/有"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">其它瑕疵</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.customdefect" placeholder="其它瑕疵"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">是否定向交易 true定向交易 false 非定向交易</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.isdirectsell" placeholder="是否定向交易 true定向交易 false 非定向交易"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">交易对手账号（交易对手的手机号?） 若isDirectSell为true时，该值必填</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.directbuyeraccount" placeholder="交易对手账号（交易对手的手机号?） 若isDirectSell为true时，该值必填"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">每十万扣款意向价格</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.feededuction" placeholder="每十万扣款意向价格"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">票据状态</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.status" placeholder="票据状态"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">创建时间</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.createtimeinmillis" placeholder="创建时间"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">卖方用户id</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="bill.publisherid" placeholder="卖方用户id"/>
-                        </div>
-                    </div>
-							            <div class="form-group">
-                <div class="col-sm-2 control-label"></div>
-                <input type="button" class="btn btn-primary" id="btnSaveOrUpdate" data-loading-text="保存中..." @click="saveOrUpdate" value="确定"/>
-                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
-            </div>
-        </form>
+
+                </div>
+                <div class="form-group" style="margin-top: 20px;">
+                    <div class="col-sm-2 control-label"></div>
+                    <input type="button" class="btn btn-primary" id="examine" data-loading-text="审核中..."
+                           @click="examine(approveStatus)" value="确定"/>
+                    &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+                </div>
+            </form>
+        </div>
     </div>
+</div>
 </div>
 
 <script src="${request.contextPath}/statics/js/modules/bill/bill.js?_${.now?long}"></script>
+<script>
+
+    $(function() {
+        $("#reason").selectpicker({
+            noneSelectedText: '请选择'//默认显示内容
+        });
+        //初始化刷新数据
+        $(window).on('load', function() {
+            $('#reason').selectpicker('val', '');
+            $('#reason').selectpicker('refresh');
+
+        });
+    })
+
+    function generateReason() {
+        setTimeout(function(){
+            $('#reason').selectpicker('val', '');
+            $('#reason').selectpicker('refresh');
+        }, 1);
+    }
+
+    function previewImg(obj) {
+        var img = new Image();
+        img.src = obj.src;
+        var height = img.height + 50; //获取图片高度
+        var width = img.width; //获取图片宽度
+        var imgHtml = "<img src='" + obj.src + "' />";
+        //弹出层
+        layer.open({
+            type: 1,
+            shade: 0.8,
+            offset: 'auto',
+            area: [width + 'px',height+'px'],
+            shadeClose:true,//点击外围关闭弹窗
+            scrollbar: false,//不现实滚动条
+            title: "图片预览", //不显示标题
+            content: imgHtml, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+            cancel: function () {
+                //layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', { time: 5000, icon: 6 });
+            }
+        });
+    }
+</script>
 </body>
 </html>

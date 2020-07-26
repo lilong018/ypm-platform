@@ -52,6 +52,16 @@ public class SysUserController extends AbstractController {
 
 		return R.ok().put("page", page);
 	}
+
+	/**
+	 * 所有用户列表
+	 */
+	@RequestMapping("/all")
+	@RequiresPermissions("sys:user:list")
+	public R all(@RequestParam Map<String, Object> params){
+		PageUtils page = sysUserService.queryPage(params);
+		return R.ok().put("page", page);
+	}
 	
 	/**
 	 * 获取登录的用户信息

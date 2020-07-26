@@ -1,4 +1,15 @@
 $(function () {
+
+    var detailEnterpriseComponent = Vue.extend({
+        template: '<i class="fa fa-file-archive-o fa-lg" aria-hidden="true" style="cursor: pointer;" v-on:click="toDetail(monId)"></i>',
+        methods: {
+            toDetail: function (id) {
+                vm.getInfo(id);
+            }
+        },
+        props: ['monId']
+    });
+
     $("#jqGrid").jqGrid({
         url: baseURL + 'enterprise/enterprise/list',
         datatype: "json",
@@ -28,8 +39,30 @@ $(function () {
 			// { label: '用户id', name: 'userid', index: 'userId', width: 80 },
 			{ label: '原因', name: 'reason', index: 'reason', width: 80 },
 			//用户账号-注册手机号
-			{ label: '操作人员标识', name: 'operatorid', index: 'operatorId', width: 80 },
-			{ label: '平台ID', name: 'platformid', index: 'platformId', width: 80 }
+			{ label: '客服', name: 'operatorid', index: 'operatorId', width: 80,
+                formatter: function (cellvalue, options, rowObject) {
+                    if (cellvalue) {
+                        return '小明';
+                    }else{
+                        return '<span id="detailEnterprise_' + rowObject.id + '"></span>';
+                    }
+                },
+                sortable: false,
+                align: 'center'},
+			{ label: '平台ID', name: 'platformid', index: 'platformId', width: 80 },
+            {
+                label: '操作',
+                width: 80,
+                formatter: function (cellvalue, options, rowObject) {
+                    if (rowObject.enterprise){
+                        return '小明';
+                    }else{
+                        return '<span id="detailEnterprise_' + rowObject.id + '"></span>';
+                    }
+                },
+                sortable: false,
+                align: 'center'
+            }
         ],
 		viewrecords: true,
         height: 385,
@@ -53,9 +86,15 @@ $(function () {
         },
         gridComplete:function(){
         	//隐藏grid底部滚动条
-        	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" }); 
+        	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
+            var detailArr = $("span[id^='detailEnterprise_']");
+            var len = detailArr.length;
+            for (var i = 0; i < len; i++) {
+                var idtmp = $(detailArr[i]).attr('id').split('_');
+                var enterpriseDetail = new detailEnterpriseComponent({propsData: {monId: idtmp[1]}}).$mount('#' + $(detailArr[i]).attr('id'));
+            }
         }
-    });
+    }).navGrid('#jqGridPager', {edit: false, add: false, del: false, search: false, refresh: true, view: false});
 });
 
 var vm = new Vue({
@@ -64,8 +103,14 @@ var vm = new Vue({
 		showList: true,
 		title: null,
         approveStatus:1,
-		enterprise: {}
-	},
+		enterprise: {},
+        customer:[]
+    },
+    created: function () {
+    },
+    mounted: function () {
+        this.initBaseData();
+    },
 	methods: {
 		query: function () {
 			vm.reload();
@@ -139,6 +184,7 @@ var vm = new Vue({
 		},
 		getInfo: function(id){
 			$.get(baseURL + "enterprise/enterprise/info/"+id, function(r){
+                vm.showList = false;
                 vm.enterprise = r.enterprise;
             });
 		},
@@ -183,6 +229,20 @@ var vm = new Vue({
                     });
                 });
             }
+        },
+        initBaseData: function () {
+            let _self = this;
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: baseURL + "/sys/user/all",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (r) {
+                    if (r.code == 0) {
+                    }
+                }
+            });
         }
 	}
 });
