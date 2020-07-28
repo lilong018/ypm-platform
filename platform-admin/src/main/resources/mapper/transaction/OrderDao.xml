@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.transaction.dao.OrderDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.platform.modules.transaction.entity.OrderEntity" id="orderMap">
+        <result property="id" column="id"/>
+        <result property="category" column="category"/>
+        <result property="status" column="status"/>
+        <result property="feededuction" column="feeDeduction"/>
+        <result property="servicefee" column="serviceFee"/>
+        <result property="value" column="value"/>
+        <result property="billid" column="billId"/>
+        <result property="platformid" column="platformId"/>
+        <result property="buyerid" column="buyerId"/>
+        <result property="directbuyeraccount" column="directBuyerAccount"/>
+        <result property="isdirectsell" column="isDirectSell"/>
+        <result property="redirectpayurl" column="redirectPayUrl"/>
+        <result property="reqno" column="reqNo"/>
+        <result property="transactionid" column="transactionId"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, category, status, feeDeduction, serviceFee, value, billId, platformId, buyerId,
+    directBuyerAccount, isDirectSell, redirectPayUrl, reqNo, transactionId
+  </sql>
+
+    <select id="queryList" parameterType="java.util.Map" resultType="com.platform.modules.transaction.entity.OrderEntity">
+        select  <include refid="Base_Column_List" /> from tb_order
+    </select>
+
+</mapper>

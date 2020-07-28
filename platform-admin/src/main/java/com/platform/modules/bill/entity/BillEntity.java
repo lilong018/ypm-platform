@@ -14,7 +14,6 @@ import java.util.Date;
  * @email 
  * @date 2020-07-12 15:51:47
  */
-@Data
 @TableName("tb_bill")
 public class BillEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -145,4 +144,255 @@ public class BillEntity implements Serializable {
 	 */
 	private String publisherid;
 
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
+	public String getDrawername() {
+		return drawername;
+	}
+
+	public void setDrawername(String drawername) {
+		this.drawername = drawername;
+	}
+
+	public String getDraweename() {
+		return draweename;
+	}
+
+	public void setDraweename(String draweename) {
+		this.draweename = draweename;
+	}
+
+	public String getAcceptingbankname() {
+		return acceptingbankname;
+	}
+
+	public void setAcceptingbankname(String acceptingbankname) {
+		this.acceptingbankname = acceptingbankname;
+	}
+
+	public String getAcceptingbanknumber() {
+		return acceptingbanknumber;
+	}
+
+	public void setAcceptingbanknumber(String acceptingbanknumber) {
+		this.acceptingbanknumber = acceptingbanknumber;
+	}
+
+	public String getAcceptingbanktype() {
+		return acceptingbanktype;
+	}
+
+	public void setAcceptingbanktype(String acceptingbanktype) {
+		this.acceptingbanktype = acceptingbanktype;
+	}
+
+	public String getAmount() {
+		return amount;
+	}
+
+	public void setAmount(String amount) {
+		this.amount = amount;
+	}
+
+	public String getIssuedate() {
+		return issuedate;
+	}
+
+	public void setIssuedate(String issuedate) {
+		this.issuedate = issuedate;
+	}
+
+	public String getDuedate() {
+		return duedate;
+	}
+
+	public void setDuedate(String duedate) {
+		this.duedate = duedate;
+	}
+
+	public String getCoverfrontpictureurl() {
+		return coverfrontpictureurl;
+	}
+
+	public void setCoverfrontpictureurl(String coverfrontpictureurl) {
+		this.coverfrontpictureurl = coverfrontpictureurl;
+	}
+
+	public String getCoverbackpictures() {
+		return coverbackpictures;
+	}
+
+	public void setCoverbackpictures(String coverbackpictures) {
+		this.coverbackpictures = coverbackpictures;
+	}
+
+	public String getChanneltype() {
+		return channeltype;
+	}
+
+	public void setChanneltype(String channeltype) {
+		this.channeltype = channeltype;
+	}
+
+	public String getTransferbank() {
+		return transferbank;
+	}
+
+	public void setTransferbank(String transferbank) {
+		this.transferbank = transferbank;
+	}
+
+	public String getEndorsebank() {
+		return endorsebank;
+	}
+
+	public void setEndorsebank(String endorsebank) {
+		this.endorsebank = endorsebank;
+	}
+
+	public Integer getEndorsecount() {
+		return endorsecount;
+	}
+
+	public void setEndorsecount(Integer endorsecount) {
+		this.endorsecount = endorsecount;
+	}
+
+	public Integer getReturndrawerstatus() {
+		return returndrawerstatus;
+	}
+
+	public void setReturndrawerstatus(Integer returndrawerstatus) {
+		this.returndrawerstatus = returndrawerstatus;
+	}
+
+	public Integer getReturndraweestatus() {
+		return returndraweestatus;
+	}
+
+	public void setReturndraweestatus(Integer returndraweestatus) {
+		this.returndraweestatus = returndraweestatus;
+	}
+
+	public Integer getReturnendorsementstatus() {
+		return returnendorsementstatus;
+	}
+
+	public void setReturnendorsementstatus(Integer returnendorsementstatus) {
+		this.returnendorsementstatus = returnendorsementstatus;
+	}
+
+	public Integer getDoubleendorsementstatus() {
+		return doubleendorsementstatus;
+	}
+
+	public void setDoubleendorsementstatus(Integer doubleendorsementstatus) {
+		this.doubleendorsementstatus = doubleendorsementstatus;
+	}
+
+	public Integer getPledgestatus() {
+		return pledgestatus;
+	}
+
+	public void setPledgestatus(Integer pledgestatus) {
+		this.pledgestatus = pledgestatus;
+	}
+
+	public Integer getGuaranteestatus() {
+		return guaranteestatus;
+	}
+
+	public void setGuaranteestatus(Integer guaranteestatus) {
+		this.guaranteestatus = guaranteestatus;
+	}
+
+	public Integer getInconsistentstatus() {
+		return inconsistentstatus;
+	}
+
+	public void setInconsistentstatus(Integer inconsistentstatus) {
+		this.inconsistentstatus = inconsistentstatus;
+	}
+
+	public String getCustomdefect() {
+		return customdefect;
+	}
+
+	public void setCustomdefect(String customdefect) {
+		this.customdefect = customdefect;
+	}
+
+	public Boolean getIsdirectsell() {
+		return isdirectsell;
+	}
+
+	public void setIsdirectsell(Boolean isdirectsell) {
+		this.isdirectsell = isdirectsell;
+	}
+
+	public String getDirectbuyeraccount() {
+		return directbuyeraccount;
+	}
+
+	public void setDirectbuyeraccount(String directbuyeraccount) {
+		this.directbuyeraccount = directbuyeraccount;
+	}
+
+	public Integer getFeededuction() {
+		return feededuction;
+	}
+
+	public void setFeededuction(Integer feededuction) {
+		this.feededuction = feededuction;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Date getCreatetimeinmillis() {
+		return createtimeinmillis;
+	}
+
+	public void setCreatetimeinmillis(Date createtimeinmillis) {
+		this.createtimeinmillis = createtimeinmillis;
+	}
+
+	public String getPublisherid() {
+		return publisherid;
+	}
+
+	public void setPublisherid(String publisherid) {
+		this.publisherid = publisherid;
+	}
 }
