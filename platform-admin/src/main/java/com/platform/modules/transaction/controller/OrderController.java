@@ -1,21 +1,16 @@
 package com.platform.modules.transaction.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import com.platform.common.validator.ValidatorUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.platform.modules.transaction.entity.OrderEntity;
-import com.platform.modules.transaction.service.OrderService;
 import com.platform.common.utils.PageUtils;
 import com.platform.common.utils.R;
+import com.platform.common.validator.ValidatorUtils;
+import com.platform.modules.transaction.entity.OrderEntity;
+import com.platform.modules.transaction.service.OrderService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.Map;
 
 
 
@@ -39,7 +34,6 @@ public class OrderController {
     @RequiresPermissions("transaction:order:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = orderService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 

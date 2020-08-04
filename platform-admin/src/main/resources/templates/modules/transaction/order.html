@@ -1,115 +1,152 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>订单表</title>
-		<#include "/header.html">
+    <#include "/header.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/modules/main.css">
 </head>
 <body>
 <div id="rrapp" v-cloak>
     <div v-show="showList">
         <div class="grid-btn">
-			<#if shiro.hasPermission("transaction:order:save")>
-            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
-			</#if>
-			<#if shiro.hasPermission("transaction:order:update")>
-            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
-			</#if>
-			<#if shiro.hasPermission("transaction:order:delete")>
-            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
-			</#if>
-        </div>
-        <table id="jqGrid"></table>
-        <div id="jqGridPager"></div>
-    </div>
+        <#if shiro.hasPermission("transaction:order:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;查看</a>
+        </#if>
 
-    <div v-show="!showList" class="panel panel-default">
-        <div class="panel-heading">{{title}}</div>
-        <form class="form-horizontal">
-														                    <div class="form-group">
-                        <div class="col-sm-2 control-label">订单类型（|1|入平台 |2|出平台 |3|财务）</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="order.category" placeholder="订单类型（|1|入平台 |2|出平台 |3|财务）"/>
+</div>
+<table id="jqGrid"></table>
+<div id="jqGridPager"></div>
+</div>
+
+<div v-show="!showList" class="panel panel-default">
+    <div class="panel-heading">交易信息</div>
+    <form action="${request.contextPath}/transaction/order/approve" id="inputForm" method="post"
+          class="form-horizontal" style="width: 100%" enctype="multipart/form-data">
+        <table class="enter-table mt-5 w-100" style="width: 100%">
+            <tr>
+                <td colspan="12" class="p-3">
+                    <span class="text-info font-weight-bold">票面信息</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                    <div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">票号：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>12542254125412545</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">是否回头背书：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>否</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">票面金额：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>200000.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">是否可转让：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>是</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">承兑行名称：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>中国银行济宁分行</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">票据类型：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>银票</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">承兑行行号：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>3265112545</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">承兑机构：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>国股</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">到期日：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>2020-11-25</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">订单状态</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="order.status" placeholder="订单状态（|-1|已取消 |2|议价中 |3|议价成功 |4|议价被拒绝 |200|待打款 |201|待背书 |202|待签收 |203|待校验 |204|交易成功 |205|交易失败 |206|校验失敗）"/>
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="12" class="p-3">
+                    <span class="text-info font-weight-bold">票据截图</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                    <div class="col-lg-6">
+                        <div class="upload-avatar">
+                            <img v-bind:src="order.status"
+                                 alt="..." width="100px" height="100px" class="layui-upload-img"
+                                 onclick="previewImg(this)">
+                            <p class="text-black-50 mt-2">票据正面</p>
                         </div>
                     </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">意向价格（每十万扣款）</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="order.feededuction" placeholder="意向价格（每十万扣款）"/>
+                    <div class="col-lg-6">
+                        <div class="upload-avatar">
+                            <img v-bind:src="order.status"
+                                 alt="..." width="100px" height="100px" class="layui-upload-img"
+                                 onclick="previewImg(this)">
+                            <p class="text-black-50 mt-2">票据背面</p>
                         </div>
                     </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">平台服务费</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="order.servicefee" placeholder="平台服务费"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">订单价格（交易金额？）</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="order.value" placeholder="订单价格（交易金额？）"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">票据id</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="order.billid" placeholder="票据id"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">平台id</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="order.platformid" placeholder="平台id"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">买方id</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="order.buyerid" placeholder="买方id"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">买方账号？</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="order.directbuyeraccount" placeholder="买方账号？"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">是否定向交易</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="order.isdirectsell" placeholder="是否定向交易"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">支付地址（京东返回）</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="order.redirectpayurl" placeholder="支付地址（京东返回）"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">请求流水号</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="order.reqno" placeholder="请求流水号"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">交易id</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="order.transactionid" placeholder="交易id"/>
-                        </div>
-                    </div>
-							            <div class="form-group">
-                <div class="col-sm-2 control-label"></div>
-                <input type="button" class="btn btn-primary" id="btnSaveOrUpdate" data-loading-text="保存中..." @click="saveOrUpdate" value="确定"/>
-                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
-            </div>
-        </form>
-    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12" class="p-3">
+                    <span class="text-info font-weight-bold">交易信息</span>
+                </td>
+            </tr>
+        </table>
+
+        <div class="form-group">
+            <div class="col-sm-2 control-label"></div>
+            <input type="button" class="btn btn-primary" id="btnSaveOrUpdate" data-loading-text="保存中..."
+                   @click="saveOrUpdate" value="确定"/>
+            &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+        </div>
+    </form>
+</div>
 </div>
 
 <script src="${request.contextPath}/statics/js/modules/transaction/order.js?_${.now?long}"></script>
