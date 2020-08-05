@@ -137,12 +137,216 @@
                     <span class="text-info font-weight-bold">交易信息</span>
                 </td>
             </tr>
+            <tr>
+                <td colspan="12">
+                    <div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">订单号：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>{{ order.id }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">贴现金额：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>{{ order.value }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">担保渠道：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>京东智票</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">平台服务费：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>350.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">每十万扣款：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>{{ order.feededuction }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">成交金额：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>{{ order.value }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">交易方式：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>竞价交易</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="12" class="p-3">
+                    <span class="text-info font-weight-bold">买卖双方信息</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="12">
+                    <div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">卖方名称：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>临沂兴鲁商贸有限公司</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">买方名称：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>临沂同城商贸有限公司</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">卖方电话：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>15686868686</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">买方电话：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>18969869869</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">每十万扣款：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>{{ order.feededuction }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">发布平台：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>有票么票据交易平台</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">交易平台：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>我有票票据交易平台</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">查看电子交易合同：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>------------</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12" class="p-3">
+                    <span class="text-info font-weight-bold">背书信息</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="12">
+                    <div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">银行名称：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>中国民生银行股份有限公司临沂分行</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">账户名称：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>临沂同城商贸有限公司</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">联行号：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>305473016119</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="col-sm-6 pr-0 pt-1">银行账号：</div>
+                                <div class="col-sm-6  pl-0 pr-0">
+                                    <span>697836893</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="12" class="p-3">
+                    <span class="text-info font-weight-bold">记录</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                    <div class="col-3">
+                        <div class="form-group">
+                            <div class="col-sm-6 pr-0 pt-1">
+                                <span>买方：临沂兴鲁商贸有限公司签收完成</span>
+                            </div>
+                            <div class="col-sm-6  pl-0 pr-0">
+                                <span>2020-07-20 12:25:13</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
         </table>
 
         <div class="form-group">
             <div class="col-sm-2 control-label"></div>
-            <input type="button" class="btn btn-primary" id="btnSaveOrUpdate" data-loading-text="保存中..."
-                   @click="saveOrUpdate" value="确定"/>
+            <input v-if="order.status == 3" type="button" class="btn btn-primary" id="btnSaveOrUpdate" data-loading-text="请稍后..."
+                   @click="saveOrUpdate" value="重新核验"/>
+
             &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
         </div>
     </form>

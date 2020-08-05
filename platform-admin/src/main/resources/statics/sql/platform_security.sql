@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 28/07/2020 14:53:17
+ Date: 05/08/2020 11:36:12
 */
 
 SET NAMES utf8mb4;
@@ -154,7 +154,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('platformScheduler', 'DESKTOP-566LC7K1595919035025', 1595919189001, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('platformScheduler', 'DESKTOP-566LC7K1596590468585', 1596595137738, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -785,5 +785,21 @@ INSERT INTO `tb_order` VALUES ('6', 1, 1, 1500, 120, 150000, '1', '1', '1', '', 
 INSERT INTO `tb_order` VALUES ('7', 1, 1, 1500, 120, 150000, '1', '1', '1', '', '0', NULL, '12532651361', '1223212346123');
 INSERT INTO `tb_order` VALUES ('8', 1, 1, 1500, 120, 150000, '1', '1', '1', '', '0', NULL, '12532651361', '1223212346123');
 INSERT INTO `tb_order` VALUES ('9', 1, 1, 1500, 120, 150000, '1', '1', '1', '', '0', NULL, '12532651361', '1223212346123');
+
+-- ----------------------------
+-- Table structure for tb_platform
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_platform`;
+CREATE TABLE `tb_platform`  (
+  `id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '平台id',
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '平台名称',
+  `website` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '网络名称',
+  `manager` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '负责人',
+  `phoneNo` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联络电话',
+  `status` int(5) NULL DEFAULT NULL COMMENT '平台状态（1：在线，2：离线）',
+  `valid` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否为有效平台',
+  `createTimeInMillis` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
