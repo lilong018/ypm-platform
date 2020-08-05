@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 05/08/2020 11:36:12
+ Date: 05/08/2020 11:49:11
 */
 
 SET NAMES utf8mb4;
@@ -154,7 +154,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('platformScheduler', 'DESKTOP-566LC7K1596590468585', 1596595137738, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('platformScheduler', 'DESKTOP-566LC7K1596598855849', 1596599309087, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -373,7 +373,7 @@ CREATE TABLE `sys_log`  (
   `ip` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'IP地址',
   `create_date` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_log
@@ -411,6 +411,9 @@ INSERT INTO `sys_log` VALUES (30, 'admin', '保存菜单', 'com.platform.modules
 INSERT INTO `sys_log` VALUES (31, 'admin', '修改菜单', 'com.platform.modules.sys.controller.SysMenuController.update()', '{\"menuId\":56,\"parentId\":46,\"parentName\":\"客服\",\"name\":\"交易管理\",\"url\":\"modules/transaction/order.html\",\"type\":1,\"icon\":\"fa fa-file-code-o\",\"orderNum\":10}', 61, '0:0:0:0:0:0:0:1', '2020-07-28 10:24:15');
 INSERT INTO `sys_log` VALUES (32, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":57,\"parentId\":56,\"parentName\":\"交易管理\",\"name\":\"查看\",\"perms\":\"transaction:order:list,transaction:order:info\",\"type\":2,\"orderNum\":0}', 25, '0:0:0:0:0:0:0:1', '2020-07-28 10:25:19');
 INSERT INTO `sys_log` VALUES (33, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":58,\"parentId\":56,\"parentName\":\"交易管理\",\"name\":\"修改\",\"perms\":\"transaction:order:update\",\"type\":2,\"orderNum\":0}', 48, '0:0:0:0:0:0:0:1', '2020-07-28 10:25:52');
+INSERT INTO `sys_log` VALUES (34, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":59,\"parentId\":0,\"parentName\":\"一级菜单\",\"name\":\"主管页面\",\"type\":0,\"orderNum\":0}', 41, '0:0:0:0:0:0:0:1', '2020-08-05 11:44:18');
+INSERT INTO `sys_log` VALUES (35, 'admin', '修改菜单', 'com.platform.modules.sys.controller.SysMenuController.update()', '{\"menuId\":59,\"parentId\":0,\"parentName\":\"一级菜单\",\"name\":\"主管页面\",\"type\":0,\"icon\":\"fa fa-cog\",\"orderNum\":100}', 74, '0:0:0:0:0:0:0:1', '2020-08-05 11:44:40');
+INSERT INTO `sys_log` VALUES (36, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":60,\"parentId\":59,\"parentName\":\"主管页面\",\"name\":\"平台管理\",\"url\":\"modules/platform/platform.html\",\"type\":1,\"orderNum\":1}', 33, '0:0:0:0:0:0:0:1', '2020-08-05 11:46:03');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -426,7 +429,7 @@ CREATE TABLE `sys_menu`  (
   `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '菜单图标',
   `order_num` int(11) NULL DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 59 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单管理' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单管理' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -483,6 +486,8 @@ INSERT INTO `sys_menu` VALUES (55, 51, '删除', NULL, 'bill:bill:delete', 2, NU
 INSERT INTO `sys_menu` VALUES (56, 46, '交易管理', 'modules/transaction/order.html', NULL, 1, 'fa fa-file-code-o', 10);
 INSERT INTO `sys_menu` VALUES (57, 56, '查看', NULL, 'transaction:order:list,transaction:order:info', 2, NULL, 0);
 INSERT INTO `sys_menu` VALUES (58, 56, '修改', NULL, 'transaction:order:update', 2, NULL, 0);
+INSERT INTO `sys_menu` VALUES (59, 0, '主管页面', NULL, NULL, 0, 'fa fa-cog', 100);
+INSERT INTO `sys_menu` VALUES (60, 59, '平台管理', 'modules/platform/platform.html', NULL, 1, NULL, 1);
 
 -- ----------------------------
 -- Table structure for sys_oss
