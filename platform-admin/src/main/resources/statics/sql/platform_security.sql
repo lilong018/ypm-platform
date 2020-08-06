@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 05/08/2020 11:49:11
+ Date: 06/08/2020 16:03:28
 */
 
 SET NAMES utf8mb4;
@@ -154,7 +154,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('platformScheduler', 'DESKTOP-566LC7K1596598855849', 1596599309087, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('platformScheduler', 'DESKTOP-566LC7K1596700807276', 1596700870244, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -373,7 +373,7 @@ CREATE TABLE `sys_log`  (
   `ip` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'IP地址',
   `create_date` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_log
@@ -414,6 +414,14 @@ INSERT INTO `sys_log` VALUES (33, 'admin', '保存菜单', 'com.platform.modules
 INSERT INTO `sys_log` VALUES (34, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":59,\"parentId\":0,\"parentName\":\"一级菜单\",\"name\":\"主管页面\",\"type\":0,\"orderNum\":0}', 41, '0:0:0:0:0:0:0:1', '2020-08-05 11:44:18');
 INSERT INTO `sys_log` VALUES (35, 'admin', '修改菜单', 'com.platform.modules.sys.controller.SysMenuController.update()', '{\"menuId\":59,\"parentId\":0,\"parentName\":\"一级菜单\",\"name\":\"主管页面\",\"type\":0,\"icon\":\"fa fa-cog\",\"orderNum\":100}', 74, '0:0:0:0:0:0:0:1', '2020-08-05 11:44:40');
 INSERT INTO `sys_log` VALUES (36, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":60,\"parentId\":59,\"parentName\":\"主管页面\",\"name\":\"平台管理\",\"url\":\"modules/platform/platform.html\",\"type\":1,\"orderNum\":1}', 33, '0:0:0:0:0:0:0:1', '2020-08-05 11:46:03');
+INSERT INTO `sys_log` VALUES (37, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":61,\"parentId\":60,\"parentName\":\"平台管理\",\"name\":\"查看\",\"perms\":\"platform:platform:list,platform:platform:info\",\"type\":2,\"orderNum\":0}', 49, '0:0:0:0:0:0:0:1', '2020-08-06 09:28:29');
+INSERT INTO `sys_log` VALUES (38, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":62,\"parentId\":60,\"parentName\":\"平台管理\",\"name\":\"修改\",\"perms\":\"platform:platform:update\",\"type\":2,\"orderNum\":0}', 37, '0:0:0:0:0:0:0:1', '2020-08-06 09:28:53');
+INSERT INTO `sys_log` VALUES (39, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":63,\"parentId\":59,\"parentName\":\"主管页面\",\"name\":\"人员公里\",\"url\":\"modules/employee/employee.html\",\"type\":1,\"orderNum\":100}', 40, '0:0:0:0:0:0:0:1', '2020-08-06 15:52:12');
+INSERT INTO `sys_log` VALUES (40, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":64,\"parentId\":63,\"parentName\":\"人员公里\",\"name\":\"查看\",\"perms\":\"employee:employee:list,employee:employee:info\",\"type\":2,\"orderNum\":0}', 34, '0:0:0:0:0:0:0:1', '2020-08-06 15:52:55');
+INSERT INTO `sys_log` VALUES (41, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":65,\"parentId\":63,\"parentName\":\"人员公里\",\"name\":\"新增\",\"perms\":\"employee:employee:save\",\"type\":2,\"orderNum\":0}', 49, '0:0:0:0:0:0:0:1', '2020-08-06 15:53:18');
+INSERT INTO `sys_log` VALUES (42, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":66,\"parentId\":63,\"parentName\":\"人员公里\",\"name\":\"修改\",\"perms\":\"employee:employee:update\",\"type\":2,\"orderNum\":0}', 32, '0:0:0:0:0:0:0:1', '2020-08-06 15:53:40');
+INSERT INTO `sys_log` VALUES (43, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":67,\"parentId\":63,\"parentName\":\"人员公里\",\"name\":\"删除\",\"perms\":\"employee:employee:delete\",\"type\":2,\"orderNum\":0}', 38, '0:0:0:0:0:0:0:1', '2020-08-06 15:53:59');
+INSERT INTO `sys_log` VALUES (44, 'admin', '修改菜单', 'com.platform.modules.sys.controller.SysMenuController.update()', '{\"menuId\":63,\"parentId\":59,\"parentName\":\"主管页面\",\"name\":\"人员管理\",\"url\":\"modules/employee/employee.html\",\"type\":1,\"orderNum\":100}', 29, '0:0:0:0:0:0:0:1', '2020-08-06 15:54:09');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -429,7 +437,7 @@ CREATE TABLE `sys_menu`  (
   `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '菜单图标',
   `order_num` int(11) NULL DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单管理' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 68 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单管理' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -488,6 +496,13 @@ INSERT INTO `sys_menu` VALUES (57, 56, '查看', NULL, 'transaction:order:list,t
 INSERT INTO `sys_menu` VALUES (58, 56, '修改', NULL, 'transaction:order:update', 2, NULL, 0);
 INSERT INTO `sys_menu` VALUES (59, 0, '主管页面', NULL, NULL, 0, 'fa fa-cog', 100);
 INSERT INTO `sys_menu` VALUES (60, 59, '平台管理', 'modules/platform/platform.html', NULL, 1, NULL, 1);
+INSERT INTO `sys_menu` VALUES (61, 60, '查看', NULL, 'platform:platform:list,platform:platform:info', 2, NULL, 0);
+INSERT INTO `sys_menu` VALUES (62, 60, '修改', NULL, 'platform:platform:update', 2, NULL, 0);
+INSERT INTO `sys_menu` VALUES (63, 59, '人员管理', 'modules/employee/employee.html', NULL, 1, NULL, 100);
+INSERT INTO `sys_menu` VALUES (64, 63, '查看', NULL, 'employee:employee:list,employee:employee:info', 2, NULL, 0);
+INSERT INTO `sys_menu` VALUES (65, 63, '新增', NULL, 'employee:employee:save', 2, NULL, 0);
+INSERT INTO `sys_menu` VALUES (66, 63, '修改', NULL, 'employee:employee:update', 2, NULL, 0);
+INSERT INTO `sys_menu` VALUES (67, 63, '删除', NULL, 'employee:employee:delete', 2, NULL, 0);
 
 -- ----------------------------
 -- Table structure for sys_oss
@@ -712,6 +727,32 @@ CREATE TABLE `tb_bill`  (
 INSERT INTO `tb_bill` VALUES ('1', '123456789456123', 1, '临沂兴业有限公司', '临沂尚进有限公司', '平安银行', '317', '1', '10000.00', '2020-05-10', '2020-11-10', NULL, NULL, '3', '1', '1', 1, 1, 1, 1, 1, 1, 1, 1, '1', b'1', '12345646', 1250, 1, '2020-07-23 10:20:42', '1');
 
 -- ----------------------------
+-- Table structure for tb_employee
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_employee`;
+CREATE TABLE `tb_employee`  (
+  `id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '员工ID',
+  `name` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工姓名',
+  `gender` int(2) NULL DEFAULT NULL COMMENT '性别（0：未知，1：男，2：女）',
+  `department` int(2) NULL DEFAULT NULL COMMENT '部门（ 0: 未知 1: 管理部门  2: 客服  3:财务）',
+  `phoneNo` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号码',
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '地址',
+  `title` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '职称',
+  `photoUrl` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '照片',
+  `status` int(2) NULL DEFAULT NULL COMMENT '状态（1：启用，2：停用）',
+  `platformId` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '平台id',
+  `onBoardTimeInMillis` datetime(0) NULL DEFAULT NULL COMMENT '到职时间',
+  `leftTimeInMillis` datetime(0) NULL DEFAULT NULL COMMENT '离职时间',
+  `createTimeInMillis` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_employee
+-- ----------------------------
+INSERT INTO `tb_employee` VALUES ('1', '孙同春', 2, 2, '18868698698', '临沂市南坊', '首席财务师', NULL, 1, NULL, '2020-08-06 15:55:21', NULL, '2020-08-06 15:55:24');
+
+-- ----------------------------
 -- Table structure for tb_enterprise
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_enterprise`;
@@ -806,5 +847,10 @@ CREATE TABLE `tb_platform`  (
   `createTimeInMillis` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_platform
+-- ----------------------------
+INSERT INTO `tb_platform` VALUES ('1', '有票么', 'www.draftex/cn', '李四', '155554807565', 1, '1', '2020-08-06 09:26:36');
 
 SET FOREIGN_KEY_CHECKS = 1;
