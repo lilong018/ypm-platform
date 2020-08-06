@@ -1,41 +1,21 @@
 $(function () {
-
-    var detailPlatformComponent = Vue.extend({
-        template: '<i class="fa fa-file-archive-o fa-lg" aria-hidden="true" style="cursor: pointer;" v-on:click="toDetail(monId)"></i>',
-        methods: {
-            toDetail: function (id) {
-                vm.getInfo(id);
-            }
-        },
-        props: ['monId']
-    });
-
     $("#jqGrid").jqGrid({
-        url: baseURL + 'platform/platform/list',
+        url: baseURL + 'employee/employee/list',
         datatype: "json",
         colModel: [			
-			// { label: 'id', name: 'id', index: 'id', width: 50, key: true },
-			{ label: '平台名称', name: 'name', index: 'name', width: 80 }, 			
-			{ label: '网络名称', name: 'website', index: 'website', width: 80 }, 			
-			{ label: '负责人', name: 'manager', index: 'manager', width: 80 }, 			
-			{ label: '联络电话', name: 'phoneno', index: 'phoneNo', width: 80 }, 			
-			{ label: '平台状态', name: 'status', index: 'status', width: 80,formatter:function(cellvalue, options, rowObject) {
-			    if(cellvalue == 1){
-			        return "在线";
-                }else{
-			        return "离线";
-                }
-             } },
-			{ label: '创建时间', name: 'createtimeinmillis', index: 'createTimeInMillis', width: 80 },
-            {
-                label: '操作',
-                width: 80,
-                formatter: function (cellvalue, options, rowObject) {
-                    return '<span id="detailPlatform_' + rowObject.id + '"></span>';
-                },
-                sortable: false,
-                align: 'center'
-            }
+			{ label: 'id', name: 'id', index: 'id', width: 50, key: true },
+			{ label: '员工姓名', name: 'name', index: 'name', width: 80 }, 			
+			{ label: '性别', name: 'gender', index: 'gender', width: 80 },
+			{ label: '部门', name: 'department', index: 'department', width: 80 },
+			{ label: '手机号码', name: 'phoneno', index: 'phoneNo', width: 80 }, 			
+			{ label: '地址', name: 'address', index: 'address', width: 80 }, 			
+			{ label: '职称', name: 'title', index: 'title', width: 80 }, 			
+			{ label: '照片', name: 'photourl', index: 'photoUrl', width: 80 }, 			
+			{ label: '状态', name: 'status', index: 'status', width: 80 },
+			{ label: '平台id', name: 'platformid', index: 'platformId', width: 80 }, 			
+			{ label: '到职时间', name: 'onboardtimeinmillis', index: 'onBoardTimeInMillis', width: 80 }, 			
+			{ label: '离职时间', name: 'lefttimeinmillis', index: 'leftTimeInMillis', width: 80 }, 			
+			{ label: '创建时间', name: 'createtimeinmillis', index: 'createTimeInMillis', width: 80 }			
         ],
 		viewrecords: true,
         height: 385,
@@ -57,40 +37,28 @@ $(function () {
             rows:"limit", 
             order: "order"
         },
-        // beforeRequest: function () {
-        //     $("thead th").css("text-align", "center");
-        // },
         gridComplete:function(){
-            //隐藏grid底部滚动条
-            $("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
-            var detailArr = $("span[id^='detailPlatform_']");
-            var len = detailArr.length;
-            for (var i = 0; i < len; i++) {
-                var idtmp = $(detailArr[i]).attr('id').split('_');
-                var platformDetail = new detailPlatformComponent({propsData: {monId: idtmp[1]}}).$mount('#' + $(detailArr[i]).attr('id'));
-            }
+        	//隐藏grid底部滚动条
+        	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" }); 
         }
-    }).navGrid('#jqGridPager', {edit: false, add: false, del: false, search: false, refresh: true, view: false});
+    });
 });
 
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
-        q: {
-            name: null
-        },
 		showList: true,
 		title: null,
-		platform: {}
+		employee: {}
 	},
 	methods: {
 		query: function () {
-			vm.reload(1);
+			vm.reload();
 		},
 		add: function(){
 			vm.showList = false;
 			vm.title = "新增";
-			vm.platform = {};
+			vm.employee = {};
 		},
 		update: function (event) {
 			var id = getSelectedRow();
@@ -104,12 +72,12 @@ var vm = new Vue({
 		},
 		saveOrUpdate: function (event) {
 		    $('#btnSaveOrUpdate').button('loading').delay(1000).queue(function() {
-                var url = vm.platform.id == null ? "platform/platform/save" : "platform/platform/update";
+                var url = vm.employee.id == null ? "employee/employee/save" : "employee/employee/update";
                 $.ajax({
                     type: "POST",
                     url: baseURL + url,
                     contentType: "application/json",
-                    data: JSON.stringify(vm.platform),
+                    data: JSON.stringify(vm.employee),
                     success: function(r){
                         if(r.code === 0){
                              layer.msg("操作成功", {icon: 1});
@@ -138,7 +106,7 @@ var vm = new Vue({
                     lock = true;
 		            $.ajax({
                         type: "POST",
-                        url: baseURL + "platform/platform/delete",
+                        url: baseURL + "employee/employee/delete",
                         contentType: "application/json",
                         data: JSON.stringify(ids),
                         success: function(r){
@@ -155,23 +123,14 @@ var vm = new Vue({
              });
 		},
 		getInfo: function(id){
-			$.get(baseURL + "platform/platform/info/"+id, function(r){
-			    if (r.platform.status == 1){
-                    r.platform.status = "在线";
-                }else{
-                    r.platform.status ="离线";
-                }
-                vm.showList = false;
-                vm.platform = r.platform;
+			$.get(baseURL + "employee/employee/info/"+id, function(r){
+                vm.employee = r.employee;
             });
 		},
 		reload: function (event) {
 			vm.showList = true;
 			var page = $("#jqGrid").jqGrid('getGridParam','page');
-			$("#jqGrid").jqGrid('setGridParam',{
-                postData: {
-                    name: vm.q.name
-                },
+			$("#jqGrid").jqGrid('setGridParam',{ 
                 page:page
             }).trigger("reloadGrid");
 		}

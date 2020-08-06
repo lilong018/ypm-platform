@@ -18,6 +18,8 @@ import java.util.Date;
 public class PlatformEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	public static final String FIELD_NAME = "name";
+
 	/**
 	 * 平台id
 	 */

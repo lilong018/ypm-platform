@@ -1,5 +1,6 @@
 package com.platform.modules.platform.service.impl;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -18,10 +19,13 @@ public class PlatformServiceImpl extends ServiceImpl<PlatformDao, PlatformEntity
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<PlatformEntity> page = this.page(
-                new Query<PlatformEntity>().getPage(params),
-                new QueryWrapper<PlatformEntity>()
-        );
+        String name = (String) params.get("name");
+        if(name != null) {
+            name = name.trim();
+        }
+        QueryWrapper<PlatformEntity> queryWrapper = new QueryWrapper<PlatformEntity>();
+        queryWrapper.like(StringUtils.isNotBlank(name), PlatformEntity.FIELD_NAME, name);
+        IPage<PlatformEntity> page = this.page(new Query<PlatformEntity>().getPage(params),queryWrapper);
 
         return new PageUtils(page);
     }

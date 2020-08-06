@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.employee.dao.EmployeeDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.platform.modules.employee.entity.EmployeeEntity" id="employeeMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="gender" column="gender"/>
+        <result property="department" column="department"/>
+        <result property="phoneno" column="phoneNo"/>
+        <result property="address" column="address"/>
+        <result property="title" column="title"/>
+        <result property="photourl" column="photoUrl"/>
+        <result property="status" column="status"/>
+        <result property="platformid" column="platformId"/>
+        <result property="onboardtimeinmillis" column="onBoardTimeInMillis"/>
+        <result property="lefttimeinmillis" column="leftTimeInMillis"/>
+        <result property="createtimeinmillis" column="createTimeInMillis"/>
+    </resultMap>
+
+
+</mapper>
