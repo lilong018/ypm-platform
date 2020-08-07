@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.feerecord.dao.FeerecordDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.platform.modules.feerecord.entity.FeerecordEntity" id="feerecordMap">
+        <result property="id" column="id"/>
+        <result property="feetype" column="feeType"/>
+        <result property="platformFee" column="platform_fee"/>
+        <result property="channelFee" column="channel_fee"/>
+        <result property="payerid" column="payerId"/>
+        <result property="payername" column="payerName"/>
+        <result property="buyerid" column="buyerId"/>
+        <result property="buyername" column="buyerName"/>
+        <result property="sellerid" column="sellerId"/>
+        <result property="sellername" column="sellerName"/>
+        <result property="billnumber" column="billNumber"/>
+        <result property="billid" column="billId"/>
+        <result property="orderid" column="orderId"/>
+        <result property="releasePlatformid" column="release_platformId"/>
+        <result property="releasePlatform" column="release_platform"/>
+        <result property="transactionPlatform" column="transaction_platform"/>
+        <result property="transactionPlatformid" column="transaction_platformId"/>
+    </resultMap>
+
+
+</mapper>

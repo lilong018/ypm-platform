@@ -21,6 +21,17 @@
                 </div>
             </div>
         </div>
+        <div class="grid-btn">
+            <#if shiro.hasPermission("platform:platform:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+            </#if>
+            <#if shiro.hasPermission("platform:platform:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+            </#if>
+            <#if shiro.hasPermission("platform:platform:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+            </#if>
+         </div>
         <table id="jqGrid"></table>
         <div id="jqGridPager"></div>
     </div>
@@ -54,10 +65,14 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-2 control-label">平台状态</div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" v-model="platform.status" placeholder="平台状态"/>
-                </div>
+                <label class="radio-inline">
+                    <input type="radio" name="status" value="1" v-model="platform.status"/> 启用
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="status" value="0" v-model="platform.status"/> 禁用
+                </label>
             </div>
+
             <div class="form-group">
                 <div class="col-sm-2 control-label">注册时间</div>
                 <div class="col-sm-10">

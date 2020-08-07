@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 06/08/2020 16:03:28
+ Date: 07/08/2020 15:54:07
 */
 
 SET NAMES utf8mb4;
@@ -154,7 +154,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('platformScheduler', 'DESKTOP-566LC7K1596700807276', 1596700870244, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('platformScheduler', 'DESKTOP-566LC7K1596783763135', 1596786842240, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -373,7 +373,7 @@ CREATE TABLE `sys_log`  (
   `ip` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'IP地址',
   `create_date` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_log
@@ -422,6 +422,13 @@ INSERT INTO `sys_log` VALUES (41, 'admin', '保存菜单', 'com.platform.modules
 INSERT INTO `sys_log` VALUES (42, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":66,\"parentId\":63,\"parentName\":\"人员公里\",\"name\":\"修改\",\"perms\":\"employee:employee:update\",\"type\":2,\"orderNum\":0}', 32, '0:0:0:0:0:0:0:1', '2020-08-06 15:53:40');
 INSERT INTO `sys_log` VALUES (43, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":67,\"parentId\":63,\"parentName\":\"人员公里\",\"name\":\"删除\",\"perms\":\"employee:employee:delete\",\"type\":2,\"orderNum\":0}', 38, '0:0:0:0:0:0:0:1', '2020-08-06 15:53:59');
 INSERT INTO `sys_log` VALUES (44, 'admin', '修改菜单', 'com.platform.modules.sys.controller.SysMenuController.update()', '{\"menuId\":63,\"parentId\":59,\"parentName\":\"主管页面\",\"name\":\"人员管理\",\"url\":\"modules/employee/employee.html\",\"type\":1,\"orderNum\":100}', 29, '0:0:0:0:0:0:0:1', '2020-08-06 15:54:09');
+INSERT INTO `sys_log` VALUES (45, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":68,\"parentId\":60,\"parentName\":\"平台管理\",\"name\":\"新增\",\"perms\":\"platform:platform:save\",\"type\":2,\"orderNum\":0}', 40, '0:0:0:0:0:0:0:1', '2020-08-07 08:24:45');
+INSERT INTO `sys_log` VALUES (46, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":69,\"parentId\":60,\"parentName\":\"平台管理\",\"name\":\"删除\",\"perms\":\"platform:platform:delete\",\"type\":2,\"orderNum\":0}', 32, '0:0:0:0:0:0:0:1', '2020-08-07 08:24:57');
+INSERT INTO `sys_log` VALUES (47, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":70,\"parentId\":0,\"parentName\":\"一级菜单\",\"name\":\"财务\",\"type\":0,\"orderNum\":10}', 40, '0:0:0:0:0:0:0:1', '2020-08-07 15:06:28');
+INSERT INTO `sys_log` VALUES (48, 'admin', '修改菜单', 'com.platform.modules.sys.controller.SysMenuController.update()', '{\"menuId\":70,\"parentId\":0,\"parentName\":\"一级菜单\",\"name\":\"财务\",\"type\":0,\"icon\":\"fa fa-cog\",\"orderNum\":10}', 36, '0:0:0:0:0:0:0:1', '2020-08-07 15:19:22');
+INSERT INTO `sys_log` VALUES (49, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":71,\"parentId\":70,\"parentName\":\"财务\",\"name\":\"费用统计\",\"url\":\"modules/feerecord/feerecord.html\",\"type\":1,\"orderNum\":0}', 27, '0:0:0:0:0:0:0:1', '2020-08-07 15:20:08');
+INSERT INTO `sys_log` VALUES (50, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":72,\"parentId\":71,\"parentName\":\"费用统计\",\"name\":\"查看\",\"perms\":\"feerecord:feerecord:list,feerecord:feerecord:info\",\"type\":2,\"orderNum\":0}', 35, '0:0:0:0:0:0:0:1', '2020-08-07 15:22:10');
+INSERT INTO `sys_log` VALUES (51, 'admin', '保存菜单', 'com.platform.modules.sys.controller.SysMenuController.save()', '{\"menuId\":73,\"parentId\":71,\"parentName\":\"费用统计\",\"name\":\"修改\",\"perms\":\"feerecord:feerecord:update\",\"type\":2,\"orderNum\":0}', 36, '0:0:0:0:0:0:0:1', '2020-08-07 15:22:40');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -437,7 +444,7 @@ CREATE TABLE `sys_menu`  (
   `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '菜单图标',
   `order_num` int(11) NULL DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 68 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单管理' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 74 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单管理' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -503,6 +510,12 @@ INSERT INTO `sys_menu` VALUES (64, 63, '查看', NULL, 'employee:employee:list,e
 INSERT INTO `sys_menu` VALUES (65, 63, '新增', NULL, 'employee:employee:save', 2, NULL, 0);
 INSERT INTO `sys_menu` VALUES (66, 63, '修改', NULL, 'employee:employee:update', 2, NULL, 0);
 INSERT INTO `sys_menu` VALUES (67, 63, '删除', NULL, 'employee:employee:delete', 2, NULL, 0);
+INSERT INTO `sys_menu` VALUES (68, 60, '新增', NULL, 'platform:platform:save', 2, NULL, 0);
+INSERT INTO `sys_menu` VALUES (69, 60, '删除', NULL, 'platform:platform:delete', 2, NULL, 0);
+INSERT INTO `sys_menu` VALUES (70, 0, '财务', NULL, NULL, 0, 'fa fa-cog', 10);
+INSERT INTO `sys_menu` VALUES (71, 70, '费用统计', 'modules/feerecord/feerecord.html', NULL, 1, NULL, 0);
+INSERT INTO `sys_menu` VALUES (72, 71, '查看', NULL, 'feerecord:feerecord:list,feerecord:feerecord:info', 2, NULL, 0);
+INSERT INTO `sys_menu` VALUES (73, 71, '修改', NULL, 'feerecord:feerecord:update', 2, NULL, 0);
 
 -- ----------------------------
 -- Table structure for sys_oss
@@ -792,8 +805,38 @@ CREATE TABLE `tb_enterprise`  (
 -- ----------------------------
 -- Records of tb_enterprise
 -- ----------------------------
-INSERT INTO `tb_enterprise` VALUES (1, '有票么', '91440300MA5ERB6G5P', '深圳市前海深港合作区前湾一路1号A栋201室（入驻深圳市前海商务秘书有限公司）', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595218606152&di=33c964c3d1dfb8499a3a2e2bdddd2084&imgtype=0&src=http%3A%2F%2Fn1.itc.cn%2Fimg8%2Fwb%2Fsmccloud%2Frecom%2F2015%2F10%2F09%2F144439030780697863.JPEG', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595217258127&di=2cd0fdb976d820c560266d6f4740f15d&imgtype=0&src=http%3A%2F%2Fimg2.jc001.cn%2Fimg%2F994%2F1530994%2F1304%2F13515a97358d5ea.jpg', '李四', '371311186902152665', '18686868686', 'https://up.enterdesk.com/edpic/28/bc/80/28bc80d62c84ea7797197a6d7cb03394.jpg', 'https://exp-picture.cdn.bcebos.com/7a3e980e7c75e5f4caa14cbeb1ceaad7736bbceb.jpg', NULL, NULL, NULL, NULL, '2020-07-13 15:32:47', '2020-07-13 15:32:50', NULL, NULL, NULL, NULL, '18886868686', '1', NULL, 1, '经办人', '371211186901112456', '18686868686', 'jingbanren@163.com');
-INSERT INTO `tb_enterprise` VALUES (2, '同城票据网', '91440300MA5ERB6G52', '深圳市前海深港合作区前湾一路1号A栋201室（入驻深圳市前海商务秘书有限公司）', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595218606152&di=33c964c3d1dfb8499a3a2e2bdddd2084&imgtype=0&src=http%3A%2F%2Fn1.itc.cn%2Fimg8%2Fwb%2Fsmccloud%2Frecom%2F2015%2F10%2F09%2F144439030780697863.JPEG', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595217258127&di=2cd0fdb976d820c560266d6f4740f15d&imgtype=0&src=http%3A%2F%2Fimg2.jc001.cn%2Fimg%2F994%2F1530994%2F1304%2F13515a97358d5ea.jpg', '李四', '371311186902152665', '18686868686', 'https://up.enterdesk.com/edpic/28/bc/80/28bc80d62c84ea7797197a6d7cb03394.jpg', 'https://exp-picture.cdn.bcebos.com/7a3e980e7c75e5f4caa14cbeb1ceaad7736bbceb.jpg', NULL, NULL, NULL, NULL, '2020-07-13 15:32:47', '2020-07-13 15:32:50', NULL, NULL, NULL, NULL, '18886868686', '1', NULL, 1, '经办人', '371211186901112456', '18686868686', 'jingbanren@163.com');
+INSERT INTO `tb_enterprise` VALUES (1, '临沂和谐有限公司', '91440300MA5ERB6G5P', '深圳市前海深港合作区前湾一路1号A栋201室（入驻深圳市前海商务秘书有限公司）', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595218606152&di=33c964c3d1dfb8499a3a2e2bdddd2084&imgtype=0&src=http%3A%2F%2Fn1.itc.cn%2Fimg8%2Fwb%2Fsmccloud%2Frecom%2F2015%2F10%2F09%2F144439030780697863.JPEG', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595217258127&di=2cd0fdb976d820c560266d6f4740f15d&imgtype=0&src=http%3A%2F%2Fimg2.jc001.cn%2Fimg%2F994%2F1530994%2F1304%2F13515a97358d5ea.jpg', '李四', '371311186902152665', '18686868686', 'https://up.enterdesk.com/edpic/28/bc/80/28bc80d62c84ea7797197a6d7cb03394.jpg', 'https://exp-picture.cdn.bcebos.com/7a3e980e7c75e5f4caa14cbeb1ceaad7736bbceb.jpg', NULL, NULL, NULL, NULL, '2020-07-13 15:32:47', '2020-07-13 15:32:50', NULL, NULL, NULL, NULL, '18886868686', '1', NULL, 1, '经办人', '371211186901112456', '18686868686', 'jingbanren@163.com');
+INSERT INTO `tb_enterprise` VALUES (2, '临沂兴鲁商贸有限公司', '91440300MA5ERB6G52', '深圳市前海深港合作区前湾一路1号A栋201室（入驻深圳市前海商务秘书有限公司）', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595218606152&di=33c964c3d1dfb8499a3a2e2bdddd2084&imgtype=0&src=http%3A%2F%2Fn1.itc.cn%2Fimg8%2Fwb%2Fsmccloud%2Frecom%2F2015%2F10%2F09%2F144439030780697863.JPEG', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595217258127&di=2cd0fdb976d820c560266d6f4740f15d&imgtype=0&src=http%3A%2F%2Fimg2.jc001.cn%2Fimg%2F994%2F1530994%2F1304%2F13515a97358d5ea.jpg', '李四', '371311186902152665', '18686868686', 'https://up.enterdesk.com/edpic/28/bc/80/28bc80d62c84ea7797197a6d7cb03394.jpg', 'https://exp-picture.cdn.bcebos.com/7a3e980e7c75e5f4caa14cbeb1ceaad7736bbceb.jpg', NULL, NULL, NULL, NULL, '2020-07-13 15:32:47', '2020-07-13 15:32:50', NULL, NULL, NULL, NULL, '18886868686', '1', NULL, 1, '经办人', '371211186901112456', '18686868686', 'jingbanren@163.com');
+
+-- ----------------------------
+-- Table structure for tb_feerecord
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_feerecord`;
+CREATE TABLE `tb_feerecord`  (
+  `id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'id',
+  `feeType` int(10) NULL DEFAULT NULL COMMENT '费用类型（0 未知、1 票据发布费、2 平台服务费、4 见证服务费 、8 资金结算费）',
+  `platform_fee` double(10, 2) NULL DEFAULT NULL COMMENT '平台费用',
+  `channel_fee` double(10, 2) NULL DEFAULT NULL COMMENT '渠道费用',
+  `payerId` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '支付方ID',
+  `payerName` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '支付方姓名',
+  `buyerId` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '买方id',
+  `buyerName` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '买方姓名',
+  `sellerId` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '卖方id',
+  `sellerName` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '卖方姓名',
+  `billNumber` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '票号',
+  `billId` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '票据id',
+  `orderId` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单号',
+  `release_platformId` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '发布平台id',
+  `release_platform` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '发布平台',
+  `transaction_platform` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '交易平台',
+  `transaction_platformId` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '交易平台id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_feerecord
+-- ----------------------------
+INSERT INTO `tb_feerecord` VALUES ('1', 2, 50.25, 25.01, '2', '临沂兴鲁商贸有限公司', '2', '临沂兴鲁商贸有限公司', '1', '临沂和谐有限公司', '123456789456123', '1', '1', '1', '有票么', '有票么', '1');
 
 -- ----------------------------
 -- Table structure for tb_order
@@ -851,6 +894,6 @@ CREATE TABLE `tb_platform`  (
 -- ----------------------------
 -- Records of tb_platform
 -- ----------------------------
-INSERT INTO `tb_platform` VALUES ('1', '有票么', 'www.draftex/cn', '李四', '155554807565', 1, '1', '2020-08-06 09:26:36');
+INSERT INTO `tb_platform` VALUES ('1', '有票么', 'www.draftex.cn', '李四', '155554807565', 1, '1', '2020-08-06 09:26:36');
 
 SET FOREIGN_KEY_CHECKS = 1;

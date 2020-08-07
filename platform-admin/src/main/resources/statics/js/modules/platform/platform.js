@@ -156,11 +156,11 @@ var vm = new Vue({
 		},
 		getInfo: function(id){
 			$.get(baseURL + "platform/platform/info/"+id, function(r){
-			    if (r.platform.status == 1){
-                    r.platform.status = "在线";
-                }else{
-                    r.platform.status ="离线";
-                }
+			    // if (r.platform.status == 1){
+                //     r.platform.status = "在线";
+                // }else{
+                //     r.platform.status ="离线";
+                // }
                 vm.showList = false;
                 vm.platform = r.platform;
             });

@@ -1,43 +1,26 @@
 $(function () {
     $("#jqGrid").jqGrid({
-        url: baseURL + 'employee/employee/list',
+        url: baseURL + 'feerecord/feerecord/list',
         datatype: "json",
         colModel: [			
 			{ label: 'id', name: 'id', index: 'id', width: 50, key: true },
-			{ label: '员工姓名', name: 'name', index: 'name', width: 80 }, 			
-			{ label: '性别', name: 'gender', index: 'gender', width: 80 ,formatter:function(cellvalue, options, rowObject) {
-                if(cellvalue == 1){
-                    return "男";
-                }else{
-                    return "女";
-                }
-            } },
-			{ label: '部门', name: 'department', index: 'department', width: 80 ,formatter:function(cellvalue, options, rowObject) {
-                if(cellvalue == 0){
-                    return "未知";
-                }else if(cellvalue == 1){
-                    return "管理部门";
-                }else if(cellvalue == 2){
-                    return "客服";
-                }else if(cellvalue == 3){
-                    return "财务";
-                }
-            } },
-			{ label: '手机号码', name: 'phoneno', index: 'phoneNo', width: 80 },
-			{ label: '地址', name: 'address', index: 'address', width: 80 }, 			
-			{ label: '职称', name: 'title', index: 'title', width: 80 }, 			
-			{ label: '照片', name: 'photourl', index: 'photoUrl', width: 80 }, 			
-			{ label: '状态', name: 'status', index: 'status', width: 80 ,formatter:function(cellvalue, options, rowObject) {
-                if(cellvalue == 0){
-                    return "启用";
-                }else{
-                    return "停用";
-                }
-			 } },
-			{ label: '平台id', name: 'platformid', index: 'platformId', width: 80 },
-			{ label: '到职时间', name: 'onboardtimeinmillis', index: 'onBoardTimeInMillis', width: 80 }, 			
-			{ label: '离职时间', name: 'lefttimeinmillis', index: 'leftTimeInMillis', width: 80 }, 			
-			{ label: '创建时间', name: 'createtimeinmillis', index: 'createTimeInMillis', width: 80 }			
+            //（0 未知、1 票据发布费、2 平台服务费、4 见证服务费 、8 资金结算费）
+			{ label: '费用类型', name: 'feetype', index: 'feeType', width: 80 },
+			{ label: '平台费用', name: 'platformFee', index: 'platform_fee', width: 80 }, 			
+			{ label: '渠道费用', name: 'channelFee', index: 'channel_fee', width: 80 }, 			
+			// { label: '支付方ID', name: 'payerid', index: 'payerId', width: 80 },
+			{ label: '支付方姓名', name: 'payername', index: 'payerName', width: 80 }, 			
+			// { label: '买方id', name: 'buyerid', index: 'buyerId', width: 80 },
+			{ label: '买方姓名', name: 'buyername', index: 'buyerName', width: 80 }, 			
+			// { label: '卖方id', name: 'sellerid', index: 'sellerId', width: 80 },
+			{ label: '卖方姓名', name: 'sellername', index: 'sellerName', width: 80 }, 			
+			{ label: '票号', name: 'billnumber', index: 'billNumber', width: 80 }, 			
+			// { label: '票据id', name: 'billid', index: 'billId', width: 80 },
+			{ label: '订单号', name: 'orderid', index: 'orderId', width: 80 }, 			
+			// { label: '发布平台id', name: 'releasePlatformid', index: 'release_platformId', width: 80 },
+			{ label: '发布平台', name: 'releasePlatform', index: 'release_platform', width: 80 },
+			{ label: '交易平台', name: 'transactionPlatform', index: 'transaction_platform', width: 80 }, 			
+			// { label: '交易平台id', name: 'transactionPlatformid', index: 'transaction_platformId', width: 80 }
         ],
 		viewrecords: true,
         height: 385,
@@ -71,7 +54,7 @@ var vm = new Vue({
 	data:{
 		showList: true,
 		title: null,
-		employee: {}
+		feerecord: {}
 	},
 	methods: {
 		query: function () {
@@ -80,7 +63,7 @@ var vm = new Vue({
 		add: function(){
 			vm.showList = false;
 			vm.title = "新增";
-			vm.employee = {};
+			vm.feerecord = {};
 		},
 		update: function (event) {
 			var id = getSelectedRow();
@@ -94,12 +77,12 @@ var vm = new Vue({
 		},
 		saveOrUpdate: function (event) {
 		    $('#btnSaveOrUpdate').button('loading').delay(1000).queue(function() {
-                var url = vm.employee.id == null ? "employee/employee/save" : "employee/employee/update";
+                var url = vm.feerecord.id == null ? "feerecord/feerecord/save" : "feerecord/feerecord/update";
                 $.ajax({
                     type: "POST",
                     url: baseURL + url,
                     contentType: "application/json",
-                    data: JSON.stringify(vm.employee),
+                    data: JSON.stringify(vm.feerecord),
                     success: function(r){
                         if(r.code === 0){
                              layer.msg("操作成功", {icon: 1});
@@ -128,7 +111,7 @@ var vm = new Vue({
                     lock = true;
 		            $.ajax({
                         type: "POST",
-                        url: baseURL + "employee/employee/delete",
+                        url: baseURL + "feerecord/feerecord/delete",
                         contentType: "application/json",
                         data: JSON.stringify(ids),
                         success: function(r){
@@ -145,8 +128,8 @@ var vm = new Vue({
              });
 		},
 		getInfo: function(id){
-			$.get(baseURL + "employee/employee/info/"+id, function(r){
-                vm.employee = r.employee;
+			$.get(baseURL + "feerecord/feerecord/info/"+id, function(r){
+                vm.feerecord = r.feerecord;
             });
 		},
 		reload: function (event) {
