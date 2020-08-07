@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
  * 
  * @author ll
  * @email 
- * @date 2020-08-07 14:53:36
+ * @date 2020-08-07 16:16:39
  */
 @Mapper
 public interface FeerecordDao extends BaseMapper<FeerecordEntity> {

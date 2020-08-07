@@ -22,6 +22,7 @@
         <result property="releasePlatform" column="release_platform"/>
         <result property="transactionPlatform" column="transaction_platform"/>
         <result property="transactionPlatformid" column="transaction_platformId"/>
+        <result property="createtimeinmillis" column="createTimeInMillis"/>
     </resultMap>
 
 

@@ -3,9 +3,20 @@ $(function () {
         url: baseURL + 'feerecord/feerecord/list',
         datatype: "json",
         colModel: [			
-			{ label: 'id', name: 'id', index: 'id', width: 50, key: true },
-            //（0 未知、1 票据发布费、2 平台服务费、4 见证服务费 、8 资金结算费）
-			{ label: '费用类型', name: 'feetype', index: 'feeType', width: 80 },
+			{ label: '编号', name: 'id', index: 'id', width: 50, key: true },
+			{ label: '费用类型', name: 'feetype', index: 'feeType', width: 80 ,formatter:function(cellvalue, options, rowObject) {
+                if(cellvalue == 0){
+                    return "未知";
+                }else if(cellvalue == 1){
+                    return "票据发布费";
+                }else if(cellvalue == 2){
+                    return "平台服务费";
+                }else if(cellvalue == 4){
+                    return "见证服务费";
+                }else if(cellvalue == 8){
+                    return "资金结算费";
+                }
+            } },
 			{ label: '平台费用', name: 'platformFee', index: 'platform_fee', width: 80 }, 			
 			{ label: '渠道费用', name: 'channelFee', index: 'channel_fee', width: 80 }, 			
 			// { label: '支付方ID', name: 'payerid', index: 'payerId', width: 80 },
@@ -18,9 +29,10 @@ $(function () {
 			// { label: '票据id', name: 'billid', index: 'billId', width: 80 },
 			{ label: '订单号', name: 'orderid', index: 'orderId', width: 80 }, 			
 			// { label: '发布平台id', name: 'releasePlatformid', index: 'release_platformId', width: 80 },
-			{ label: '发布平台', name: 'releasePlatform', index: 'release_platform', width: 80 },
+			{ label: '发布平台', name: 'releasePlatform', index: 'release_platform', width: 80 }, 			
 			{ label: '交易平台', name: 'transactionPlatform', index: 'transaction_platform', width: 80 }, 			
-			// { label: '交易平台id', name: 'transactionPlatformid', index: 'transaction_platformId', width: 80 }
+			// { label: '交易平台id', name: 'transactionPlatformid', index: 'transaction_platformId', width: 80 },
+			{ label: '日期', name: 'createtimeinmillis', index: 'createTimeInMillis', width: 80 }
         ],
 		viewrecords: true,
         height: 385,

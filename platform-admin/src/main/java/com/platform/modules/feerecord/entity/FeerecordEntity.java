@@ -12,7 +12,7 @@ import java.util.Date;
  * 
  * @author ll
  * @email 
- * @date 2020-08-07 14:53:36
+ * @date 2020-08-07 16:16:39
  */
 @TableName("tb_feerecord")
 public class FeerecordEntity implements Serializable {
@@ -87,6 +87,10 @@ public class FeerecordEntity implements Serializable {
 	 * 交易平台id
 	 */
 	private String transactionPlatformid;
+	/**
+	 * 创建时间
+	 */
+	private Date createtimeinmillis;
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
@@ -226,5 +230,13 @@ public class FeerecordEntity implements Serializable {
 
 	public void setTransactionPlatformid(String transactionPlatformid) {
 		this.transactionPlatformid = transactionPlatformid;
+	}
+
+	public Date getCreatetimeinmillis() {
+		return createtimeinmillis;
+	}
+
+	public void setCreatetimeinmillis(Date createtimeinmillis) {
+		this.createtimeinmillis = createtimeinmillis;
 	}
 }
