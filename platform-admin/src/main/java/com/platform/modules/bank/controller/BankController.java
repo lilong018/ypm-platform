@@ -27,7 +27,7 @@ import com.platform.common.utils.R;
  * @date 2020-07-12 15:52:25
  */
 @RestController
-@RequestMapping("bank/bank")
+@RequestMapping("bank")
 public class BankController {
     @Autowired
     private BankService bankService;

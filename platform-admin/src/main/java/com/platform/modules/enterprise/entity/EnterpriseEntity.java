@@ -17,6 +17,9 @@ import java.util.Date;
 @TableName("tb_enterprise")
 public class EnterpriseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
+	public static final String FIELD_NAME = "name";
+	public static final String FIELD_ACCOUNT = "useraccount";
+	public static final String FIELD_STATUS = "status";
 
 	/**
 	 * id

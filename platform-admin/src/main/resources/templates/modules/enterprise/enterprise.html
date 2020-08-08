@@ -7,11 +7,41 @@
     <link rel="stylesheet" href="${request.contextPath}/statics/css/bootstrap-select.min.css">
     <script src="${request.contextPath}/statics/libs/bootstrapSelect/bootstrap-select.min.js"></script>
     <script src="${request.contextPath}/statics/libs/bootstrapSelect/defaults-zh_CN.js"></script>
+    <link rel="stylesheet" href="${request.contextPath}/statics/plugins/chosen/chosen.css">
+    <script src="${request.contextPath}/statics/plugins/chosen/chosen.jquery.js"></script>
    <!-- <script src="${request.contextPath}/statics/libs/pdf.js"></script>-->
 </head>
 <body>
 <div id="rrapp" v-cloak>
     <div v-show="showList">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-inline">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="name" class="control-label">企业名称：</label>
+                            <input type="text" id="name" class="form-control" v-model.trim="q.name" autocomplete="off"
+                                   style="width: 120px;">
+                            <label for="useraccount" class="control-label">企业账号：</label>
+                            <input type="text" id="useraccount" class="form-control" v-model.trim="q.useraccount" autocomplete="off"
+                                   style="width: 120px;">
+                            <label for="status" class="control-label">用户状态：</label>
+                            <select id="status" class="form-control" v-model="q.status" data-placeholder="请用户状态">
+                                <option value="">全</option>
+                                <option value="1">待平台审核</option>
+                                <option value="2">待银行审核</option>
+                                <option value="3">审核失败</option>
+                                <option value="4">认证完成</option>
+                                <option value="5">待激活</option>
+                            </select>
+                            <label for="qcustomer" class="chosen-select qcustomer">客服名称：</label>
+                            <select id="qcustomer" name="qcustomer" class="chosen-select" data-placeholder=""> </select>
+                            <a class="btn btn-default" @click="query">查询</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="grid-btn">
             <!--<#if shiro.hasPermission("enterprise:enterprise:save")>
             <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>

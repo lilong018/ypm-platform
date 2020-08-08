@@ -28,12 +28,12 @@ $(function () {
 			{ label: '职称', name: 'title', index: 'title', width: 80 }, 			
 			{ label: '照片', name: 'photourl', index: 'photoUrl', width: 80 }, 			
 			{ label: '状态', name: 'status', index: 'status', width: 80 ,formatter:function(cellvalue, options, rowObject) {
-                if(cellvalue == 0){
+                if(cellvalue == 1){
                     return "启用";
                 }else{
                     return "停用";
                 }
-			 } },
+			} },
 			{ label: '平台id', name: 'platformid', index: 'platformId', width: 80 },
 			{ label: '到职时间', name: 'onboardtimeinmillis', index: 'onBoardTimeInMillis', width: 80 }, 			
 			{ label: '离职时间', name: 'lefttimeinmillis', index: 'leftTimeInMillis', width: 80 }, 			

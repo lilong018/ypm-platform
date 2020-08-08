@@ -1,6 +1,7 @@
 package com.platform.modules.employee.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import com.platform.common.validator.ValidatorUtils;
@@ -41,6 +42,15 @@ public class EmployeeController {
         PageUtils page = employeeService.queryPage(params);
 
         return R.ok().put("page", page);
+    }
+    /**
+     * 列表
+     */
+    @RequestMapping("/all")
+    @RequiresPermissions("employee:employee:list")
+    public R getAll(@RequestParam Map<String, Object> params){
+        List<EmployeeEntity> employeeEntities = employeeService.list();
+        return R.ok().put("employeeEntities", employeeEntities);
     }
 
 
