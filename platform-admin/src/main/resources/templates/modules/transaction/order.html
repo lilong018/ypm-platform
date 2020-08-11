@@ -4,10 +4,58 @@
     <title>订单表</title>
     <#include "/header.html">
     <link rel="stylesheet" href="${request.contextPath}/statics/css/modules/main.css">
+    <link rel="stylesheet" href="${request.contextPath}/statics/plugins/chosen/chosen.css">
+    <script src="${request.contextPath}/statics/plugins/chosen/chosen.jquery.js"></script>
 </head>
 <body>
 <div id="rrapp" v-cloak>
     <div v-show="showList">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-inline">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="type" class="control-label">票据类型：</label>
+                            <select id="type" class="form-control" v-model="q.type" data-placeholder="请票据类型">
+                                <option value="">全</option>
+                                <option value="1">银票</option>
+                                <option value="2">商票</option>
+                            </select>
+                            <label for="number" class="control-label">票号：</label>
+                            <input type="text" id="number" class="form-control" v-model.trim="q.number" autocomplete="off"
+                                   style="width: 120px;">
+                            <label for="amount" class="control-label">金额：</label>
+                            <input type="text" id="amount" class="form-control" v-model.trim="q.amount" autocomplete="off"
+                                   style="width: 120px;">
+                            <label for="status" class="control-label">状态：</label>
+                            <select id="status" class="form-control" v-model="q.status" data-placeholder="请选择状态">
+                                <option value="">全</option>
+                                <option value="1">待打款</option>
+                                <option value="2">待背书</option>
+                                <option value="3">待签收</option>
+                                <option value="4">待核验</option>
+                                <option value="5">交易成功</option>
+                                <option value="6">交易失败</option>
+                            </select>
+                            <label for="sellerId" class="control-label">卖方账号：</label>
+                            <input type="text" id="sellerId" class="form-control" v-model.trim="q.sellerId" autocomplete="off"
+                                   style="width: 120px;">
+                            <label for="buyerId" class="control-label">买方账号：</label>
+                            <input type="text" id="buyerId" class="form-control" v-model.trim="q.buyerId" autocomplete="off"
+                                   style="width: 120px;">
+                            <label for="operationdate" class="control-label">操作时间：</label>
+                            <input type="date" id="sdate" class="form-control" v-model.trim="q.sdate" autocomplete="off"
+                                   style="width: 120px;">-
+                            <input type="date" id="edate" class="form-control" v-model.trim="q.edate" autocomplete="off"
+                                   style="width: 120px;">
+                            <label for="qcustomer" class="chosen-select qcustomer">客服名称：</label>
+                            <select id="qcustomer" name="qcustomer" class="chosen-select" data-placeholder=""> </select>
+                            <a class="btn btn-default" @click="query">查询</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="grid-btn">
         <#if shiro.hasPermission("transaction:order:update")>
             <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;查看</a>

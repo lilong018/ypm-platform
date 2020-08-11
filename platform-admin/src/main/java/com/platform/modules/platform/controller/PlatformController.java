@@ -1,8 +1,10 @@
 package com.platform.modules.platform.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
+import com.platform.common.utils.SnowFlakeUtils;
 import com.platform.common.validator.ValidatorUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +63,9 @@ public class PlatformController {
     @RequestMapping("/save")
     @RequiresPermissions("platform:platform:save")
     public R save(@RequestBody PlatformEntity platform){
+        String id = SnowFlakeUtils.nextId()+"";
+        platform.setId(id);
+        platform.setCreatetimeinmillis(new Date());
         platformService.save(platform);
 
         return R.ok();

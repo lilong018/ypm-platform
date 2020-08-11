@@ -1,7 +1,9 @@
 package com.platform.modules.employee.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -21,7 +23,7 @@ public class EmployeeEntity implements Serializable {
 	/**
 	 * 员工ID
 	 */
-	@TableId
+	@TableId(value = "id",type = IdType.INPUT)
 	private String id;
 	/**
 	 * 员工姓名
@@ -62,10 +64,12 @@ public class EmployeeEntity implements Serializable {
 	/**
 	 * 到职时间
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Date onboardtimeinmillis;
 	/**
 	 * 离职时间
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Date lefttimeinmillis;
 	/**
 	 * 创建时间

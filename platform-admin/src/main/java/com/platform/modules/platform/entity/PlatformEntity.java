@@ -1,5 +1,6 @@
 package com.platform.modules.platform.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -23,7 +24,7 @@ public class PlatformEntity implements Serializable {
 	/**
 	 * 平台id
 	 */
-	@TableId
+	@TableId(value = "id",type = IdType.INPUT)
 	private String id;
 	/**
 	 * 平台名称

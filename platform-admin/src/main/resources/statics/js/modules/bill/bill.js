@@ -45,14 +45,29 @@ $(function () {
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
+        q: {
+            type: null,
+            number: null,
+            amount:null,
+            sdate: null,
+            edate: null,
+            sellerId: null,
+            buyerId: null,
+            qcustomer: null
+        },
 		showList: true,
 		title: null,
         approveStatus:1,
 		bill: {}
 	},
+    created: function () {
+    },
+    mounted: function () {
+        this.initBaseData();
+    },
 	methods: {
 		query: function () {
-			vm.reload();
+			vm.reload(1);
 		},
 		add: function(){
 			vm.showList = false;
@@ -129,7 +144,17 @@ var vm = new Vue({
 		reload: function (event) {
 			vm.showList = true;
 			var page = $("#jqGrid").jqGrid('getGridParam','page');
-			$("#jqGrid").jqGrid('setGridParam',{ 
+			$("#jqGrid").jqGrid('setGridParam',{
+                postData: {
+                    type: vm.q.type,
+                    number: vm.q.number,
+                    amount: vm.q.amount,
+                    sdate: vm.q.sdate,
+                    edate: vm.q.edate,
+                    sellerId: vm.q.sellerId,
+                    buyerId: vm.q.buyerId,
+                    customer: vm.q.customer
+                },
                 page:page
             }).trigger("reloadGrid");
 		},
@@ -164,6 +189,46 @@ var vm = new Vue({
                     });
                 });
             }
+        },
+        initBaseData: function () {
+            let _self = this;
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: baseURL + "employee/employee/all",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (r) {
+                    if (r.code == 0) {
+                        console.log(r.employeeEntities);
+                        _self.customer = r.employeeEntities;
+                        Vue.nextTick(function(){
+                            _self.initQyChosenCustomer();
+                        });
+                    }
+                }
+            });
+        },
+        initQyChosenCustomer: function(){
+            var optionHtml = '';
+            optionHtml += '<option value="">' + "请选择客服"+ '</option>';
+            $.each(vm.customer, function (ele, index, arr) {
+                optionHtml += '<option value="' + index.id + '">' + index.name + '</option>';
+            });
+            let qcustomer = $('#qcustomer');
+            qcustomer.html(optionHtml);
+            qcustomer.chosen({
+                no_results_text: "没有找到结果！",
+                search_contains: true,
+                allow_single_deselect: true,
+                placeholder_text_multiple: "客服",
+                width: "120px"
+            });
+            qcustomer.trigger("chosen:updated");
+            qcustomer.on('change', function(evt, params) {
+                //赋值
+                vm.q.customer = qcustomer.val();
+            });
         }
 	}
 });

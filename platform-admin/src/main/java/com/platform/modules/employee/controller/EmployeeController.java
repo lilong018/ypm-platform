@@ -1,9 +1,11 @@
 package com.platform.modules.employee.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.platform.common.utils.SnowFlakeUtils;
 import com.platform.common.validator.ValidatorUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +73,9 @@ public class EmployeeController {
     @RequestMapping("/save")
     @RequiresPermissions("employee:employee:save")
     public R save(@RequestBody EmployeeEntity employee){
+        String id = SnowFlakeUtils.nextId()+"";
+        employee.setId(id);
+        employee.setCreatetimeinmillis(new Date());
         employeeService.save(employee);
 
         return R.ok();
