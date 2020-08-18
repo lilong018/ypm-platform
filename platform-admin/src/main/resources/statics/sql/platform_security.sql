@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 11/08/2020 10:47:59
+ Date: 18/08/2020 11:03:54
 */
 
 SET NAMES utf8mb4;
@@ -154,7 +154,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('platformScheduler', 'DESKTOP-566LC7K1597108914180', 1597114052007, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('platformScheduler', 'DESKTOP-566LC7K1597116815601', 1597126287403, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
