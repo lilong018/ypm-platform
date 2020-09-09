@@ -55,6 +55,8 @@ public class PlatformEntity implements Serializable {
 	 */
 	private Date createtimeinmillis;
 
+	private Integer bonusPercentage;
+
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}
@@ -121,5 +123,13 @@ public class PlatformEntity implements Serializable {
 
 	public void setCreatetimeinmillis(Date createtimeinmillis) {
 		this.createtimeinmillis = createtimeinmillis;
+	}
+
+	public Integer getBonusPercentage() {
+		return bonusPercentage;
+	}
+
+	public void setBonusPercentage(Integer bonusPercentage) {
+		this.bonusPercentage = bonusPercentage;
 	}
 }
