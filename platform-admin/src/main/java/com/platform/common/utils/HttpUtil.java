@@ -19,7 +19,11 @@ import java.util.Map;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
+
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonObject;
+import com.platform.common.model.UrlConstans;
 
 /**
  * @ClassName HttpUtil
@@ -45,8 +49,7 @@ public class HttpUtil {
      * @return
      * @throws Exception
      */
-    private static HttpURLConnection createConnection(String url,
-                                                      String method, Map<String, String> headerParameters, String body)
+    private static HttpURLConnection createConnection(String url, String method, Map<String, String> headerParameters, String body)
             throws Exception {
         URL Url = new URL(url);
         trustAllHttpsCertificates();
@@ -64,10 +67,9 @@ public class HttpUtil {
                         headerParameters.get(key));
             }
         }
-        httpConnection.setRequestProperty("Content-Type",
-                "application/x-www-form-urlencoded;charset=" + ENCODING);
-
+        httpConnection.setRequestProperty("Content-Type","application/json");
         // 设置请求方法
+        System.out.println("method:"+method);
         httpConnection.setRequestMethod(method);
         httpConnection.setDoOutput(true);
         httpConnection.setDoInput(true);
@@ -123,6 +125,21 @@ public class HttpUtil {
                              Map<String, String> headerParameters, String body) throws Exception {
 
         return proxyHttpRequest(address, "GET", headerParameters, null);
+    }
+
+    /**
+     * GET请求
+     * @param address
+     * @param headerParameters
+     * @param body
+     * @return
+     * @throws Exception
+     */
+    public static String get(String address,Map<String, String> headerParameters,Map<String, String> urlParameters, String body) throws Exception {
+
+//        return proxyHttpRequest(address, "GET", headerParameters, null);
+        return proxyHttpRequest(address + "?"
+                + getRequestBody(urlParameters), "GET", headerParameters, null);
     }
 
     /**
@@ -412,13 +429,22 @@ public class HttpUtil {
             //请求地址(我这里测试使用淘宝提供的手机号码信息查询的接口)
 //            String address = "https://tcc.taobao.com/cc/json/mobile_tel_segment.htm";
             String address = "https://192.168.68.129:8889/users/me";
+            String address1 = "https://192.168.68.129:8889/platforms";
 
             //请求参数  5f59830b58a2fc1097a23280
             Map<String, String> params = new HashMap<String, String>();
 //            params.put("tel", "13777777777");//这是该接口需要的参数
-            params.put("x-auth-token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoiYWRtaW4iLCJwYXNzd29yZCI6ImFkbWluIiwicm9sZSI6MSwiZXhwIjoxNTk5Nzg2OTE0MjYzfQ.0KoVZm5ik4SYhgklo7nW596fupgjkM6P9NKBTt0GE6E");
+            params.put("x-auth-token",AuthService.getAuth());
+
+            Map<String,Object> paramBodys = new HashMap<String,Object>();
+            paramBodys.put("name","深度票据网1");
+            paramBodys.put("website","www.sdpj.com");
+            paramBodys.put("manager","王五");
+            paramBodys.put("phoneNo","1555876591");
+            paramBodys.put("bonusPercentage",40);
+            String res = post(address1, params, JSON.toJSONString(paramBodys));
             // 调用 get 请求
-            String res = get(address, params, null);
+//            String res = get(address, params, null);
             System.out.println(res);//打印返回参数
 
             res = res.substring(res.indexOf("{"));//截取

@@ -12,7 +12,7 @@
         <result property="phoneno" column="phoneNo"/>
         <result property="status" column="status"/>
         <result property="valid" column="valid"/>
-        <result property="bonusPercentage" column="bonusPercentage"/>
+        <result property="bonuspercentage" column="bonusPercentage"/>
         <result property="createtimeinmillis" column="createTimeInMillis"/>
     </resultMap>
 

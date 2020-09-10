@@ -15,18 +15,18 @@ $(function () {
         datatype: "json",
         colModel: [			
 			// { label: 'id', name: 'id', index: 'id', width: 50, key: true },
-			{ label: '平台名称', name: 'name', index: 'name', width: 80 }, 			
-			{ label: '网络名称', name: 'website', index: 'website', width: 80 }, 			
-			{ label: '负责人', name: 'manager', index: 'manager', width: 80 }, 			
-			{ label: '联络电话', name: 'phoneno', index: 'phoneNo', width: 80 }, 			
-			{ label: '平台状态', name: 'status', index: 'status', width: 80,formatter:function(cellvalue, options, rowObject) {
+			{ label: '平台名称', name: 'name', index: 'name', width: 80 },
+            { label: '网络名称', name: 'website', index: 'website', width: 80 },
+            { label: '负责人', name: 'manager', index: 'manager', width: 80 },
+            { label: '联络电话', name: 'phoneNo', index: 'phoneNo', width: 80 },
+            { label: '平台状态', name: 'status', index: 'status', width: 80,formatter:function(cellvalue, options, rowObject) {
 			    if(cellvalue == 1){
 			        return "在线";
                 }else{
 			        return "离线";
                 }
              } },
-			{ label: '创建时间', name: 'createtimeinmillis', index: 'createTimeInMillis', width: 80 },
+			{ label: '创建时间', name: 'createTimeInMillis', index: 'createTimeInMillis', width: 80 },
             {
                 label: '操作',
                 width: 80,

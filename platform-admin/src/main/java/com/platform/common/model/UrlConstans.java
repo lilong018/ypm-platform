@@ -6,7 +6,7 @@ package com.platform.common.model;
  * @time 2020/7/2 10:50
  */
 public class UrlConstans {
-    public static final String BASEURL = "https://192.168.129:8889";
+    public static final String BASEURL = "https://192.168.68.129:8889";
     // 获取短信验证码
     public final static String USER_CODE = "/users/code";
     // 用户注册
