@@ -1,24 +1,21 @@
 package com.platform.modules.platform.controller;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSON;
 import com.platform.common.model.UrlConstans;
-import com.platform.common.utils.*;
+import com.platform.common.utils.HttpUtil;
+import com.platform.common.utils.HttpUtils;
+import com.platform.common.utils.PageUtils;
+import com.platform.common.utils.R;
 import com.platform.common.validator.ValidatorUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.platform.modules.platform.entity.PlatformEntity;
 import com.platform.modules.platform.service.PlatformService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -73,7 +70,7 @@ public class PlatformController {
         platform.setCreatetimeinmillis(new Date());
         platformService.save(platform);*/
 
-        Map<String,Object> headerMap = new HashMap<String,Object>();
+        Map<String,String> headerMap = new HashMap<String,String>();
 //        if (StringUtil.isNotEmpty(platformId)){
 //            headerMap.put("platformId", platformId);
 //        }
@@ -81,20 +78,19 @@ public class PlatformController {
 //            headerMap.put("website", website);
 //        }
         Map<String,Object> params = new HashMap<String,Object>();
-//        {
-//            "name": "String", // 顯示名稱
-//                "website": "String", // 網域名稱
-//                "manager": "String", // 負責人
-//                "phoneNo": "String", // 聯絡電話
-//                "bonusPercentage": "integer" // 分紅百分比
-//        }
         params.put("name",platform.getName());
         params.put("website",platform.getWebsite());
         params.put("manager",platform.getManager());
         params.put("phoneNo",platform.getPhoneno());
         params.put("bonusPercentage",platform.getBonusPercentage());
-        headerMap.put("x-auth-token","");
-        String res = HttpUtils.doGet(UrlConstans.PLATFORM, params, headerMap);
+        headerMap.put("x-auth-token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoiYWRtaW4iLCJwYXNzd29yZCI6ImFkbWluIiwicm9sZSI6MSwiZXhwIjoxNTk5Nzg2OTE0MjYzfQ.0KoVZm5ik4SYhgklo7nW596fupgjkM6P9NKBTt0GE6E");
+        String res = null;
+        try {
+            res = HttpUtil.post(UrlConstans.BASEURL+UrlConstans.PLATFORM, headerMap, JSON.toJSONString(params));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("新增平台返回值：---->>>>"+res);
 //        PlatformResponseBody platformResponseBody = JSONObject.parseObject(res, PlatformResponseBody.class);
         return R.ok();
     }

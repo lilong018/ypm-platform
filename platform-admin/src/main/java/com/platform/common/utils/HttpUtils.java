@@ -24,7 +24,7 @@ import java.util.Map;
 public class HttpUtils {
 
 
-    public static final String BASEURL = "https://192.168.129:8889/";
+    public static final String BASEURL = "https://192.168.129:8889";
     //统一配置
     private static PoolingHttpClientConnectionManager connMgr;
     private static RequestConfig requestConfig;
