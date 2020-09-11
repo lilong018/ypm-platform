@@ -41,7 +41,7 @@ public class PlatformEntity implements Serializable {
 	/**
 	 * 联络电话
 	 */
-	private String phoneno;
+	private String phoneNo;
 	/**
 	 * 平台状态（1：在线，2：离线）
 	 */
@@ -93,12 +93,16 @@ public class PlatformEntity implements Serializable {
 		this.manager = manager;
 	}
 
-	public String getPhoneno() {
-		return phoneno;
+	public static String getFieldName() {
+		return FIELD_NAME;
 	}
 
-	public void setPhoneno(String phoneno) {
-		this.phoneno = phoneno;
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
 	}
 
 	public Integer getStatus() {

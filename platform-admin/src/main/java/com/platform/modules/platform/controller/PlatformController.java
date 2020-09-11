@@ -1,9 +1,13 @@
 package com.platform.modules.platform.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.google.gson.Gson;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.platform.common.model.UrlConstans;
-import com.platform.common.utils.*;
+import com.platform.common.utils.AuthService;
+import com.platform.common.utils.HttpUtil;
+import com.platform.common.utils.PageUtils;
+import com.platform.common.utils.R;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.modules.platform.entity.PlatformEntity;
 import com.platform.modules.platform.entity.PlatformRespond;
@@ -13,10 +17,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -99,8 +100,36 @@ public class PlatformController {
         headerMap.put("x-auth-token", AuthService.getToken());
         String res = null;
         try {
+            //添加平台
             String address = UrlConstans.BASEURL + UrlConstans.PLATFORM;
             res = HttpUtil.post(address, headerMap, JSON.toJSONString(params));
+            Map<String, Object> respond = JSONObject.parseObject(res, new TypeReference<Map<String, Object>>() {});
+            Map<String, String> payload = (Map<String, String>) respond.get("payload");
+            String platformId = payload.get("platformId");
+
+            //添加平台管理者账户
+            Map<String, Object> userParams = new HashMap<String, Object>();
+            Map<String, Object> employeeMap = new HashMap<String, Object>();
+            employeeMap.put("name",platform.getName());
+            employeeMap.put("department",3);
+            employeeMap.put("phoneNo",platform.getPhoneNo());
+
+            List<String> controlPlatform = new ArrayList<String>();
+            controlPlatform.add(platformId);
+
+            Map<String, Object> userMap = new HashMap<String, Object>();
+            userMap.put("account",platform.getPhoneNo());
+            userMap.put("password","admin");
+            userMap.put("isFirstLoginReset",true);
+            userMap.put("isNotAllowReset",false);
+            userMap.put("isPlatformAdmin",false);
+            userMap.put("controlPlatform",controlPlatform);
+            userParams.put("employee",employeeMap);
+            userParams.put("platformId",platformId);
+            userParams.put("user",userMap);
+
+            String userRes = HttpUtil.post(UrlConstans.BASEURL + UrlConstans.EMPLOYEES, headerMap, JSON.toJSONString(userParams));
+            System.out.println(userRes);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -138,7 +167,7 @@ public class PlatformController {
         params.put("name", platform.getName());
         params.put("website", platform.getWebsite());
         params.put("manager", platform.getManager());
-        params.put("phoneNo", platform.getPhoneno());
+        params.put("phoneNo", platform.getPhoneNo());
         params.put("bonusPercentage", platform.getBonusPercentage());
         return params;
     }
