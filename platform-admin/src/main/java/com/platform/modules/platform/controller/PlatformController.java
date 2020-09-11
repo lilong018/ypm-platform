@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.platform.common.model.UrlConstans;
-import com.platform.common.utils.AuthService;
-import com.platform.common.utils.HttpUtil;
-import com.platform.common.utils.PageUtils;
-import com.platform.common.utils.R;
+import com.platform.common.utils.*;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.modules.platform.entity.PlatformEntity;
 import com.platform.modules.platform.entity.PlatformRespond;
@@ -42,7 +39,7 @@ public class PlatformController {
         Integer pageSize = Integer.parseInt(String.valueOf(params.get("limit")));
 
         Map<String, String> headerMap = new HashMap<String, String>();
-        Map<String, String> urlParams = convertParams(params);
+        Map<String, String> urlParams = ParamsUtils.convertParams(params);
         headerMap.put("x-auth-token", AuthService.getToken());
         PageUtils page = null;
         try {
@@ -129,12 +126,62 @@ public class PlatformController {
             userParams.put("user",userMap);
 
             String userRes = HttpUtil.post(UrlConstans.BASEURL + UrlConstans.EMPLOYEES, headerMap, JSON.toJSONString(userParams));
-            System.out.println(userRes);
+
+            //添加用户权限
+            Map<String, Object> userRespond = JSONObject.parseObject(userRes, new TypeReference<Map<String, Object>>() {});
+            Map<String, String> userPayload = (Map<String, String>) userRespond.get("payload");
+            String employeeId = userPayload.get("employeeId");
+
+            Map<String, Object> privilegeParams = new HashMap<String, Object>();
+
+            List<Map<String, Object>> userPrivileges = new ArrayList<Map<String, Object>>();
+
+            Map<String, Object> platformMap = new HashMap<String, Object>();
+
+            List<Map<String, Object>> privilegesList = new ArrayList<Map<String, Object>>();
+            Map<String, Object> privilegesMap = new HashMap<String, Object>();
+            privilegesMap.put("category",3);
+            privilegesMap.put("privilege",15);
+            privilegesList.add(privilegesMap);
+            platformMap.put("platformId",platformId);
+            platformMap.put("privileges",privilegesList);
+            userPrivileges.add(platformMap);
+
+            privilegeParams.put("employeeId",employeeId);
+
+            privilegeParams.put("userPrivileges",userPrivileges);
+
+            String privilegesRes = HttpUtil.post(UrlConstans.BASEURL + UrlConstans.PRIVILEGES, headerMap, JSON.toJSONString(privilegeParams));
+
+            System.out.println(privilegesRes);
         } catch (Exception e) {
             e.printStackTrace();
         }
 //        PlatformResponseBody platformResponseBody = JSONObject.parseObject(res, PlatformResponseBody.class);
         return R.ok();
+    }
+
+    public static void main(String[] args) {
+
+        Map<String, Object> privilegeParams = new HashMap<String, Object>();
+
+        List<Map<String, Object>> userPrivileges = new ArrayList<Map<String, Object>>();
+
+        Map<String, Object> platformMap = new HashMap<String, Object>();
+
+        List<Map<String, Object>> privilegesList = new ArrayList<Map<String, Object>>();
+        Map<String, Object> privilegesMap = new HashMap<String, Object>();
+        privilegesMap.put("category",3);
+        privilegesMap.put("privilege",15);
+        privilegesList.add(privilegesMap);
+        platformMap.put("platformId","platformId");
+        platformMap.put("privileges",privilegesList);
+        userPrivileges.add(platformMap);
+
+        privilegeParams.put("employeeId","employeeId");
+
+        privilegeParams.put("userPrivileges",userPrivileges);
+        System.out.println(JSON.toJSONString(privilegeParams));
     }
 
     /**
@@ -195,25 +242,5 @@ public class PlatformController {
         return R.ok();
     }
 
-    /**
-     * @param params
-     * @Description 转换参数
-     * @Return
-     * @Throws Exception
-     * @Author lilong
-     * @Date 2020/9/10 16:55
-     **/
-    private Map<String, String> convertParams(Map<String, Object> params) {
-        // TODO: 2020/9/10  判断参数是否为空 添加其他相关参数
-        Map<String, String> urlParams = new HashMap<String, String>();
-        Integer pageNumber = Integer.parseInt(String.valueOf(params.get("page")));
-        Integer pageSize = Integer.parseInt(String.valueOf(params.get("limit")));
-        Integer start = (pageNumber - 1) * pageSize;
-        urlParams.put("start", String.valueOf(start));
-        urlParams.put("count", String.valueOf(pageSize));
-//        urlParams.put("valid", "true");
-        return urlParams;
-
-    }
 
 }

@@ -1,9 +1,12 @@
 package com.platform.modules.enterprise.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.platform.common.utils.AuthService;
+import com.platform.common.utils.ParamsUtils;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.modules.bank.entity.BankEntity;
 import com.platform.modules.bank.service.BankService;
@@ -47,7 +50,13 @@ public class EnterpriseController {
     @RequiresPermissions("enterprise:enterprise:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = enterpriseService.queryPage(params);
+
+        Map<String, String> headerMap = new HashMap<String, String>();
+        Map<String, String> urlParams = ParamsUtils.convertParams(params);
+        headerMap.put("x-auth-token", AuthService.getToken());
+
         return R.ok().put("page", page);
+
     }
 
 
@@ -105,5 +114,6 @@ public class EnterpriseController {
         System.out.println(req);
         return R.ok();
     }
+
 
 }

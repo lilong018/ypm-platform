@@ -77,12 +77,12 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeDao, EmployeeEntity
     public PageUtils selectPage(Map<String, Object> params) {
         String address = UrlConstans.BASEURL + UrlConstans.EMPLOYEES;
         Map<String, String> urlParams = new HashMap<String, String>();
-        /*Integer pageNumber = Integer.parseInt(String.valueOf(params.get("page")));
+        Integer pageNumber = Integer.parseInt(String.valueOf(params.get("page")));
         Integer pageSize = Integer.parseInt(String.valueOf(params.get("limit")));
 
         Integer start = (pageNumber - 1) * pageSize;
         urlParams.put("start", String.valueOf(start));
-        urlParams.put("count", String.valueOf(pageSize));*/
+        urlParams.put("count", String.valueOf(pageSize));
         urlParams.put("platformId", "68686868");
 
         Map<String, String> headerMap = new HashMap<String, String>();
