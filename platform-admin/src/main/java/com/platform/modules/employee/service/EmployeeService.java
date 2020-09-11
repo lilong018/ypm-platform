@@ -19,5 +19,9 @@ public interface EmployeeService extends IService<EmployeeEntity> {
     PageUtils queryPage(Map<String, Object> params);
 
     List<EmployeeEntity> getAll();
+
+    boolean saveEmployee(EmployeeEntity employee);
+
+    PageUtils selectPage(Map<String, Object> params);
 }
 

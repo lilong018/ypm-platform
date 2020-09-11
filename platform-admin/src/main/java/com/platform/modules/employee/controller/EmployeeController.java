@@ -1,10 +1,8 @@
 package com.platform.modules.employee.controller;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import com.platform.common.utils.AuthService;
 import com.platform.common.utils.SnowFlakeUtils;
 import com.platform.common.validator.ValidatorUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -23,8 +21,7 @@ import com.platform.common.utils.R;
 
 
 /**
- * 
- *
+ * @describe 员工管理controller
  * @author ll
  * @email 
  * @date 2020-08-06 15:57:09
@@ -41,8 +38,8 @@ public class EmployeeController {
     @RequestMapping("/list")
     @RequiresPermissions("employee:employee:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = employeeService.queryPage(params);
-
+//        PageUtils page = employeeService.queryPage(params);
+        PageUtils page = employeeService.selectPage(params);
         return R.ok().put("page", page);
     }
     /**
@@ -73,10 +70,8 @@ public class EmployeeController {
     @RequestMapping("/save")
     @RequiresPermissions("employee:employee:save")
     public R save(@RequestBody EmployeeEntity employee){
-        String id = SnowFlakeUtils.nextId()+"";
-        employee.setId(id);
-        employee.setCreatetimeinmillis(new Date());
-        employeeService.save(employee);
+
+        employeeService.saveEmployee(employee);
 
         return R.ok();
     }

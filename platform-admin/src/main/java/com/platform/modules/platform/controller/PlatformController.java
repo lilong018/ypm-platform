@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -41,11 +42,10 @@ public class PlatformController {
 
         Map<String, String> headerMap = new HashMap<String, String>();
         Map<String, String> urlParams = convertParams(params);
-        headerMap.put("x-auth-token", AuthService.getAuth());
+        headerMap.put("x-auth-token", AuthService.getToken());
         PageUtils page = null;
         try {
             String res = HttpUtil.get(UrlConstans.BASEURL + UrlConstans.PLATFORM, headerMap, urlParams, null);
-            System.out.println(res);
             PlatformRespond platformRespond = JSON.parseObject(res, PlatformRespond.class);
             page = new PageUtils(platformRespond.getPayload().getResults(), platformRespond.getPayload().getTotal(), pageSize, pageNumber);
         } catch (Exception e) {
@@ -64,7 +64,7 @@ public class PlatformController {
         // TODO: 2020/9/10 將header中的
         //在header中添加token
         Map<String, String> headerMap = new HashMap<String, String>();
-        headerMap.put("x-auth-token", AuthService.getAuth());
+        headerMap.put("x-auth-token", AuthService.getToken());
         //设置参数
         Map<String, String> urlParams = new HashMap<String, String>();
         urlParams.put("start", "0");
@@ -73,9 +73,8 @@ public class PlatformController {
         PlatformResults platformResults = new PlatformResults();
         try {
             String res = HttpUtil.get(UrlConstans.BASEURL + UrlConstans.PLATFORM, headerMap, urlParams, null);
-            System.out.println(res);
             PlatformRespond platformRespond = JSON.parseObject(res, PlatformRespond.class);
-            platformResults  = platformRespond.getPayload().getResults().get(0);
+            platformResults = platformRespond.getPayload().getResults().get(0);
 //            page = new PageUtils(platformRespond.getPayload().getResults(), platformRespond.getPayload().getTotal(), pageSize, pageNumber);
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,13 +95,8 @@ public class PlatformController {
     public R save(@RequestBody PlatformEntity platform) {
 
         Map<String, String> headerMap = new HashMap<String, String>();
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("name", platform.getName());
-        params.put("website", platform.getWebsite());
-        params.put("manager", platform.getManager());
-        params.put("phoneNo", platform.getPhoneno());
-        params.put("bonusPercentage", platform.getBonusPercentage());
-        headerMap.put("x-auth-token", AuthService.getAuth());
+        Map<String, Object> params = getParamsBody(platform);
+        headerMap.put("x-auth-token", AuthService.getToken());
         String res = null;
         try {
             String address = UrlConstans.BASEURL + UrlConstans.PLATFORM;
@@ -110,7 +104,6 @@ public class PlatformController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("新增平台返回值：---->>>>" + res);
 //        PlatformResponseBody platformResponseBody = JSONObject.parseObject(res, PlatformResponseBody.class);
         return R.ok();
     }
@@ -121,10 +114,33 @@ public class PlatformController {
     @RequestMapping("/update")
     @RequiresPermissions("platform:platform:update")
     public R update(@RequestBody PlatformEntity platform) {
-        ValidatorUtils.validateEntity(platform);
-        platformService.updateById(platform);
 
+        ValidatorUtils.validateEntity(platform);
+        Map<String, String> headerMap = new HashMap<String, String>();
+        headerMap.put("x-auth-token", AuthService.getToken());
+        Map<String, Object> params = getParamsBody(platform);
+        String res = null;
+        try {
+            String address = UrlConstans.BASEURL + UrlConstans.PLATFORM + "/" + platform.getId();
+            res = HttpUtil.put(address, headerMap, JSON.toJSONString(params));
+            System.out.println(res);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        platformService.updateById(platform);
         return R.ok();
+    }
+
+    private Map<String, Object> getParamsBody(@RequestBody PlatformEntity platform) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("name", platform.getName());
+        params.put("website", platform.getWebsite());
+        params.put("manager", platform.getManager());
+        params.put("phoneNo", platform.getPhoneno());
+        params.put("bonusPercentage", platform.getBonusPercentage());
+        return params;
     }
 
     /**
@@ -133,6 +149,18 @@ public class PlatformController {
     @RequestMapping("/delete")
     @RequiresPermissions("platform:platform:delete")
     public R delete(@RequestBody String[] ids) {
+        String address = UrlConstans.BASEURL + UrlConstans.PLATFORM +"/";
+        Map<String, String> headerMap = new HashMap<String, String>();
+        headerMap.put("x-auth-token", AuthService.getToken());
+        List<String> idList = Arrays.asList(ids);
+        for (String id : ids) {
+            address += id;
+            try {
+                String res = HttpUtil.delete(address, headerMap, "");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         platformService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
@@ -154,6 +182,7 @@ public class PlatformController {
         Integer start = (pageNumber - 1) * pageSize;
         urlParams.put("start", String.valueOf(start));
         urlParams.put("count", String.valueOf(pageSize));
+//        urlParams.put("valid", "true");
         return urlParams;
 
     }

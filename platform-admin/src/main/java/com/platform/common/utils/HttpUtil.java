@@ -69,7 +69,6 @@ public class HttpUtil {
         }
         httpConnection.setRequestProperty("Content-Type","application/json");
         // 设置请求方法
-        System.out.println("method:"+method);
         httpConnection.setRequestMethod(method);
         httpConnection.setDoOutput(true);
         httpConnection.setDoInput(true);
@@ -110,6 +109,36 @@ public class HttpUtil {
                               Map<String, String> headerParameters, String body) throws Exception {
 
         return proxyHttpRequest(address, "POST", headerParameters,
+                body);
+    }
+
+    /**
+     * DELETE请求
+     * @param address 请求地址
+     * @param headerParameters 参数
+     * @param body
+     * @return
+     * @throws Exception
+     */
+    public static String delete(String address,
+                              Map<String, String> headerParameters, String body) throws Exception {
+
+        return proxyHttpRequest(address, "DELETE", headerParameters,
+                body);
+    }
+
+    /**
+     * PUT请求
+     * @param address 请求地址
+     * @param headerParameters 参数
+     * @param body
+     * @return
+     * @throws Exception
+     */
+    public static String put(String address,
+                                Map<String, String> headerParameters, String body) throws Exception {
+
+        return proxyHttpRequest(address, "PUT", headerParameters,
                 body);
     }
 

@@ -17,6 +17,8 @@ public class UrlConstans {
     public final static String FORGET_PASSWORD = "/users/forgotPwd";
     //登录
     public final static String LOGIN = "/users/login";
+    //员工
+    public final static String EMPLOYEES = "/employees";
 
     //新增企业认证
     public final static String UPLOAD_ENTERPRISE = "/enterprises";
