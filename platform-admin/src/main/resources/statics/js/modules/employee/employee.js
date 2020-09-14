@@ -3,16 +3,16 @@ $(function () {
         url: baseURL + 'employee/employee/list',
         datatype: "json",
         colModel: [			
-			{ label: 'id', name: 'id', index: 'id', width: 50, key: true },
-			{ label: '员工姓名', name: 'name', index: 'name', width: 80 }, 			
-			{ label: '性别', name: 'gender', index: 'gender', width: 80 ,formatter:function(cellvalue, options, rowObject) {
+			{ label: 'id', name: 'employee.id', index: 'id', width: 50, key: true },
+			{ label: '员工姓名', name: 'employee.name', index: 'name', width: 80 },
+			/*{ label: '性别', name: 'gender', index: 'gender', width: 80 ,formatter:function(cellvalue, options, rowObject) {
                 if(cellvalue == 1){
                     return "男";
                 }else{
                     return "女";
                 }
-            } },
-			{ label: '部门', name: 'department', index: 'department', width: 80 ,formatter:function(cellvalue, options, rowObject) {
+            } },*/
+			{ label: '部门', name: 'employee.department', index: 'department', width: 80 ,formatter:function(cellvalue, options, rowObject) {
                 if(cellvalue == 0){
                     return "未知";
                 }else if(cellvalue == 1){
@@ -23,21 +23,10 @@ $(function () {
                     return "财务";
                 }
             } },
-			{ label: '手机号码', name: 'phoneno', index: 'phoneNo', width: 80 },
-			{ label: '地址', name: 'address', index: 'address', width: 80 }, 			
+			{ label: '手机号码', name: 'employee.phoneNo', index: 'phoneNo', width: 80 },
+			// { label: '地址', name: 'address', index: 'address', width: 80 },
 			{ label: '职称', name: 'title', index: 'title', width: 80 }, 			
-			{ label: '照片', name: 'photourl', index: 'photoUrl', width: 80 }, 			
-			{ label: '状态', name: 'status', index: 'status', width: 80 ,formatter:function(cellvalue, options, rowObject) {
-                if(cellvalue == 1){
-                    return "启用";
-                }else{
-                    return "停用";
-                }
-			} },
-			{ label: '平台id', name: 'platformid', index: 'platformId', width: 80 },
-			{ label: '到职时间', name: 'onboardtimeinmillis', index: 'onBoardTimeInMillis', width: 80 }, 			
-			{ label: '离职时间', name: 'lefttimeinmillis', index: 'leftTimeInMillis', width: 80 }, 			
-			{ label: '创建时间', name: 'createtimeinmillis', index: 'createTimeInMillis', width: 80 }			
+			{ label: '平台id', name: 'platform.id', index: 'platformId', width: 80 },
         ],
 		viewrecords: true,
         height: 385,

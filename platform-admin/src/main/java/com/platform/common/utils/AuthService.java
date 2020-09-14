@@ -15,7 +15,7 @@ import java.util.Map;
  **/
 public class AuthService {
 
-    private static String token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoiYWRtaW4iLCJwYXNzd29yZCI6ImFkbWluIiwicm9sZSI6MSwiZXhwIjoxNTk5ODE4MTY1NTE0fQ.IogPUgDw1lQVXPgIbk-Td94AlKrwV9rmLx7i6Z49XjM";
+    private static String token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoiMTExMTExMTExMTEiLCJwYXNzd29yZCI6ImFkbWluIiwicm9sZSI6MywiZXhwIjoxNTk5OTAyNDAzMDgxfQ.n0Rz2racubx65VAZbCbe0deQKI3AtretCUFwgBSELRw";
 
     public static String getAuth(){
         return token;
