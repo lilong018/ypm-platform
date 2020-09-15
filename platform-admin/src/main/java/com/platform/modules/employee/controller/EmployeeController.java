@@ -5,6 +5,7 @@ import java.util.*;
 import com.platform.common.utils.AuthService;
 import com.platform.common.utils.SnowFlakeUtils;
 import com.platform.common.validator.ValidatorUtils;
+import com.platform.modules.employee.entity.Employee;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,7 +60,32 @@ public class EmployeeController {
     @RequestMapping("/info/{id}")
     @RequiresPermissions("employee:employee:info")
     public R info(@PathVariable("id") String id){
-        EmployeeEntity employee = employeeService.getById(id);
+//        EmployeeEntity employee = employeeService.getById(id);
+
+        System.out.println(id);
+        EmployeeEntity employee = employeeService.selectById(id);
+        return R.ok().put("employee", "");
+    }
+    /**
+     * 信息
+     */
+    @RequestMapping("/infoData/{id}/{name}/{phoneNo}/{platformId}/{department}")
+    @RequiresPermissions("employee:employee:info")
+    public R infoData(@PathVariable("id") String id,@PathVariable("name") String name,@PathVariable("phoneNo") String phoneNo,@PathVariable("platformId") String platformId,@PathVariable("department") String department){
+        Employee employee = new Employee();
+        if (department.equals("管理部门")){
+            employee.setDepartment(1);
+        }else if (department.equals("客服")){
+            employee.setDepartment(2);
+        }else if (department.equals("财务")){
+            employee.setDepartment(3);
+        }else{
+            employee.setDepartment(0);
+        }
+        employee.setId(id);
+        employee.setName(name);
+        employee.setPhoneNo(phoneNo);
+        employee.setPlatformId(platformId);
 
         return R.ok().put("employee", employee);
     }
@@ -81,9 +107,9 @@ public class EmployeeController {
      */
     @RequestMapping("/update")
     @RequiresPermissions("employee:employee:update")
-    public R update(@RequestBody EmployeeEntity employee){
+    public R update(@RequestBody Employee employee){
         ValidatorUtils.validateEntity(employee);
-        employeeService.updateById(employee);
+        boolean flag = employeeService.updateEmployee(employee);
         
         return R.ok();
     }
@@ -94,8 +120,13 @@ public class EmployeeController {
     @RequestMapping("/delete")
     @RequiresPermissions("employee:employee:delete")
     public R delete(@RequestBody String[] ids){
-        employeeService.removeByIds(Arrays.asList(ids));
-
+        List<String> idList = (List<String>) Arrays.asList(ids);
+        idList.forEach(id->{
+           boolean flag =  employeeService.deleteById(id);
+        });
+        for (String id : idList) {
+            
+        }
         return R.ok();
     }
 

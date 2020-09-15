@@ -2,6 +2,7 @@ package com.platform.modules.employee.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.platform.common.utils.PageUtils;
+import com.platform.modules.employee.entity.Employee;
 import com.platform.modules.employee.entity.EmployeeEntity;
 
 import java.util.List;
@@ -23,5 +24,11 @@ public interface EmployeeService extends IService<EmployeeEntity> {
     boolean saveEmployee(EmployeeEntity employee);
 
     PageUtils selectPage(Map<String, Object> params);
+
+    EmployeeEntity selectById(String id);
+
+    boolean deleteById(String id);
+
+    boolean updateEmployee(Employee employee);
 }
 

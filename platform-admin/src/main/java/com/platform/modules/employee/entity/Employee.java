@@ -15,6 +15,10 @@ public class Employee {
 
     private String phoneNo;
 
+    private String platformId;
+
+    private String platformName;
+
     public int getDepartment() {
         return department;
     }
@@ -45,5 +49,21 @@ public class Employee {
 
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
+    }
+
+    public String getPlatformId() {
+        return platformId;
+    }
+
+    public void setPlatformId(String platformId) {
+        this.platformId = platformId;
+    }
+
+    public String getPlatformName() {
+        return platformName;
+    }
+
+    public void setPlatformName(String platformName) {
+        this.platformName = platformName;
     }
 }
