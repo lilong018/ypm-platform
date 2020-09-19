@@ -16,41 +16,20 @@ public class EnteroriseInfo {
     public EnteroriseInfo() {
     }
 
-    public EnteroriseInfo(EnterpriseEntity enterpriseEntity, List<BankEntity> banks) {
-        this.id = enterpriseEntity.getId();
-        this.name = enterpriseEntity.getName();
-        this.uscc = enterpriseEntity.getUscc();
-        this.address = enterpriseEntity.getAddress();
-        this.businesslicenseurl = enterpriseEntity.getBusinesslicenseurl();
-        this.accountopeninglicenseurl = enterpriseEntity.getAccountopeninglicenseurl();
-        this.legalrepname = enterpriseEntity.getLegalrepname();
-        this.legalrepid = enterpriseEntity.getLegalrepid();
-        this.legalrepphoneno = enterpriseEntity.getLegalrepphoneno();
-        this.legalrepidpicfronturl = enterpriseEntity.getLegalrepidpicfronturl();
-        this.legalrepidpicbackurl = enterpriseEntity.getLegalrepidpicbackurl();
-        this.handlername = enterpriseEntity.getHandlername();
-        this.handlerid = enterpriseEntity.getHandlerid();
-        this.handlerphoneno = enterpriseEntity.getHandlerphoneno();
-        this.handleremail = enterpriseEntity.getHandleremail();
-        this.businessexpirationdate = enterpriseEntity.getBusinessexpirationdate();
-        this.idcardexpirationdate = enterpriseEntity.getIdcardexpirationdate();
-        this.createtime = enterpriseEntity.getCreatetime();
-        this.updatetime = enterpriseEntity.getUpdatetime();
-        this.status = enterpriseEntity.getStatus();
-        this.remark = enterpriseEntity.getRemark();
-        this.reason = enterpriseEntity.getReason();
-        this.userid = enterpriseEntity.getUserid();
-        this.useraccount = enterpriseEntity.getUseraccount();
-        this.operatorid = enterpriseEntity.getOperatorid();
-        this.platformid = enterpriseEntity.getPlatformid();
-        this.roletype = enterpriseEntity.getRoletype();
-        this.platformName = enterpriseEntity.getName();
-        if (roletype == 1) {
-            this.roleName = "买方";
-        } else {
-            this.roleName = "卖方";
-        }
-        this.banks = banks;
+
+    public EnteroriseInfo(CompanyInfo companyInfo){
+        this.name = companyInfo.getName();
+        this.uscc = companyInfo.getUscc();
+        this.address = companyInfo.getAddress();
+        this.businesslicenseurl = companyInfo.getBusinessLicenseUrl();
+        this.accountopeninglicenseurl = companyInfo.getAccountOpeningLicenseUrl();
+        this.legalrepname = companyInfo.getLegalRepName();
+        this.legalrepid = companyInfo.getLegalRepId();
+        this.legalrepphoneno = companyInfo.getLegalRepPhoneNo();
+        this.legalrepidpicfronturl = companyInfo.getLegalRepIdPicFrontUrl();
+        this.legalrepidpicbackurl = companyInfo.getLegalRepIdPicBackUrl();
+        this.businessexpirationdate = companyInfo.getBusinessExpirationDate();
+        this.idcardexpirationdate = companyInfo.getIdcardExpirationDate();
     }
 
     /**
@@ -433,5 +412,43 @@ public class EnteroriseInfo {
 
     public void setHandleremail(String handleremail) {
         this.handleremail = handleremail;
+    }
+
+    @Override
+    public String toString() {
+        return "EnteroriseInfo{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", uscc='" + uscc + '\'' +
+                ", address='" + address + '\'' +
+                ", businesslicenseurl='" + businesslicenseurl + '\'' +
+                ", accountopeninglicenseurl='" + accountopeninglicenseurl + '\'' +
+                ", legalrepname='" + legalrepname + '\'' +
+                ", legalrepid='" + legalrepid + '\'' +
+                ", legalrepphoneno='" + legalrepphoneno + '\'' +
+                ", legalrepidpicfronturl='" + legalrepidpicfronturl + '\'' +
+                ", legalrepidpicbackurl='" + legalrepidpicbackurl + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", businessexpirationdate='" + businessexpirationdate + '\'' +
+                ", idcardexpirationdate='" + idcardexpirationdate + '\'' +
+                ", createtime=" + createtime +
+                ", updatetime=" + updatetime +
+                ", status='" + status + '\'' +
+                ", remark='" + remark + '\'' +
+                ", reason='" + reason + '\'' +
+                ", userid='" + userid + '\'' +
+                ", useraccount='" + useraccount + '\'' +
+                ", operatorid='" + operatorid + '\'' +
+                ", platformid='" + platformid + '\'' +
+                ", roletype=" + roletype +
+                ", handlername='" + handlername + '\'' +
+                ", handlerid='" + handlerid + '\'' +
+                ", handlerphoneno='" + handlerphoneno + '\'' +
+                ", handleremail='" + handleremail + '\'' +
+                ", platformName='" + platformName + '\'' +
+                ", roleName='" + roleName + '\'' +
+                ", banks=" + banks +
+                '}';
     }
 }

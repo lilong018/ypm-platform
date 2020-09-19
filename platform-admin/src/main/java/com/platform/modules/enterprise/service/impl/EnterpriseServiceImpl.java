@@ -161,7 +161,7 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
     }
 
     @Override
-    public void findById(String id) {
+    public EnteroriseInfo findById(String id){
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("x-auth-token", AuthService.getToken("11111111111","admin",false));
         Map<String, String> urlParams = new HashMap<String, String>();
@@ -169,14 +169,24 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
         urlParams.put("enterpriseId",id);
         urlParams.put("start","0");
         urlParams.put("count","1");
+        EnteroriseInfo enteroriseInfo = null;
         String res = null;
         try {
             res = HttpUtil.get(UrlConstans.BASEURL + UrlConstans.ENTERPRISE, headerMap, urlParams, null);
-            EnterpriseRespond respond = JSON.parseObject(res, EnterpriseRespond.class);
+            System.out.println(res);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(res);
+        EnterpriseRespond respond = JSON.parseObject(res, EnterpriseRespond.class);
+        EnterprisePayload payload = respond.getPayload();
+        EnterpriseResults enterpriseResults = payload.getResults().get(0);
+
+        if (enterpriseResults!=null){
+            enteroriseInfo = new EnteroriseInfo(enterpriseResults.getCompanyInfo());
+        }else{
+            return null;
+        }
+        return enteroriseInfo;
     }
 
 }

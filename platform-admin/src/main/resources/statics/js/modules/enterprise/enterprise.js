@@ -196,7 +196,7 @@ var vm = new Vue({
 		getInfo: function(id){
 			$.get(baseURL + "enterprise/enterprise/info/"+id, function(r){
                 vm.showList = false;
-                // vm.enterprise = r.enterprise;
+                vm.enterprise = r.enterprise;
             });
 		},
 		reload: function (event) {

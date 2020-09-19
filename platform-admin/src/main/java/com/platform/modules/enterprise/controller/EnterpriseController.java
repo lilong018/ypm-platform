@@ -63,8 +63,9 @@ public class EnterpriseController {
     @RequestMapping("/info/{id}")
     @RequiresPermissions("enterprise:enterprise:info")
     public R info(@PathVariable("id") String id){
-        enterpriseService.findById(id);
-        return R.ok();
+        EnteroriseInfo enteroriseInfo = enterpriseService.findById(id);
+        System.out.println();
+        return R.ok().put("enterprise",enteroriseInfo);
     }
 
     /**
