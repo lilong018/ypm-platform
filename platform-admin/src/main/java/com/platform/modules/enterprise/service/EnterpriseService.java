@@ -16,5 +16,7 @@ import java.util.Map;
 public interface EnterpriseService extends IService<EnterpriseEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    PageUtils selectPages(Map<String, Object> params);
 }
 

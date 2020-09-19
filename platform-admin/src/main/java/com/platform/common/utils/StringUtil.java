@@ -42,4 +42,13 @@ public class StringUtil extends org.apache.commons.lang3.StringUtils{
         }
         return 0L;
     }
+
+    public static Integer toInteger(String s){
+        try {
+            if (s != null && !"".equals(s.trim()))
+                return Integer.valueOf(s);
+        } catch (Exception exception) {
+        }
+        return 0;
+    }
 }

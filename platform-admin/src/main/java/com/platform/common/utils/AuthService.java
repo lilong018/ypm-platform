@@ -41,5 +41,25 @@ public class AuthService {
         return token;
 
     }
+    public static String getToken(String account,String password,boolean isLoginSetting){
+        Map<String, String> headerMaps = new HashMap<String, String>();
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("account", account);
+        params.put("password",password);
+        params.put("isLoginSetting", isLoginSetting);
+//        https://192.168.68.129:8889/users/login
+        String address = UrlConstans.BASEURL + UrlConstans.LOGIN;
+        try {
+            String res = HttpUtil.post(address, headerMaps, JSON.toJSONString(params));
+            AuthRespond authRespond = JSON.parseObject(res, AuthRespond.class);
+            token = authRespond.getPayload().getToken();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return token;
+
+    }
 
 }

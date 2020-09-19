@@ -49,11 +49,8 @@ public class EnterpriseController {
     @RequestMapping("/list")
     @RequiresPermissions("enterprise:enterprise:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = enterpriseService.queryPage(params);
 
-        Map<String, String> headerMap = new HashMap<String, String>();
-        Map<String, String> urlParams = ParamsUtils.convertParams(params);
-        headerMap.put("x-auth-token", AuthService.getToken());
+        PageUtils page = enterpriseService.selectPages(params);
 
         return R.ok().put("page", page);
 

@@ -22,17 +22,18 @@
                             <label for="name" class="control-label">企业名称：</label>
                             <input type="text" id="name" class="form-control" v-model.trim="q.name" autocomplete="off"
                                    style="width: 120px;">
-                            <label for="useraccount" class="control-label">企业账号：</label>
-                            <input type="text" id="useraccount" class="form-control" v-model.trim="q.useraccount" autocomplete="off"
+                            <label for="account" class="control-label">企业账号：</label>
+                            <input type="text" id="account" class="form-control" v-model.trim="q.account" autocomplete="off"
                                    style="width: 120px;">
                             <label for="status" class="control-label">用户状态：</label>
                             <select id="status" class="form-control" v-model="q.status" data-placeholder="请选择用户状态">
                                 <option value="">全</option>
-                                <option value="1">待平台审核</option>
-                                <option value="2">待银行审核</option>
-                                <option value="3">审核失败</option>
-                                <option value="4">认证完成</option>
-                                <option value="5">待激活</option>
+                                <option value="2">待平台审核</option>
+                                <option value="4">平台审核不通过</option>
+                                <option value="8">待银行审核</option>
+                                <option value="16">审核失败</option>
+                                <option value="32">待激活</option>
+                                <option value="64">认证完成</option>
                             </select>
                             <label for="qcustomer" class="chosen-select qcustomer">客服名称：</label>
                             <select id="qcustomer" name="qcustomer" class="chosen-select" data-placeholder=""> </select>

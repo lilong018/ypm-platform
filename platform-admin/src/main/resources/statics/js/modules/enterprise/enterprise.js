@@ -16,7 +16,7 @@ $(function () {
         colModel: [			
 			// { label: 'id', name: 'id', index: 'id', width: 50, key: true },
 			{ label: '企业姓名', name: 'name', index: 'name', width: 80 },
-			{ label: '企业账号', name: 'useraccount', index: 'userAccount', width: 80 },
+			{ label: '企业账号', name: 'account', index: 'account', width: 80 },
 			// { label: '统一社会信用代码-营业执照', name: 'uscc', index: 'uscc', width: 80 },
 			// { label: '公司详细地址', name: 'address', index: 'address', width: 80 },
 			// { label: '营业执照图片', name: 'businesslicenseurl', index: 'businessLicenseUrl', width: 80 },
@@ -49,7 +49,7 @@ $(function () {
                 },
                 sortable: false,
                 align: 'center'},
-			{ label: '平台ID', name: 'platformid', index: 'platformId', width: 80 },
+			{ label: '平台ID', name: 'platformId', index: 'platformId', width: 80 },
             {
                 label: '操作',
                 width: 80,
@@ -102,7 +102,7 @@ var vm = new Vue({
 	data:{
         q: {
             name: null,
-            useraccount: null,
+            account: null,
             status:null,
             customer: null
         },
@@ -201,7 +201,7 @@ var vm = new Vue({
 			$("#jqGrid").jqGrid('setGridParam',{
                 postData: {
                     name: vm.q.name,
-                    useraccount: vm.q.useraccount,
+                    account: vm.q.account,
                     status: vm.q.status,
                     customer: vm.q.customer
                 },

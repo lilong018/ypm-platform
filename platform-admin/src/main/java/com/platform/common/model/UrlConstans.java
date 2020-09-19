@@ -23,7 +23,7 @@ public class UrlConstans {
     public final static String PRIVILEGES = "/privileges";
 
     //新增企业认证
-    public final static String UPLOAD_ENTERPRISE = "/enterprises";
+    public final static String ENTERPRISE = "/enterprises";
 
 
 
