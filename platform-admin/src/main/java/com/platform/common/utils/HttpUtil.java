@@ -141,6 +141,19 @@ public class HttpUtil {
         return proxyHttpRequest(address, "PUT", headerParameters,
                 body);
     }
+    /**
+     * PUT请求
+     * @param address 请求地址
+     * @param headerParameters 参数
+     * @param body
+     * @return
+     * @throws Exception
+     */
+    public static String put(String address,
+                                Map<String, String> headerParameters,Map<String, String> urlParameters , String body) throws Exception {
+        return proxyHttpRequest(address + "?"
+                + getRequestBody(urlParameters), "PUT", headerParameters, null);
+    }
 
     /**
      * GET请求

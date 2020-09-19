@@ -9,6 +9,15 @@ $(function () {
         },
         props: ['monId']
     });
+    var acceptEnterpriseComponent = Vue.extend({
+        template: '<i class="fa fa-hand-o-right" aria-hidden="true" style="cursor: pointer;" v-on:click="accept(monId)"></i>',
+        methods: {
+            accept: function (id) {
+                vm.acceptTask(id);
+            }
+        },
+        props: ['monId']
+    });
 
     $("#jqGrid").jqGrid({
         url: baseURL + 'enterprise/enterprise/list',
@@ -17,39 +26,24 @@ $(function () {
 			// { label: 'id', name: 'id', index: 'id', width: 50, key: true },
 			{ label: '企业姓名', name: 'name', index: 'name', width: 80 },
 			{ label: '企业账号', name: 'account', index: 'account', width: 80 },
-			// { label: '统一社会信用代码-营业执照', name: 'uscc', index: 'uscc', width: 80 },
-			// { label: '公司详细地址', name: 'address', index: 'address', width: 80 },
-			// { label: '营业执照图片', name: 'businesslicenseurl', index: 'businessLicenseUrl', width: 80 },
-			// { label: '开户许可证图片', name: 'accountopeninglicenseurl', index: 'accountOpeningLicenseUrl', width: 80 },
-			// { label: '法人姓名', name: 'legalrepname', index: 'legalRepName', width: 80 },
-			// { label: '法人身份证', name: 'legalrepid', index: 'legalRepId', width: 80 },
-			// { label: '法人手机号码', name: 'legalrepphoneno', index: 'legalRepPhoneNo', width: 80 },
-			// { label: '法人身份证正面照片', name: 'legalrepidpicfronturl', index: 'legalRepIdPicFrontUrl', width: 80 },
-			// { label: '法人身份证背面照片', name: 'legalrepidpicbackurl', index: 'legalRepIdPicBackUrl', width: 80 },
-			// { label: '省份', name: 'province', index: 'province', width: 80 },
-			// { label: '市', name: 'city', index: 'city', width: 80 },
-			// { label: '营业执照到期时间', name: 'businessexpirationdate', index: 'businessExpirationDate', width: 80 },
-			// { label: '法人身份证到期时间', name: 'idcardexpirationdate', index: 'idcardExpirationDate', width: 80 },
 			//1：买方&卖方 2：卖方
-			{ label: '用户角色 ', name: 'roletype', index: 'roleType', width: 80 },
-			// { label: '修改时间', name: 'updatetime', index: 'updateTime', width: 80 },
+			{ label: '用户角色 ', name: 'roleName', index: 'roleName', width: 80 },
 			{ label: '创建时间', name: 'createtime', index: 'createTime', width: 80 },
 			{ label: '企业状态', name: 'status', index: 'status', width: 80 },
 			{ label: '备注', name: 'remark', index: 'remark', width: 80 },
-			// { label: '用户id', name: 'userid', index: 'userId', width: 80 },
 			{ label: '原因', name: 'reason', index: 'reason', width: 80 },
+            { label: '平台名称', name: 'platformName', index: 'platformName', width: 80 },
 			//用户账号-注册手机号
-			{ label: '客服', name: 'operatorid', index: 'operatorId', width: 80,
+			{ label: '客服', name: 'handlerName', index: 'handlerName', width: 80,
                 formatter: function (cellvalue, options, rowObject) {
                     if (cellvalue) {
-                        return '小明';
+                        return cellvalue;
                     }else{
-                        return '<span id="detailEnterprise_' + rowObject.id + '"></span>';
+                        return '<span id="acceptTask_' + rowObject.id + '"></span>';
                     }
                 },
                 sortable: false,
                 align: 'center'},
-			{ label: '平台ID', name: 'platformId', index: 'platformId', width: 80 },
             {
                 label: '操作',
                 width: 80,
@@ -93,9 +87,19 @@ $(function () {
                 var idtmp = $(detailArr[i]).attr('id').split('_');
                 var enterpriseDetail = new detailEnterpriseComponent({propsData: {monId: idtmp[1]}}).$mount('#' + $(detailArr[i]).attr('id'));
             }
+            var acceptArr = $("span[id^='acceptTask_']");
+            var acceptLen = acceptArr.length;
+            for (var i = 0; i < acceptLen; i++) {
+                var idtmp = $(acceptArr[i]).attr('id').split('_');
+                var acceptEnterprise = new acceptEnterpriseComponent({propsData: {monId: idtmp[1]}}).$mount('#' + $(acceptArr[i]).attr('id'));
+            }
         }
     }).navGrid('#jqGridPager', {edit: false, add: false, del: false, search: false, refresh: true, view: false});
 });
+function accept(id){
+    console.log("进入了accept 领取任务方法");
+    console.log(id);
+}
 
 var vm = new Vue({
 	el:'#rrapp',
@@ -192,7 +196,7 @@ var vm = new Vue({
 		getInfo: function(id){
 			$.get(baseURL + "enterprise/enterprise/info/"+id, function(r){
                 vm.showList = false;
-                vm.enterprise = r.enterprise;
+                // vm.enterprise = r.enterprise;
             });
 		},
 		reload: function (event) {
@@ -208,8 +212,10 @@ var vm = new Vue({
                 page:page
             }).trigger("reloadGrid");
 		},
-        toPass: function (status) {
-
+        acceptTask: function (id) {
+            $.get(baseURL + "enterprise/enterprise/accept/"+id, function(r){
+                vm.reload();
+            });
         },
         examine:function (status) {
             console.log(status);
@@ -253,7 +259,6 @@ var vm = new Vue({
                 dataType: "json",
                 success: function (r) {
                     if (r.code == 0) {
-                        console.log(r.employeeEntities);
                         _self.customer = r.employeeEntities;
                         Vue.nextTick(function(){
                             _self.initQyChosenCustomer();

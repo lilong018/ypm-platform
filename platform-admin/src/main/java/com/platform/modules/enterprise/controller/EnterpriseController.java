@@ -63,10 +63,18 @@ public class EnterpriseController {
     @RequestMapping("/info/{id}")
     @RequiresPermissions("enterprise:enterprise:info")
     public R info(@PathVariable("id") String id){
-        EnterpriseEntity enterprise = enterpriseService.getById(id);
-        List<BankEntity> banks = bankService.getByEnterpriseId(id);
-        EnteroriseInfo enteroriseInfo = new EnteroriseInfo(enterprise,banks);
-        return R.ok().put("enterprise", enteroriseInfo);
+        enterpriseService.findById(id);
+        return R.ok();
+    }
+
+    /**
+     * 信息
+     */
+    @RequestMapping("/accept/{id}")
+    public R accept(@PathVariable("id") String id){
+        System.out.println(id);
+        boolean flag = enterpriseService.accept(id);
+        return R.ok();
     }
 
     /**

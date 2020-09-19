@@ -1,5 +1,7 @@
 package com.platform.modules.enterprise.entity;
 
+import io.swagger.models.auth.In;
+
 import java.util.Date;
 
 /**
@@ -15,7 +17,6 @@ public class EnteroriseVo {
     }
     public EnteroriseVo(CompanyInfo companyInfo){
         this.name = companyInfo.getName();
-        this.createtime = new Date();
     }
     //企业id
     private String id;
@@ -27,32 +28,22 @@ public class EnteroriseVo {
     private Date createtime;
     //平台id
     private String platformId;
-    //统一社会信用代码-营业执照
-    private String uscc;
-    //公司详细地址
-    private String address;
-    //营业执照图片地址
-    private String businessLicenseUrl;
-    //开户许可证图片地址
-    private String accountOpeningLicenseUrl;
-    //法定代表人姓名
-    private String legalRepName;
-    //法定代表人身份证号
-    private String legalRepId;
-    //法定代表人手机号
-    private String legalRepPhoneNo;
-    //法定代表人身份证正面照片地址
-    private String legalRepIdPicFrontUrl;
-    //法定代表人身份证背面照片地址
-    private String legalRepIdPicBackUrl;
-    //省
-    private String province;
-    //市
-    private String city;
-    //营业执照到期时间
-    private String businessExpirationDate;
-    //法定代表人身份证到期时间
-    private String idcardExpirationDate;
+    //平台名称
+    private String platformName;
+    //渠道名称
+    private String channelName;
+    //角色
+    private String roleName;
+    //备注
+    private String remark;
+    //原因
+    private String  reason;
+    //客服id
+    private String handlerId;
+    //客服名称
+    private String handlerName;
+    //企业状态
+    private Integer status;
 
     public String getId() {
         return id;
@@ -94,107 +85,67 @@ public class EnteroriseVo {
         this.platformId = platformId;
     }
 
-    public String getUscc() {
-        return uscc;
+    public String getChannelName() {
+        return channelName;
     }
 
-    public void setUscc(String uscc) {
-        this.uscc = uscc;
+    public void setChannelName(String channelName) {
+        this.channelName = channelName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPlatformName() {
+        return platformName;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPlatformName(String platformName) {
+        this.platformName = platformName;
     }
 
-    public String getBusinessLicenseUrl() {
-        return businessLicenseUrl;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setBusinessLicenseUrl(String businessLicenseUrl) {
-        this.businessLicenseUrl = businessLicenseUrl;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
-    public String getAccountOpeningLicenseUrl() {
-        return accountOpeningLicenseUrl;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setAccountOpeningLicenseUrl(String accountOpeningLicenseUrl) {
-        this.accountOpeningLicenseUrl = accountOpeningLicenseUrl;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
-    public String getLegalRepName() {
-        return legalRepName;
+    public String getReason() {
+        return reason;
     }
 
-    public void setLegalRepName(String legalRepName) {
-        this.legalRepName = legalRepName;
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
-    public String getLegalRepId() {
-        return legalRepId;
+    public String getHandlerId() {
+        return handlerId;
     }
 
-    public void setLegalRepId(String legalRepId) {
-        this.legalRepId = legalRepId;
+    public void setHandlerId(String handlerId) {
+        this.handlerId = handlerId;
     }
 
-    public String getLegalRepPhoneNo() {
-        return legalRepPhoneNo;
+    public String getHandlerName() {
+        return handlerName;
     }
 
-    public void setLegalRepPhoneNo(String legalRepPhoneNo) {
-        this.legalRepPhoneNo = legalRepPhoneNo;
+    public void setHandlerName(String handlerName) {
+        this.handlerName = handlerName;
     }
 
-    public String getLegalRepIdPicFrontUrl() {
-        return legalRepIdPicFrontUrl;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setLegalRepIdPicFrontUrl(String legalRepIdPicFrontUrl) {
-        this.legalRepIdPicFrontUrl = legalRepIdPicFrontUrl;
-    }
-
-    public String getLegalRepIdPicBackUrl() {
-        return legalRepIdPicBackUrl;
-    }
-
-    public void setLegalRepIdPicBackUrl(String legalRepIdPicBackUrl) {
-        this.legalRepIdPicBackUrl = legalRepIdPicBackUrl;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getBusinessExpirationDate() {
-        return businessExpirationDate;
-    }
-
-    public void setBusinessExpirationDate(String businessExpirationDate) {
-        this.businessExpirationDate = businessExpirationDate;
-    }
-
-    public String getIdcardExpirationDate() {
-        return idcardExpirationDate;
-    }
-
-    public void setIdcardExpirationDate(String idcardExpirationDate) {
-        this.idcardExpirationDate = idcardExpirationDate;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

@@ -17,7 +17,7 @@ public class BankInfo {
 
     private int applyStatus;
 
-    private Map<String,Object> applyStatusHistory;
+    private Map<String,ApplyStatus> applyStatusHistory;
 
     private int channelType;
 
@@ -87,11 +87,11 @@ public class BankInfo {
         this.applyStatus = applyStatus;
     }
 
-    public Map<String, Object> getApplyStatusHistory() {
+    public Map<String, ApplyStatus> getApplyStatusHistory() {
         return applyStatusHistory;
     }
 
-    public void setApplyStatusHistory(Map<String, Object> applyStatusHistory) {
+    public void setApplyStatusHistory(Map<String, ApplyStatus> applyStatusHistory) {
         this.applyStatusHistory = applyStatusHistory;
     }
 

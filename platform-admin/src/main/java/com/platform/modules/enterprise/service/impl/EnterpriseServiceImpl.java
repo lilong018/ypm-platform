@@ -5,16 +5,15 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.platform.common.model.UrlConstans;
 import com.platform.common.utils.*;
+import com.platform.modules.employee.entity.Platform;
 import com.platform.modules.enterprise.entity.*;
 import com.platform.modules.platform.entity.PlatformEntity;
 import com.platform.modules.platform.entity.PlatformRespond;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -75,7 +74,7 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
         if (StringUtil.isNotEmpty(customer)){
             urlParams.put("employeeName",customer);
         }
-        Map<String, String> headerMap = new HashMap<String, String>();
+        Map<String, String> headerMap = new HashMap<>();
 
         headerMap.put("x-auth-token", AuthService.getToken("11111111111","admin",false));
         PageUtils page = null;
@@ -87,10 +86,54 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
                 EnterprisePayload payload = respond.getPayload();
                 List<EnterpriseResults> results = payload.getResults();
                 List<EnteroriseVo> vos = new ArrayList<EnteroriseVo>();
+                StringBuffer sb = new StringBuffer();
+                EnteroriseVo vo = new EnteroriseVo();
+
                 results.forEach(enterpriseResult ->{
-                    EnteroriseVo enteroriseVo = new EnteroriseVo(enterpriseResult.getCompanyInfo());
-                    enteroriseVo.setPlatformId(enterpriseResult.getPlatform().getId());
-                    vos.add(enteroriseVo);
+                    vo.setId(enterpriseResult.getId());
+                    Platform platform = enterpriseResult.getPlatform();
+                    List<Channels> channels = enterpriseResult.getChannels();
+                    channels.forEach(channel -> {
+                        if (channel.getType() == 1){
+                            sb.append("京东智票、");
+                        }if (channel.getType() == 2){
+                            sb.append("京东智付、");
+                        }
+                        //看是买方还是卖方
+                        Map<String, BankInfo> banks = channel.getBanks();
+                        banks.forEach((str,bank)->{
+                            //查找注册来源为企业实名认证的银行
+                            if (bank.getSource() == 1){
+                                Handler handler = bank.getHandler();
+                                vo.setHandlerId(handler.getId());
+                                vo.setHandlerName(handler.getName());
+                                vo.setStatus(bank.getApplyStatus());
+                                int bankType = bank.getType();
+                                if (bankType == 1){
+                                    vo.setRoleName("买卖");
+                                }else if (bankType == 2){
+                                    vo.setRoleName("买方");
+                                }
+                                Map<String, ApplyStatus> applyStatusHistory = bank.getApplyStatusHistory();
+                                applyStatusHistory.forEach((timeId,applyStatus)->{
+                                    if (applyStatus.getApplyStatus()==1){
+                                        vo.setCreatetime(applyStatus.getTime());
+                                    }
+                                });
+                            }
+                        });
+                    });
+                    String channelName = sb.toString();
+                    channelName = channelName.substring(0,channelName.length()-1);
+                    CompanyInfo companyInfo = enterpriseResult.getCompanyInfo();
+                    vo.setAccount(enterpriseResult.getAccount());
+                    vo.setName(companyInfo.getName());
+                    vo.setChannelName(channelName);
+                    vo.setPlatformId(platform.getId());
+                    vo.setPlatformName(platform.getName());
+                    //清空sb
+                    sb.delete(0, sb.length()-1);
+                    vos.add(vo);
                 });
                 page = new PageUtils(vos, payload.getTotal(), pageSize, pageNumber);
             }
@@ -99,6 +142,41 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
         }
 
         return page;
+    }
+
+    @Override
+    public boolean accept(String id) {
+        Map<String, String> headerMap = new HashMap<>();
+        headerMap.put("x-auth-token", AuthService.getToken("11111111111","admin",false));
+        Map<String, String> urlParams = new HashMap<String, String>();
+        urlParams.put("channelType","1");
+        String address = UrlConstans.BASEURL+UrlConstans.ENTERPRISE+"/"+id+"/accept";
+        try {
+            String res = HttpUtil.put(address, headerMap, urlParams, null);
+            System.out.println(res);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public void findById(String id) {
+        Map<String, String> headerMap = new HashMap<>();
+        headerMap.put("x-auth-token", AuthService.getToken("11111111111","admin",false));
+        Map<String, String> urlParams = new HashMap<String, String>();
+        urlParams.put("platformId","5f5b406e6c1b726ef76c15fb");
+        urlParams.put("enterpriseId",id);
+        urlParams.put("start","0");
+        urlParams.put("count","1");
+        String res = null;
+        try {
+            res = HttpUtil.get(UrlConstans.BASEURL + UrlConstans.ENTERPRISE, headerMap, urlParams, null);
+            EnterpriseRespond respond = JSON.parseObject(res, EnterpriseRespond.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(res);
     }
 
 }

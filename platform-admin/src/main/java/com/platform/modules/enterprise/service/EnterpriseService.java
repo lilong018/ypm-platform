@@ -18,5 +18,9 @@ public interface EnterpriseService extends IService<EnterpriseEntity> {
     PageUtils queryPage(Map<String, Object> params);
 
     PageUtils selectPages(Map<String, Object> params);
+
+    boolean accept(String id);
+
+    void findById(String id);
 }
 
