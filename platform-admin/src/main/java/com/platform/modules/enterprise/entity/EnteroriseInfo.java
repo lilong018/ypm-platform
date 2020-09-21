@@ -1,10 +1,11 @@
 package com.platform.modules.enterprise.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.platform.modules.bank.entity.BankEntity;
+import com.platform.common.utils.ImageUtil;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ll
@@ -21,15 +22,28 @@ public class EnteroriseInfo {
         this.name = companyInfo.getName();
         this.uscc = companyInfo.getUscc();
         this.address = companyInfo.getAddress();
-        this.businesslicenseurl = companyInfo.getBusinessLicenseUrl();
-        this.accountopeninglicenseurl = companyInfo.getAccountOpeningLicenseUrl();
         this.legalrepname = companyInfo.getLegalRepName();
         this.legalrepid = companyInfo.getLegalRepId();
         this.legalrepphoneno = companyInfo.getLegalRepPhoneNo();
-        this.legalrepidpicfronturl = companyInfo.getLegalRepIdPicFrontUrl();
-        this.legalrepidpicbackurl = companyInfo.getLegalRepIdPicBackUrl();
         this.businessexpirationdate = companyInfo.getBusinessExpirationDate();
         this.idcardexpirationdate = companyInfo.getIdcardExpirationDate();
+
+        try {
+            Map<String, String> busMap = ImageUtil.getImageMap(companyInfo.getBusinessLicenseUrl());
+            this.businesslicenseurl = busMap.get("imageData");
+            this.businesslicenseurlType = busMap.get("type");
+            Map<String, String> accountMap = ImageUtil.getImageMap(companyInfo.getAccountOpeningLicenseUrl());
+            this.accountopeninglicenseurl = accountMap.get("imageData");
+            this.accountopeninglicenseurlType = accountMap.get("type");
+            Map<String, String> legalFMap = ImageUtil.getImageMap(companyInfo.getLegalRepIdPicFrontUrl());
+            this.legalrepidpicfronturl = legalFMap.get("imageData");
+            this.legalrepidpicfronturlType = legalFMap.get("type");
+            Map<String, String> legalBMap = ImageUtil.getImageMap(companyInfo.getLegalRepIdPicBackUrl());
+            this.legalrepidpicbackurl = legalBMap.get("imageData");
+            this.legalrepidpicbackurlType = legalBMap.get("type");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -54,9 +68,17 @@ public class EnteroriseInfo {
      */
     private String businesslicenseurl;
     /**
+     * 营业执照图片类型
+     */
+    private String businesslicenseurlType;
+    /**
      * 开户许可证图片
      */
     private String accountopeninglicenseurl;
+    /**
+     * 开户许可证图片类型
+     */
+    private String accountopeninglicenseurlType;
     /**
      * 法人姓名
      */
@@ -74,9 +96,17 @@ public class EnteroriseInfo {
      */
     private String legalrepidpicfronturl;
     /**
+     * 法人身份证正面照片类型
+     */
+    private String legalrepidpicfronturlType;
+    /**
      * 法人身份证背面照片
      */
     private String legalrepidpicbackurl;
+    /**
+     * 法人身份证背面照片类型
+     */
+    private String legalrepidpicbackurlType;
     /**
      * 省份
      */
@@ -156,7 +186,7 @@ public class EnteroriseInfo {
 
     private String roleName;
 
-    private List<BankEntity> banks;
+    private List<Channels> channels;
 
     public String getId() {
         return id;
@@ -374,12 +404,12 @@ public class EnteroriseInfo {
         this.roleName = roleName;
     }
 
-    public List<BankEntity> getBanks() {
-        return banks;
+    public List<Channels> getChannels() {
+        return channels;
     }
 
-    public void setBanks(List<BankEntity> banks) {
-        this.banks = banks;
+    public void setChannels(List<Channels> channels) {
+        this.channels = channels;
     }
 
     public String getHandlername() {
@@ -412,6 +442,38 @@ public class EnteroriseInfo {
 
     public void setHandleremail(String handleremail) {
         this.handleremail = handleremail;
+    }
+
+    public String getBusinesslicenseurlType() {
+        return businesslicenseurlType;
+    }
+
+    public void setBusinesslicenseurlType(String businesslicenseurlType) {
+        this.businesslicenseurlType = businesslicenseurlType;
+    }
+
+    public String getAccountopeninglicenseurlType() {
+        return accountopeninglicenseurlType;
+    }
+
+    public void setAccountopeninglicenseurlType(String accountopeninglicenseurlType) {
+        this.accountopeninglicenseurlType = accountopeninglicenseurlType;
+    }
+
+    public String getLegalrepidpicfronturlType() {
+        return legalrepidpicfronturlType;
+    }
+
+    public void setLegalrepidpicfronturlType(String legalrepidpicfronturlType) {
+        this.legalrepidpicfronturlType = legalrepidpicfronturlType;
+    }
+
+    public String getLegalrepidpicbackurlType() {
+        return legalrepidpicbackurlType;
+    }
+
+    public void setLegalrepidpicbackurlType(String legalrepidpicbackurlType) {
+        this.legalrepidpicbackurlType = legalrepidpicbackurlType;
     }
 
     @Override
@@ -448,7 +510,7 @@ public class EnteroriseInfo {
                 ", handleremail='" + handleremail + '\'' +
                 ", platformName='" + platformName + '\'' +
                 ", roleName='" + roleName + '\'' +
-                ", banks=" + banks +
+                ", channels=" + channels +
                 '}';
     }
 }
