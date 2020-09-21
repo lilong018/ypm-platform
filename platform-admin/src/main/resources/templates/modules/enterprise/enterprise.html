@@ -193,13 +193,14 @@
                     </tr>
                     <tr>
                         <td colspan="12" class="p-3">
-                            <span class="text-info font-weight-bold">京东智票</span>&nbsp;&nbsp;&nbsp;
-                            <span class="text-info font-weight-bold" style="margin-left: 50px;">京东智付</span>
+                            <span class="text-info font-weight-bold" v-model="channelType" value="1" >京东智票</span>&nbsp;&nbsp;&nbsp;
+                            <span class="text-info font-weight-bold"  v-model="channelType" value="2" style="margin-left: 50px;">京东智付</span>
                         </td>
                     </tr>
-                    <tr>
-                        <td  colspan="4" v-for="bank in enterprise.banks" >
-                            <div class="col-3">
+
+                    <tr v-for="channel in enterprise.channels" v-if="channelType==1" >
+                        <td  colspan="4" v-for="bank in channel.banks" >
+                            <div  class="col-3">
                                 <div class="form-group">
                                     <div class="col-sm-5 pr-0 pt-1">开户行全称：</div>
                                     <div class="col-sm-7  pl-0 pr-0">

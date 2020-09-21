@@ -114,6 +114,7 @@ var vm = new Vue({
 		title: null,
         customer: null,
         approveStatus:1,
+        channelType:1,
 		enterprise: {},
         customer:[]
     },

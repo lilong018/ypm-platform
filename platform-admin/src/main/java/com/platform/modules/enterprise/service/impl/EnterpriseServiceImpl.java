@@ -184,7 +184,6 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
         if (enterpriseResults!=null){
             enteroriseInfo = new EnteroriseInfo(enterpriseResults.getCompanyInfo());
             enteroriseInfo.setChannels(enterpriseResults.getChannels());
-//            System.out.println(enteroriseInfo.getBusinesslicenseurl());
         }else{
             return null;
         }
