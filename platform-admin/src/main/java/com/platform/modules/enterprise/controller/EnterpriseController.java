@@ -1,14 +1,8 @@
 package com.platform.modules.enterprise.controller;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.platform.common.utils.AuthService;
-import com.platform.common.utils.ParamsUtils;
+import com.platform.common.utils.PageUtils;
+import com.platform.common.utils.R;
 import com.platform.common.validator.ValidatorUtils;
-import com.platform.modules.bank.entity.BankEntity;
 import com.platform.modules.bank.service.BankService;
 import com.platform.modules.enterprise.entity.EnteroriseInfo;
 import com.platform.modules.enterprise.entity.EnteroriseRejectEntity;
@@ -16,16 +10,10 @@ import com.platform.modules.enterprise.entity.EnterpriseEntity;
 import com.platform.modules.enterprise.service.EnterpriseService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.platform.common.utils.PageUtils;
-import com.platform.common.utils.R;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.Map;
 
 
 /**

@@ -1,25 +1,22 @@
 package com.platform.modules.enterprise.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
-import com.platform.common.model.UrlConstans;
-import com.platform.common.utils.*;
-import com.platform.modules.employee.entity.Platform;
-import com.platform.modules.enterprise.entity.*;
-import com.platform.modules.platform.entity.PlatformEntity;
-import com.platform.modules.platform.entity.PlatformRespond;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Service;
-
-import java.util.*;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-
+import com.platform.common.model.UrlConstans;
+import com.platform.common.utils.*;
+import com.platform.modules.employee.entity.Platform;
 import com.platform.modules.enterprise.dao.EnterpriseDao;
+import com.platform.modules.enterprise.entity.*;
 import com.platform.modules.enterprise.service.EnterpriseService;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Service("enterpriseService")
