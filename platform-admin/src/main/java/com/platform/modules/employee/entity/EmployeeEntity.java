@@ -40,7 +40,7 @@ public class EmployeeEntity implements Serializable {
 	/**
 	 * 手机号码
 	 */
-	private String phoneno;
+	private String phoneNo;
 	/**
 	 * 地址
 	 */
@@ -112,12 +112,12 @@ public class EmployeeEntity implements Serializable {
 		this.department = department;
 	}
 
-	public String getPhoneno() {
-		return phoneno;
+	public String getPhoneNo() {
+		return phoneNo;
 	}
 
-	public void setPhoneno(String phoneno) {
-		this.phoneno = phoneno;
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
 	}
 
 	public String getAddress() {

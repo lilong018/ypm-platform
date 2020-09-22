@@ -53,7 +53,7 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
         Integer pageSize = Integer.parseInt(String.valueOf(params.get("limit")));
         Map<String, String> urlParams = ParamsUtils.convertParams(params);
         // TODO: 2020/9/18 platformId 通过客服/用户获取
-        urlParams.put("platformId","5f5b406e6c1b726ef76c15fb");
+        urlParams.put("platformId",AuthService.getPlatformId());
 
         String name = (String) params.get("name");
         if (StringUtil.isNotEmpty(name)){
@@ -162,7 +162,7 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("x-auth-token", AuthService.getToken("11111111111","admin",false));
         Map<String, String> urlParams = new HashMap<String, String>();
-        urlParams.put("platformId","5f5b406e6c1b726ef76c15fb");
+        urlParams.put("platformId",AuthService.getPlatformId());
         urlParams.put("enterpriseId",id);
         urlParams.put("start","0");
         urlParams.put("count","1");

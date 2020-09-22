@@ -46,15 +46,16 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeDao, EmployeeEntity
     public boolean saveEmployee(EmployeeEntity employee) {
         Map<String, String> headerMap = new HashMap<String, String>();
         Map<String, Object> params = new HashMap<String, Object>();
-        headerMap.put("x-auth-token", AuthService.getAuth());
+        // TODO: 2020/9/22 修改人员增加接口
+        headerMap.put("x-auth-token", AuthService.getToken());
         String address = UrlConstans.BASEURL + UrlConstans.EMPLOYEES;
         Map<String, Object> employeeMap = new HashMap<String, Object>();
         employeeMap.put("name",employee.getName());
         employeeMap.put("department",employee.getDepartment());
-        employeeMap.put("phoneNo",employee.getPhoneno());
+        employeeMap.put("phoneNo",employee.getPhoneNo());
 
         Map<String, Object> userMap = new HashMap<String, Object>();
-        userMap.put("account",employee.getPhoneno());
+        userMap.put("account",employee.getPhoneNo());
         userMap.put("password","123456");
         userMap.put("isFirstLoginReset",true);
         userMap.put("isNotAllowReset",false);
@@ -62,8 +63,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeDao, EmployeeEntity
         List<String> controlPlatform = new ArrayList<String>();
         userMap.put("controlPlatform",controlPlatform);
         params.put("employee",employeeMap);
-//        params.put("platformId",employee.getPlatformid());
-        params.put("platformId","5f5b406e6c1b726ef76c15fb");
+        params.put("platformId",AuthService.getPlatformId());
         params.put("user",userMap);
         String res = "";
         try {
@@ -83,8 +83,8 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeDao, EmployeeEntity
         Map<String, String> headerMap = new HashMap<String, String>();
         Map<String, String> urlParams = ParamsUtils.convertParams(params);
         // TODO: 2020/9/14 使用authserve获取platformId
-        urlParams.put("platformId","5f5b406e6c1b726ef76c15fb");
-        headerMap.put("x-auth-token", AuthService.getAuth());
+        urlParams.put("platformId",AuthService.getPlatformId());
+        headerMap.put("x-auth-token", AuthService.getToken());
         PageUtils page = null;
         try {
             String res = HttpUtil.get(UrlConstans.BASEURL + UrlConstans.EMPLOYEES, headerMap, urlParams, null);

@@ -16,16 +16,22 @@ import java.util.Map;
 public class AuthService {
 
     private static String token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoiMTExMTExMTExMTEiLCJwYXNzd29yZCI6ImFkbWluIiwicm9sZSI6MywiZXhwIjoxNTk5OTAyNDAzMDgxfQ.n0Rz2racubx65VAZbCbe0deQKI3AtretCUFwgBSELRw";
+    private static String platformId="5f694c0e6c1b720ab8cf13e8";
+    private static String account = "15586978648";
+    private static String password = "123456";
 
     public static String getAuth(){
         return token;
+    }
+    public static String getPlatformId(){
+        return platformId;
     }
 
     public static String getToken(){
         Map<String, String> headerMaps = new HashMap<String, String>();
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("account", "admin");
-        params.put("password", "admin");
+        params.put("account", account);
+        params.put("password", password);
         params.put("isLoginSetting", true);
 //        https://192.168.68.129:8889/users/login
         String address = UrlConstans.BASEURL + UrlConstans.LOGIN;
