@@ -48,8 +48,8 @@ public class EmployeeController {
     @RequestMapping("/all")
     @RequiresPermissions("employee:employee:list")
     public R getAll(@RequestParam Map<String, Object> params){
-        List<EmployeeEntity> employeeEntities = employeeService.list();
-        return R.ok().put("employeeEntities", employeeEntities);
+//        List<EmployeeEntity> employeeEntities = employeeService.list();
+        return R.ok().put("employeeEntities", null);
     }
 
 
