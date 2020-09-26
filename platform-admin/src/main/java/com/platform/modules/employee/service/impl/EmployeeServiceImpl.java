@@ -47,7 +47,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeDao, EmployeeEntity
         Map<String, String> headerMap = new HashMap<String, String>();
         Map<String, Object> params = new HashMap<String, Object>();
         // TODO: 2020/9/22 修改人员增加接口
-        headerMap.put("x-auth-token", AuthService.getToken());
+        headerMap.put("x-auth-token", AuthService.getPlatformManager());
         String address = UrlConstans.BASEURL + UrlConstans.EMPLOYEES;
         Map<String, Object> employeeMap = new HashMap<String, Object>();
         employeeMap.put("name",employee.getName());
@@ -61,6 +61,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeDao, EmployeeEntity
         userMap.put("isNotAllowReset",false);
         userMap.put("isPlatformAdmin",false);
         List<String> controlPlatform = new ArrayList<String>();
+        controlPlatform.add(AuthService.getPlatformId());
         userMap.put("controlPlatform",controlPlatform);
         params.put("employee",employeeMap);
         params.put("platformId",AuthService.getPlatformId());
@@ -84,7 +85,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeDao, EmployeeEntity
         Map<String, String> urlParams = ParamsUtils.convertParams(params);
         // TODO: 2020/9/14 使用authserve获取platformId
         urlParams.put("platformId",AuthService.getPlatformId());
-        headerMap.put("x-auth-token", AuthService.getToken());
+        headerMap.put("x-auth-token", AuthService.getPlatformManager());
         PageUtils page = null;
         try {
             String res = HttpUtil.get(UrlConstans.BASEURL + UrlConstans.EMPLOYEES, headerMap, urlParams, null);

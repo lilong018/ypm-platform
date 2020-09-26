@@ -39,7 +39,6 @@ public class EmployeeController {
     @RequestMapping("/list")
     @RequiresPermissions("employee:employee:list")
     public R list(@RequestParam Map<String, Object> params){
-//        PageUtils page = employeeService.queryPage(params);
         PageUtils page = employeeService.selectPage(params);
         return R.ok().put("page", page);
     }

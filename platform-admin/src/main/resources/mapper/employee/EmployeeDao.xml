@@ -9,7 +9,7 @@
         <result property="name" column="name"/>
         <result property="gender" column="gender"/>
         <result property="department" column="department"/>
-        <result property="phoneno" column="phoneNo"/>
+        <result property="phoneNo" column="phoneNo"/>
         <result property="address" column="address"/>
         <result property="title" column="title"/>
         <result property="photourl" column="photoUrl"/>

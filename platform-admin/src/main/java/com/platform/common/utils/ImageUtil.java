@@ -19,7 +19,7 @@ public class ImageUtil {
 
     public static Map<String,String> getImageMap(String imagePath) throws Exception {
         Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("x-auth-token", AuthService.getToken("11111111111","admin",false));
+        headerMap.put("x-auth-token", AuthService.getToken());
         String address = UrlConstans.BASEURL + "/" + imagePath;
         String res = HttpUtil.get(address, headerMap, null);
         ImageRespond imageRespond = JSON.parseObject(res, ImageRespond.class);

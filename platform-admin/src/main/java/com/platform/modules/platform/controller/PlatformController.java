@@ -40,7 +40,7 @@ public class PlatformController {
 
         Map<String, String> headerMap = new HashMap<String, String>();
         Map<String, String> urlParams = ParamsUtils.convertParams(params);
-        headerMap.put("x-auth-token", AuthService.getToken());
+        headerMap.put("x-auth-token", AuthService.getAdminToken());
         PageUtils page = null;
         try {
             String res = HttpUtil.get(UrlConstans.BASEURL + UrlConstans.PLATFORM, headerMap, urlParams, null);
@@ -62,7 +62,7 @@ public class PlatformController {
         // TODO: 2020/9/10 將header中的
         //在header中添加token
         Map<String, String> headerMap = new HashMap<String, String>();
-        headerMap.put("x-auth-token", AuthService.getToken());
+        headerMap.put("x-auth-token", AuthService.getAdminToken());
         //设置参数
         Map<String, String> urlParams = new HashMap<String, String>();
         urlParams.put("start", "0");
@@ -94,7 +94,7 @@ public class PlatformController {
 
         Map<String, String> headerMap = new HashMap<String, String>();
         Map<String, Object> params = getParamsBody(platform);
-        headerMap.put("x-auth-token", AuthService.getToken());
+        headerMap.put("x-auth-token", AuthService.getAdminToken());
         String res = null;
         try {
             //添加平台
@@ -193,7 +193,7 @@ public class PlatformController {
 
         ValidatorUtils.validateEntity(platform);
         Map<String, String> headerMap = new HashMap<String, String>();
-        headerMap.put("x-auth-token", AuthService.getToken());
+        headerMap.put("x-auth-token", AuthService.getAdminToken());
         Map<String, Object> params = getParamsBody(platform);
         String res = null;
         try {
@@ -227,7 +227,7 @@ public class PlatformController {
     public R delete(@RequestBody String[] ids) {
         String address = UrlConstans.BASEURL + UrlConstans.PLATFORM +"/";
         Map<String, String> headerMap = new HashMap<String, String>();
-        headerMap.put("x-auth-token", AuthService.getToken());
+        headerMap.put("x-auth-token", AuthService.getAdminToken());
         List<String> idList = Arrays.asList(ids);
         for (String id : ids) {
             address += id;

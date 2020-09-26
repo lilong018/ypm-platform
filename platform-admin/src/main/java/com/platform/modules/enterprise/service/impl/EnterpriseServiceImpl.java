@@ -73,7 +73,7 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
         }
         Map<String, String> headerMap = new HashMap<>();
 
-        headerMap.put("x-auth-token", AuthService.getToken("11111111111","admin",false));
+        headerMap.put("x-auth-token", AuthService.getToken());
         PageUtils page = null;
         try {
             String res = HttpUtil.get(UrlConstans.BASEURL + UrlConstans.ENTERPRISE, headerMap, urlParams, null);
@@ -144,7 +144,7 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
     @Override
     public boolean accept(String id) {
         Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("x-auth-token", AuthService.getToken("11111111111","admin",false));
+        headerMap.put("x-auth-token", AuthService.getToken());
         Map<String, String> urlParams = new HashMap<String, String>();
         urlParams.put("channelType","1");
         String address = UrlConstans.BASEURL+UrlConstans.ENTERPRISE+"/"+id+"/accept";
@@ -160,7 +160,7 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
     @Override
     public EnteroriseInfo findById(String id){
         Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("x-auth-token", AuthService.getToken("11111111111","admin",false));
+        headerMap.put("x-auth-token", AuthService.getToken());
         Map<String, String> urlParams = new HashMap<String, String>();
         urlParams.put("platformId",AuthService.getPlatformId());
         urlParams.put("enterpriseId",id);
