@@ -180,11 +180,35 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
 
         if (enterpriseResults!=null){
             enteroriseInfo = new EnteroriseInfo(enterpriseResults.getCompanyInfo());
+            enteroriseInfo.setId(enterpriseResults.getId());
             enteroriseInfo.setChannels(enterpriseResults.getChannels());
         }else{
             return null;
         }
         return enteroriseInfo;
+    }
+
+    @Override
+    public void review(EnteroriseReviewEntity enteroriseRevie) {
+        Map<String, String> headerMap = new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
+        headerMap.put("x-auth-token", AuthService.getToken());
+        Map<String, String> urlParams = new HashMap<String, String>();
+        urlParams.put("channelType","1");
+        params.put("result",enteroriseRevie.getStatus());
+        List<String> reason = new ArrayList<>();
+        params.put("reason",reason);
+        params.put("comment","测试备注功能！");
+
+        String address = UrlConstans.BASEURL +UrlConstans.ENTERPRISE +"/" + enteroriseRevie.getId()+"/audit";
+
+        try {
+            String res = HttpUtil.put(address, headerMap, urlParams, JSON.toJSONString(params));
+            System.out.println(res);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

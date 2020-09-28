@@ -222,33 +222,32 @@ var vm = new Vue({
             console.log(status);
             let reasons = $('#reason').val();
             let remark = $('#remark').val();
-            if (status == 2){
-                $('#examine').button('loading').delay(1000).queue(function() {
-                    var url =  "enterprise/enterprise/noPass";
-                    var ajData = {};
-                    ajData.id = vm.enterprise.id;
-                    ajData.reasons = reasons;
-                    ajData.remark = remark;
-                    $.ajax({
-                        type: "POST",
-                        url: baseURL + url,
-                        contentType: "application/json",
-                        data: JSON.stringify(ajData),
-                        success: function(r){
-                            if(r.code === 0){
-                                layer.msg("操作成功", {icon: 1});
-                                vm.reload();
-                                $('#examine').button('reset');
-                                $('#examine').dequeue();
-                            }else{
-                                layer.alert(r.msg);
-                                $('#examine').button('reset');
-                                $('#examine').dequeue();
-                            }
+            $('#examine').button('loading').delay(1000).queue(function() {
+                var url =  "enterprise/enterprise/review";
+                var ajData = {};
+                ajData.id = vm.enterprise.id;
+                ajData.reasons = reasons;
+                ajData.remark = remark;
+                ajData.status = status;
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + url,
+                    contentType: "application/json",
+                    data: JSON.stringify(ajData),
+                    success: function(r){
+                        if(r.code === 0){
+                            layer.msg("操作成功", {icon: 1});
+                            vm.reload();
+                            $('#examine').button('reset');
+                            $('#examine').dequeue();
+                        }else{
+                            layer.alert(r.msg);
+                            $('#examine').button('reset');
+                            $('#examine').dequeue();
                         }
-                    });
+                    }
                 });
-            }
+            });
         },
         initBaseData: function () {
             let _self = this;

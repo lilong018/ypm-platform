@@ -5,7 +5,7 @@ import com.platform.common.utils.R;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.modules.bank.service.BankService;
 import com.platform.modules.enterprise.entity.EnteroriseInfo;
-import com.platform.modules.enterprise.entity.EnteroriseRejectEntity;
+import com.platform.modules.enterprise.entity.EnteroriseReviewEntity;
 import com.platform.modules.enterprise.entity.EnterpriseEntity;
 import com.platform.modules.enterprise.service.EnterpriseService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -84,7 +84,7 @@ public class EnterpriseController {
     @RequiresPermissions("enterprise:enterprise:update")
     public R update(@RequestBody EnterpriseEntity enterprise){
         ValidatorUtils.validateEntity(enterprise);
-        enterpriseService.updateById(enterprise);
+
         
         return R.ok();
     }
@@ -103,9 +103,9 @@ public class EnterpriseController {
     /**
      * 保存
      */
-    @RequestMapping("/noPass")
-    public R noPass(@RequestBody EnteroriseRejectEntity req){
-        System.out.println(req);
+    @RequestMapping("/review")
+    public R pass(@RequestBody EnteroriseReviewEntity req){
+        enterpriseService.review(req);
         return R.ok();
     }
 

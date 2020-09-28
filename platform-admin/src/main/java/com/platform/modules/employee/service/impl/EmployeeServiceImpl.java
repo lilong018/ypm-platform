@@ -9,10 +9,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.model.UrlConstans;
 import com.platform.common.utils.*;
 import com.platform.modules.employee.dao.EmployeeDao;
-import com.platform.modules.employee.entity.Employee;
-import com.platform.modules.employee.entity.EmployeeEntity;
-import com.platform.modules.employee.entity.EmployeeRespond;
-import com.platform.modules.employee.entity.EmployeeResults;
+import com.platform.modules.employee.entity.*;
 import com.platform.modules.employee.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +20,7 @@ import java.util.Map;
 
 
 @Service("employeeService")
-public class EmployeeServiceImpl extends ServiceImpl<EmployeeDao, EmployeeEntity> implements EmployeeService {
+public class EmployeeServiceImpl<main> extends ServiceImpl<EmployeeDao, EmployeeEntity> implements EmployeeService {
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -70,11 +67,75 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeDao, EmployeeEntity
         try {
             res =  HttpUtil.post(address, headerMap, JSON.toJSONString(params));
             System.out.println(res);
-            // TODO: 2020/9/15 处理返回值 有判断用户重复的情况2001
+            AddEmployeeRespond addEmployeeRespond = JSON.parseObject(res, AddEmployeeRespond.class);
+            if (addEmployeeRespond.getStatusCode() == 0){
+                //添加用户权限
+                Map<String, Object> privilegeParams = new HashMap<String, Object>();
+
+                List<Map<String, Object>> userPrivileges = new ArrayList<Map<String, Object>>();
+
+                Map<String, Object> platformMap = new HashMap<String, Object>();
+
+                List<Map<String, Object>> privilegesList = new ArrayList<Map<String, Object>>();
+                Map<String, Object> privilegesMap = new HashMap<String, Object>();
+                privilegesMap.put("category",1);
+                privilegesMap.put("privilege",15);
+                privilegesList.add(privilegesMap);
+                platformMap.put("platformId",AuthService.getPlatformId());
+                platformMap.put("privileges",privilegesList);
+                userPrivileges.add(platformMap);
+
+                privilegeParams.put("employeeId",addEmployeeRespond.getPayload().getEmployeeId());
+
+                privilegeParams.put("userPrivileges",userPrivileges);
+
+                String privilegesRes = HttpUtil.post(UrlConstans.BASEURL + UrlConstans.PRIVILEGES, headerMap, JSON.toJSONString(privilegeParams));
+            }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return true;
+    }
+
+    /**
+     * 赋予权限
+     * @param args
+     */
+    public static void main(String[] args) {
+
+
+//        5f6ef1186c1b725440329897
+        Map<String, String> headerMap = new HashMap<String, String>();
+        Map<String, Object> params = new HashMap<String, Object>();
+        // TODO: 2020/9/22 修改人员增加接口
+        headerMap.put("x-auth-token", AuthService.getPlatformManager());
+//        /添加用户权限
+        Map<String, Object> privilegeParams = new HashMap<String, Object>();
+
+        List<Map<String, Object>> userPrivileges = new ArrayList<Map<String, Object>>();
+
+        Map<String, Object> platformMap = new HashMap<String, Object>();
+
+        List<Map<String, Object>> privilegesList = new ArrayList<Map<String, Object>>();
+        Map<String, Object> privilegesMap = new HashMap<String, Object>();
+        privilegesMap.put("category",1);
+        privilegesMap.put("privilege",15);
+        privilegesList.add(privilegesMap);
+        platformMap.put("platformId",AuthService.getPlatformId());
+        platformMap.put("privileges",privilegesList);
+        userPrivileges.add(platformMap);
+
+        privilegeParams.put("employeeId","5f6ef1186c1b725440329897");
+
+        privilegeParams.put("userPrivileges",userPrivileges);
+
+        try {
+            String privilegesRes = HttpUtil.post(UrlConstans.BASEURL + UrlConstans.PRIVILEGES, headerMap, JSON.toJSONString(privilegeParams));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -133,6 +194,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeDao, EmployeeEntity
 
     @Override
     public boolean updateEmployee(Employee employee) {
+
         Map<String, String> headerMap = new HashMap<String, String>();
         headerMap.put("x-auth-token", AuthService.getAuth());
         Map<String, Object> params = new HashMap<String, Object>();
