@@ -1,6 +1,7 @@
 package com.platform.modules.enterprise.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.platform.common.model.ImageType;
 import com.platform.common.utils.ImageUtil;
 
 import java.util.Date;
@@ -16,6 +17,7 @@ public class EnteroriseInfo {
 
     public EnteroriseInfo() {
     }
+    private static String replaceStr = "^data:image\\/\\w+;base64,";
 
 
     public EnteroriseInfo(CompanyInfo companyInfo){
@@ -30,22 +32,24 @@ public class EnteroriseInfo {
 
         try {
             Map<String, String> busMap = ImageUtil.getImageMap(companyInfo.getBusinessLicenseUrl());
-            this.businesslicenseurl = busMap.get("imageData");
+            this.businesslicenseurl = ImageType.getNameByCode(busMap.get("type"))+busMap.get("imageData");
             this.businesslicenseurlType = busMap.get("type");
             Map<String, String> accountMap = ImageUtil.getImageMap(companyInfo.getAccountOpeningLicenseUrl());
-            this.accountopeninglicenseurl = accountMap.get("imageData");
+            this.accountopeninglicenseurl = ImageType.getNameByCode(accountMap.get("type"))+accountMap.get("imageData");
             this.accountopeninglicenseurlType = accountMap.get("type");
             Map<String, String> legalFMap = ImageUtil.getImageMap(companyInfo.getLegalRepIdPicFrontUrl());
-            this.legalrepidpicfronturl = legalFMap.get("imageData");
+            this.legalrepidpicfronturl = ImageType.getNameByCode(legalFMap.get("type"))+legalFMap.get("imageData");
             this.legalrepidpicfronturlType = legalFMap.get("type");
             Map<String, String> legalBMap = ImageUtil.getImageMap(companyInfo.getLegalRepIdPicBackUrl());
-            this.legalrepidpicbackurl = legalBMap.get("imageData");
+            this.legalrepidpicbackurl = ImageType.getNameByCode(legalBMap.get("type"))+legalBMap.get("imageData");
             this.legalrepidpicbackurlType = legalBMap.get("type");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public static void main(String[] args) {
+    }
     /**
      * id
      */

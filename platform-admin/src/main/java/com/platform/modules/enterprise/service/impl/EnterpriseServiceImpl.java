@@ -84,9 +84,8 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
                 List<EnterpriseResults> results = payload.getResults();
                 List<EnteroriseVo> vos = new ArrayList<EnteroriseVo>();
                 StringBuffer sb = new StringBuffer();
-                EnteroriseVo vo = new EnteroriseVo();
-
                 results.forEach(enterpriseResult ->{
+                    EnteroriseVo vo = new EnteroriseVo();
                     vo.setId(enterpriseResult.getId());
                     Platform platform = enterpriseResult.getPlatform();
                     List<Channels> channels = enterpriseResult.getChannels();
