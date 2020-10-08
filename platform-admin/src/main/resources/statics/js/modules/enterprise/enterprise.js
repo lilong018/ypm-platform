@@ -28,8 +28,26 @@ $(function () {
 			{ label: '企业账号', name: 'account', index: 'account', width: 80 },
 			//1：买方&卖方 2：卖方
 			{ label: '用户角色 ', name: 'roleName', index: 'roleName', width: 80 },
-			{ label: '创建时间', name: 'createtime', index: 'createTime', width: 80 },
-			{ label: '企业状态', name: 'status', index: 'status', width: 80 },
+			{ label: '创建时间', name: 'createtime', index: 'createTime', width: 80},
+			{ label: '企业状态', name: 'status', index: 'status', width: 80, formatter:function (cellvalue, options, rowObject){
+                    if (cellvalue == 0){
+                        return "待提交企业资料"
+                    }else if(cellvalue == 1){
+                        return "待平台审核";
+                    }else if(cellvalue == 2){
+                        return "平台审核不通过";
+                    }else if(cellvalue == 3){
+                        return "待担保渠道审核";
+                    }else if(cellvalue == 4){
+                        return "担保渠道审核不通过";
+                    }else if(cellvalue == 5){
+                        return "待激活";
+                    }else if(cellvalue == 6){
+                        return "审核成功";
+                    }else{
+                        return "未知";
+                    }
+                }},
 			{ label: '备注', name: 'remark', index: 'remark', width: 80 },
 			{ label: '原因', name: 'reason', index: 'reason', width: 80 },
             { label: '平台名称', name: 'platformName', index: 'platformName', width: 80 },
