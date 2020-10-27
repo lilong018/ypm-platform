@@ -38,7 +38,7 @@ public class BillController {
     @RequestMapping("/list")
     @RequiresPermissions("bill:bill:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = billService.queryPage(params);
+        PageUtils page = billService.selectPages(params);
 
         return R.ok().put("page", page);
     }

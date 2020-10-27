@@ -49,8 +49,14 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
 
     @Override
     public PageUtils selectPages(Map<String, Object> params) {
-        Integer pageNumber = Integer.parseInt(String.valueOf(params.get("page")));
-        Integer pageSize = Integer.parseInt(String.valueOf(params.get("limit")));
+        Integer pageNumber = 1;
+        Integer pageSize = 10;
+        if (StringUtil.isNotEmpty(String.valueOf(params.get("page")))){
+            pageNumber = Integer.parseInt(String.valueOf(params.get("page")));
+        }
+        if (StringUtil.isNotEmpty(String.valueOf(params.get("limit")))){
+            pageSize = Integer.parseInt(String.valueOf(params.get("limit")));
+        }
         Map<String, String> urlParams = ParamsUtils.convertParams(params);
         // TODO: 2020/9/18 platformId 通过客服/用户获取
         urlParams.put("platformId",AuthService.getPlatformId());
