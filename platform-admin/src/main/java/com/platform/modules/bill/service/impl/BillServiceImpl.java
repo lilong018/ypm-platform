@@ -2,11 +2,16 @@ package com.platform.modules.bill.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.model.UrlConstans;
 import com.platform.common.utils.*;
+import com.platform.modules.bill.dao.BillDao;
 import com.platform.modules.bill.entity.BankListVo;
+import com.platform.modules.bill.entity.BillEntity;
 import com.platform.modules.bill.entity.BillResults;
-import com.platform.modules.enterprise.entity.EnteroriseVo;
+import com.platform.modules.bill.service.BillService;
 import com.platform.modules.response.CommonPageResults;
 import com.platform.modules.response.CommonResponse;
 import org.springframework.stereotype.Service;
@@ -15,14 +20,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-
-import com.platform.modules.bill.dao.BillDao;
-import com.platform.modules.bill.entity.BillEntity;
-import com.platform.modules.bill.service.BillService;
 
 
 @Service("billService")
