@@ -2,18 +2,67 @@ $(function () {
     $("#jqGrid").jqGrid({
         url: baseURL + 'bill/bill/list',
         datatype: "json",
-        colModel: [			
+        colModel: [
+            { label: 'id', name: 'id', index: 'id', width: 50, key: true },
 			{ label: '票号', name: 'number', index: 'number', width: 80 },
 			{ label: '承兑人', name: 'acceptingbankname', index: 'acceptingBankName', width: 80 },
 			{ label: '卖方名称', name: 'drawername', index: 'drawerName', width: 80 },
-			{ label: '担保渠道', name: 'channeltype', index: 'channelType', width: 80 },
+			{ label: '担保渠道', name: 'channeltype', index: 'channelType', width: 80,formatter:function (cellvalue, options, rowObject){
+                    if (cellvalue == 1){
+                        return "京东智票"
+                    }else if(cellvalue == 2){
+                        return "京东智付";
+                    }else if(cellvalue == 3){
+                        return "京东智票，京东智付";
+                    }else{
+                        return "未知";
+                    }
+                }},
 			{ label: '到期日', name: 'duedate', index: 'dueDate', width: 80 },
 			{ label: '票面金额(元)', name: 'amount', index: 'amount', width: 80 },
 			{ label: '意向价格(元)', name: 'feededuction', index: 'feeDeduction', width: 80 },
 			{ label: '收票人姓名', name: 'draweename', index: 'draweeName', width: 80 },
 			{ label: '承兑银行行号', name: 'acceptingbanknumber', index: 'acceptingBankNumber', width: 80 },
-			{ label: '承兑银行类型', name: 'acceptingbanktype', index: 'acceptingBankType', width: 80 },
-			{ label: '票据状态', name: 'status', index: 'status', width: 80 }
+			{ label: '承兑银行类型', name: 'acceptingbanktype', index: 'acceptingBankType', width: 80,formatter:function (cellvalue, options, rowObject){
+                    if (cellvalue == 0){
+                        return "国股"
+                    }else if(cellvalue == 1){
+                        return "大商";
+                    }else if(cellvalue == 2){
+                        return "城商";
+                    }else if(cellvalue == 3){
+                        return "三农";
+                    }else if(cellvalue == 4){
+                        return "村镇";
+                    }else if(cellvalue == 5){
+                        return "外资";
+                    }else if(cellvalue == 6){
+                        return "民营";
+                    }else if(cellvalue == 7){
+                        return "财务 (财票)";
+                    }else if(cellvalue == 8){
+                        return "企业(商票)";
+                    }else{
+                        return "未知";
+                    }
+                }},
+			{ label: '票据状态', name: 'status', index: 'status', width: 80,formatter:function (cellvalue, options, rowObject){
+                    if (cellvalue == 0){
+                        return "待审核"
+                    }else if(cellvalue == 1){
+                        return "审核中";
+                    }else if(cellvalue == 2){
+                        return "审核通过且已上架";
+                    }else if(cellvalue == 3){
+                        return "审核未通过";
+                    }else if(cellvalue == 4){
+                        return "交易中";
+                    }else if(cellvalue == 5){
+                        return "已交易";
+                    }else{
+                        return "未知";
+                    }
+			}}
         ],
 		viewrecords: true,
         height: 385,

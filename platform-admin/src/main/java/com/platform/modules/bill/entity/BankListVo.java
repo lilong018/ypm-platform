@@ -18,7 +18,7 @@ public class BankListVo {
     }
 
     public BankListVo(BillResults billResults) {
-
+        this.id = billResults.getBill().getId();
         this.number = billResults.getBill().getNumber();
         this.acceptingbankname = billResults.getBill().getAcceptingBankName();
         this.acceptingbanknumber = billResults.getBill().getAcceptingBankNumber();
@@ -30,7 +30,6 @@ public class BankListVo {
         this.amount = billResults.getBill().getAmount();
         this.feededuction = billResults.getBill().getFeeDeduction();
         this.status = billResults.getBill().getStatus();
-
     }
 
     /**
