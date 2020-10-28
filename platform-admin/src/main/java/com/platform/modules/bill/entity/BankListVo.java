@@ -5,6 +5,8 @@ import com.platform.common.utils.StringUtil;
 import com.platform.modules.enums.BillType;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @ClassName BankListVo
@@ -53,6 +55,12 @@ public class BankListVo {
             this.returnendorsementstatus = "是";
         }
         this.type = billResults.getBill().getType();
+        this.coverfrontpictureurl = billResults.getBill().getFrontPictureUrl();
+        List<HashMap<String, String>> backPictures = billResults.getBill().getBackPictures();
+        if (backPictures!=null && backPictures.size() > 0){
+            this.coverbackpictures = backPictures.get(0).get(billResults.getBill().getNumber());
+        }
+        System.out.println(this.coverbackpictures);
     }
 
     /**
