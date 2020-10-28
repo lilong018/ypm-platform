@@ -64,6 +64,11 @@ public class BillServiceImpl extends ServiceImpl<BillDao, BillEntity> implements
             if (commonResponse != null && commonResponse.getStatusCode() == 0){
                 List<BankListVo> vos = new ArrayList<BankListVo>();
                 CommonPageResults<BillResults> payload = commonResponse.getPayload();
+                List<BillResults> results = payload.getResults();
+                for (BillResults result : results) {
+                    BankListVo vo = new BankListVo(result);
+                    vos.add(vo);
+                }
                 page = new PageUtils(vos, payload.getTotal(), pageSize, pageNumber);
             }
         } catch (Exception e) {

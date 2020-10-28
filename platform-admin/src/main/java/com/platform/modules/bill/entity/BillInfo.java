@@ -23,7 +23,7 @@ public class BillInfo {
     private String acceptingBankName;
     private String acceptingBankNumber;
     private Integer acceptingBankType;
-    private Integer amount;
+    private double amount;
     private String issueDate;
     private String dueDate;
     private String frontPictureUrl;
@@ -120,11 +120,11 @@ public class BillInfo {
         this.acceptingBankType = acceptingBankType;
     }
 
-    public Integer getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
