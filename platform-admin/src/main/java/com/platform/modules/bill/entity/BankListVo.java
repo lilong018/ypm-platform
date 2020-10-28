@@ -1,6 +1,8 @@
 package com.platform.modules.bill.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.platform.common.utils.StringUtil;
+import com.platform.modules.enums.BillType;
 
 import java.util.Date;
 
@@ -30,6 +32,27 @@ public class BankListVo {
         this.amount = billResults.getBill().getAmount();
         this.feededuction = billResults.getBill().getFeeDeduction();
         this.status = billResults.getBill().getStatus();
+    }
+
+    public BankListVo(BillResults billResults,String billId) {
+        this.id = billId;
+        this.number = billResults.getBill().getNumber();
+        this.acceptingbankname = billResults.getBill().getAcceptingBankName();
+        this.acceptingbanknumber = billResults.getBill().getAcceptingBankNumber();
+        this.acceptingbanktype = billResults.getBill().getAcceptingBankType();
+        this.drawername = billResults.getBill().getDrawerName();
+        this.draweename = billResults.getBill().getDraweeName();
+        this.channeltype = billResults.getBill().getChannelType();
+        this.duedate = billResults.getBill().getDueDate();
+        this.amount = billResults.getBill().getAmount();
+        this.feededuction = billResults.getBill().getFeeDeduction();
+        this.status = billResults.getBill().getStatus();
+        if (billResults.getBill().getReturnEndorsementCount() > 0 ) {
+            this.returnendorsementstatus = "否";
+        } else {
+            this.returnendorsementstatus = "是";
+        }
+        this.type = billResults.getBill().getType();
     }
 
     /**
@@ -112,7 +135,7 @@ public class BankListVo {
     /**
      * 回头背书状态 |-1|取消/未知 |0|否/无 |1|是/有
      */
-    private Integer returnendorsementstatus;
+    private String returnendorsementstatus;
     /**
      * 重复背书状态 |-1|取消/未知 |0|否/无 |1|是/有
      */
@@ -310,11 +333,11 @@ public class BankListVo {
         this.returndraweestatus = returndraweestatus;
     }
 
-    public Integer getReturnendorsementstatus() {
+    public String getReturnendorsementstatus() {
         return returnendorsementstatus;
     }
 
-    public void setReturnendorsementstatus(Integer returnendorsementstatus) {
+    public void setReturnendorsementstatus(String returnendorsementstatus) {
         this.returnendorsementstatus = returnendorsementstatus;
     }
 

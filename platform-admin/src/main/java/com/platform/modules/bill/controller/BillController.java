@@ -2,8 +2,11 @@ package com.platform.modules.bill.controller;
 
 import com.platform.common.utils.PageUtils;
 import com.platform.common.utils.R;
+import com.platform.common.utils.StringUtil;
 import com.platform.common.validator.ValidatorUtils;
+import com.platform.modules.bill.entity.BankListVo;
 import com.platform.modules.bill.entity.BillEntity;
+import com.platform.modules.bill.entity.BillResults;
 import com.platform.modules.bill.service.BillService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +48,11 @@ public class BillController {
     @RequestMapping("/info/{id}")
     @RequiresPermissions("bill:bill:info")
     public R info(@PathVariable("id") String id){
-        BillEntity bill = billService.getById(id);
+        System.out.println("id:"+id);
+        if (StringUtil.isBlank(id)) {
+            return R.error("参数不可为空");
+        }
+        BankListVo bill = billService.findById(id);
 
         return R.ok().put("bill", bill);
     }

@@ -75,5 +75,37 @@ public class BillServiceImpl extends ServiceImpl<BillDao, BillEntity> implements
         return page;
     }
 
+    @Override
+    public BankListVo findById(String id) {
+        Map<String, String> headerMap = new HashMap<>();
+        //header
+        headerMap.put("x-auth-token", AuthService.getToken());
+        //参数
+        Map<String, String> urlParams = new HashMap<>();
+        urlParams.put("start", "0");
+        urlParams.put("count", "1");
+        urlParams.put("platformId", AuthService.getPlatformId());
+        urlParams.put("billId", id);
+        String res = null;
+        BankListVo vo = null;
+        CommonResponse<CommonPageResults<BillResults>> commonResponse = null;
+        try {
+            res = HttpUtil.get(UrlConstans.BASEURL + UrlConstans.BILLS, headerMap, urlParams, null);
+            System.out.println(res);
+            commonResponse = JSON.parseObject(res, new TypeReference<CommonResponse<CommonPageResults<BillResults>>>() {
+            });
+            if (commonResponse != null && commonResponse.getStatusCode() == 0){
+                CommonPageResults<BillResults> payload = commonResponse.getPayload();
+                List<BillResults> results = payload.getResults();
+                for (BillResults result : results) {
+                    vo = new BankListVo(result,id);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vo;
+    }
+
 
 }

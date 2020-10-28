@@ -85,7 +85,9 @@
                                     <div class="form-group">
                                         <div class="col-sm-6 pr-0 pt-1">是否回头背书：</div>
                                         <div class="col-sm-6  pl-0 pr-0">
-                                            <span>否</span>
+                                            <span >
+                                                {{ bill.returnendorsementstatus }}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -94,14 +96,6 @@
                                         <div class="col-sm-6 pr-0 pt-1">票面金额：</div>
                                         <div class="col-sm-6  pl-0 pr-0">
                                             <span>{{ bill.amount }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <div class="col-sm-6 pr-0 pt-1">是否可转让：</div>
-                                        <div class="col-sm-6  pl-0 pr-0">
-                                            <span>是</span>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +111,18 @@
                                     <div class="form-group">
                                         <div class="col-sm-6 pr-0 pt-1">票据类型：</div>
                                         <div class="col-sm-6  pl-0 pr-0">
-                                            <span>{{ bill.acceptingbankname }}</span>
+                                            <select class="form-control" name="department" v-model="bill.type" >
+                                                <option value="-1">未知</option>
+                                                <option value="0">国股</option>
+                                                <option value="1">大商</option>
+                                                <option value="2">城商</option>
+                                                <option value="3">三农</option>
+                                                <option value="4">村镇</option>
+                                                <option value="5">外资</option>
+                                                <option value="6">民营</option>
+                                                <option value="7">财务（财票）</option>
+                                                <option value="8">企业（商品）</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -125,21 +130,13 @@
                                     <div class="form-group">
                                         <div class="col-sm-6 pr-0 pt-1">承兑行行号：</div>
                                         <div class="col-sm-6  pl-0 pr-0">
-                                            <span>{{ bill.type }}</span>
+                                            <span>{{ bill.acceptingbanknumber }}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <div class="col-sm-6 pr-0 pt-1">承兑机构：</div>
-                                        <div class="col-sm-6  pl-0 pr-0">
-                                            <span>{{ bill.acceptingbanktype }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <div class="col-sm-6 pr-0 pt-1">到期日：</div>
+                                        <div class="col-sm-6 pr-0 pt-1">票据到期日：</div>
                                         <div class="col-sm-6  pl-0 pr-0">
                                             <span>{{ bill.duedate }}</span>
                                         </div>

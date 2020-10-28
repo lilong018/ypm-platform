@@ -52,7 +52,6 @@ public class EnterpriseController {
     @RequiresPermissions("enterprise:enterprise:info")
     public R info(@PathVariable("id") String id){
         EnteroriseInfo enteroriseInfo = enterpriseService.findById(id);
-        System.out.println();
         return R.ok().put("enterprise",enteroriseInfo);
     }
 
