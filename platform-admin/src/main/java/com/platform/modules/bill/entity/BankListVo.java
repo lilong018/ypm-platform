@@ -1,12 +1,15 @@
 package com.platform.modules.bill.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.platform.common.model.ImageType;
+import com.platform.common.utils.ImageUtil;
 import com.platform.common.utils.StringUtil;
 import com.platform.modules.enums.BillType;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName BankListVo
@@ -55,12 +58,22 @@ public class BankListVo {
             this.returnendorsementstatus = "是";
         }
         this.type = billResults.getBill().getType();
-        this.coverfrontpictureurl = billResults.getBill().getFrontPictureUrl();
-        List<HashMap<String, String>> backPictures = billResults.getBill().getBackPictures();
-        if (backPictures!=null && backPictures.size() > 0){
-            this.coverbackpictures = backPictures.get(0).get(billResults.getBill().getNumber());
+        try {
+            Map<String, String> frontPictureUrlMap = ImageUtil.getImageMap(billResults.getBill().getFrontPictureUrl());
+            this.coverfrontpictureurl = frontPictureUrlMap.get("imageData");
+            List<HashMap<String, String>> backPictures = billResults.getBill().getBackPictures();
+            if (backPictures!=null && backPictures.size() > 0){
+                HashMap<String, String> hashMap = backPictures.get(0);
+                String backPicture ="";
+                for (Map.Entry<String, String> entry : hashMap.entrySet()) {
+                    backPicture = entry.getValue();
+                }
+                Map<String, String> imageMap = ImageUtil.getImageMap(backPicture);
+                this.coverbackpictures = imageMap.get("imageData");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        System.out.println(this.coverbackpictures);
     }
 
     /**

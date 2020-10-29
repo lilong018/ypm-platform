@@ -32,17 +32,14 @@ public class EnteroriseInfo {
 
         try {
             Map<String, String> busMap = ImageUtil.getImageMap(companyInfo.getBusinessLicenseUrl());
-            this.businesslicenseurl = ImageType.getNameByCode(busMap.get("type"))+busMap.get("imageData");
-            this.businesslicenseurlType = busMap.get("type");
-            Map<String, String> accountMap = ImageUtil.getImageMap(companyInfo.getAccountOpeningLicenseUrl());
+            this.businesslicenseurl = busMap.get("imageData");
+            /*Map<String, String> accountMap = ImageUtil.getImageMap(companyInfo.getAccountOpeningLicenseUrl());
             this.accountopeninglicenseurl = ImageType.getNameByCode(accountMap.get("type"))+accountMap.get("imageData");
-            this.accountopeninglicenseurlType = accountMap.get("type");
+            this.accountopeninglicenseurlType = accountMap.get("type");*/
             Map<String, String> legalFMap = ImageUtil.getImageMap(companyInfo.getLegalRepIdPicFrontUrl());
-            this.legalrepidpicfronturl = ImageType.getNameByCode(legalFMap.get("type"))+legalFMap.get("imageData");
-            this.legalrepidpicfronturlType = legalFMap.get("type");
+            this.legalrepidpicfronturl = legalFMap.get("imageData");
             Map<String, String> legalBMap = ImageUtil.getImageMap(companyInfo.getLegalRepIdPicBackUrl());
-            this.legalrepidpicbackurl = ImageType.getNameByCode(legalBMap.get("type"))+legalBMap.get("imageData");
-            this.legalrepidpicbackurlType = legalBMap.get("type");
+            this.legalrepidpicbackurl = legalBMap.get("imageData");
         } catch (Exception e) {
             e.printStackTrace();
         }
