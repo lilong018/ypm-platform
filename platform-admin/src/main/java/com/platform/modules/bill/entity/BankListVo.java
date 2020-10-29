@@ -1,10 +1,9 @@
 package com.platform.modules.bill.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.platform.common.model.ImageType;
 import com.platform.common.utils.ImageUtil;
-import com.platform.common.utils.StringUtil;
-import com.platform.modules.enums.BillType;
+import com.platform.modules.bank.entity.BankInfoRespond;
+import com.platform.modules.enums.ChannelEnum;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -74,6 +73,20 @@ public class BankListVo {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //卖方信息
+        this.publisherName = billResults.getBill().getPublisher().getCompanyInfo();
+        this.publisherAccount = billResults.getBill().getPublisher().getAccount();
+        this.channeltype = billResults.getBill().getChannelType();
+        this.channelName = ChannelEnum.getNameByCode(this.channeltype);
+        this.platformName = billResults.getBill().getPlatform().getName();
+        this.platformId = billResults.getBill().getPlatform().getId();
+        //经办人信息
+        // TODO: 2020/10/29 经办人和企业绑定不和渠道绑定
+        List<HandlerBean> handler = billResults.getBill().getPublisher().getHandler();
+        if (handler !=null || handler.size() >0){
+            this.handlerName = handler.get(0).getHandlerName();
+            this.handlerPhoneNo = handler.get(0).getHandlerPhoneNo();
+        }
     }
 
     /**
@@ -133,14 +146,21 @@ public class BankListVo {
      * 担保渠道
      */
     private Integer channeltype;
+
+    private String channelName;
     /**
      * 回款银行账户资讯
      */
-    private String transferbank;
+    private BankInfoRespond transferbank;
     /**
      * 背书户银行资讯
      */
-    private String endorsebank;
+    private BankInfoRespond endorsebank;
+
+    /**
+     * 背书户银行名称
+     */
+    private String endorsebankAccount;
     /**
      * 背书次数
      */
@@ -201,6 +221,32 @@ public class BankListVo {
      * 卖方用户id
      */
     private String publisherid;
+    /**
+     * 卖方用户姓名
+     */
+    private String publisherName;
+    /**
+     * 卖方用户账号
+     */
+    private String publisherAccount;
+    /**
+     * 卖方用户账号
+     */
+    private String platformId;
+    /**
+     * 卖方用户账号
+     */
+    private String platformName;
+    /**
+     * 经办人姓名
+     */
+    private String handlerName;
+    /**
+     * 经办人电话号码
+     */
+    private String handlerPhoneNo;
+
+
 
     public String getId() {
         return id;
@@ -314,20 +360,28 @@ public class BankListVo {
         this.channeltype = channeltype;
     }
 
-    public String getTransferbank() {
+    public BankInfoRespond getTransferbank() {
         return transferbank;
     }
 
-    public void setTransferbank(String transferbank) {
+    public void setTransferbank(BankInfoRespond transferbank) {
         this.transferbank = transferbank;
     }
 
-    public String getEndorsebank() {
+    public BankInfoRespond getEndorsebank() {
         return endorsebank;
     }
 
-    public void setEndorsebank(String endorsebank) {
+    public void setEndorsebank(BankInfoRespond endorsebank) {
         this.endorsebank = endorsebank;
+    }
+
+    public String getEndorsebankAccount() {
+        return endorsebankAccount;
+    }
+
+    public void setEndorsebankAccount(String endorsebankAccount) {
+        this.endorsebankAccount = endorsebankAccount;
     }
 
     public Integer getEndorsecount() {
@@ -448,5 +502,61 @@ public class BankListVo {
 
     public void setPublisherid(String publisherid) {
         this.publisherid = publisherid;
+    }
+
+    public String getPublisherName() {
+        return publisherName;
+    }
+
+    public void setPublisherName(String publisherName) {
+        this.publisherName = publisherName;
+    }
+
+    public String getPublisherAccount() {
+        return publisherAccount;
+    }
+
+    public void setPublisherAccount(String publisherAccount) {
+        this.publisherAccount = publisherAccount;
+    }
+
+    public String getChannelName() {
+        return channelName;
+    }
+
+    public void setChannelName(String channelName) {
+        this.channelName = channelName;
+    }
+
+    public String getPlatformId() {
+        return platformId;
+    }
+
+    public void setPlatformId(String platformId) {
+        this.platformId = platformId;
+    }
+
+    public String getPlatformName() {
+        return platformName;
+    }
+
+    public void setPlatformName(String platformName) {
+        this.platformName = platformName;
+    }
+
+    public String getHandlerName() {
+        return handlerName;
+    }
+
+    public void setHandlerName(String handlerName) {
+        this.handlerName = handlerName;
+    }
+
+    public String getHandlerPhoneNo() {
+        return handlerPhoneNo;
+    }
+
+    public void setHandlerPhoneNo(String handlerPhoneNo) {
+        this.handlerPhoneNo = handlerPhoneNo;
     }
 }
