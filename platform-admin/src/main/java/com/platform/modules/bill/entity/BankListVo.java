@@ -74,7 +74,7 @@ public class BankListVo {
             e.printStackTrace();
         }
         //卖方信息
-        this.publisherName = billResults.getBill().getPublisher().getCompanyInfo();
+        this.publisherName = billResults.getBill().getPublisher().getCompanyName();
         this.publisherAccount = billResults.getBill().getPublisher().getAccount();
         this.channeltype = billResults.getBill().getChannelType();
         this.channelName = ChannelEnum.getNameByCode(this.channeltype);
@@ -87,6 +87,8 @@ public class BankListVo {
             this.handlerName = handler.get(0).getHandlerName();
             this.handlerPhoneNo = handler.get(0).getHandlerPhoneNo();
         }
+        this.endorsebankAccount = billResults.getBill().getEndorseBank().getAccountNumber();
+        this.endorsebankId = billResults.getBill().getEndorseBank().getId();
     }
 
     /**
@@ -161,6 +163,10 @@ public class BankListVo {
      * 背书户银行名称
      */
     private String endorsebankAccount;
+    /**
+     * 背书户银行名称
+     */
+    private String endorsebankId;
     /**
      * 背书次数
      */
@@ -382,6 +388,14 @@ public class BankListVo {
 
     public void setEndorsebankAccount(String endorsebankAccount) {
         this.endorsebankAccount = endorsebankAccount;
+    }
+
+    public String getEndorsebankId() {
+        return endorsebankId;
+    }
+
+    public void setEndorsebankId(String endorsebankId) {
+        this.endorsebankId = endorsebankId;
     }
 
     public Integer getEndorsecount() {

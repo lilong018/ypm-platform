@@ -7,6 +7,7 @@ import com.platform.modules.bank.service.BankService;
 import com.platform.modules.enterprise.entity.EnteroriseInfo;
 import com.platform.modules.enterprise.entity.EnteroriseReviewEntity;
 import com.platform.modules.enterprise.entity.EnterpriseEntity;
+import com.platform.modules.enterprise.entity.EnterpriseInfoVo;
 import com.platform.modules.enterprise.service.EnterpriseService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,8 @@ public class EnterpriseController {
     @RequestMapping("/info/{id}")
     @RequiresPermissions("enterprise:enterprise:info")
     public R info(@PathVariable("id") String id){
-        EnteroriseInfo enteroriseInfo = enterpriseService.findById(id);
-        return R.ok().put("enterprise",enteroriseInfo);
+        EnterpriseInfoVo enterpriseInfoVo = enterpriseService.findById(id);
+        return R.ok().put("enterprise",enterpriseInfoVo);
     }
 
     /**

@@ -17,17 +17,22 @@ import java.util.Map;
  **/
 public class ImageUtil {
 
-    public static Map<String,String> getImageMap(String imagePath) throws Exception {
+    public static Map<String, String> getImageMap(String imagePath) {
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("x-auth-token", AuthService.getToken());
         String address = UrlConstans.BASEURL + "/" + imagePath;
-        String res = HttpUtil.get(address, headerMap, null);
-        ImageRespond imageRespond = JSON.parseObject(res, ImageRespond.class);
-        Map<String,String> imageMap = new HashMap<String,String>();
-        if (imageRespond.getStatusCode() == 0){
-            ImagePayload payload = imageRespond.getPayload();
-            imageMap.put("type",payload.getType());
-            imageMap.put("imageData",payload.getData());
+        String res = null;
+        Map<String, String> imageMap = new HashMap<String, String>();
+        try {
+            res = HttpUtil.get(address, headerMap, null);
+            ImageRespond imageRespond = JSON.parseObject(res, ImageRespond.class);
+            if (imageRespond.getStatusCode() == 0) {
+                ImagePayload payload = imageRespond.getPayload();
+                imageMap.put("type", payload.getType());
+                imageMap.put("imageData", payload.getData());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return imageMap;
     }
@@ -46,8 +51,7 @@ public class ImageUtil {
     }
 
 
-
     public static void main(String[] args) {
-        String url ="";
+        String url = "";
     }
 }

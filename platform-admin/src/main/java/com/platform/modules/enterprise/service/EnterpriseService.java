@@ -2,9 +2,9 @@ package com.platform.modules.enterprise.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.platform.common.utils.PageUtils;
-import com.platform.modules.enterprise.entity.EnteroriseInfo;
 import com.platform.modules.enterprise.entity.EnteroriseReviewEntity;
 import com.platform.modules.enterprise.entity.EnterpriseEntity;
+import com.platform.modules.enterprise.entity.EnterpriseInfoVo;
 
 import java.util.Map;
 
@@ -23,7 +23,7 @@ public interface EnterpriseService extends IService<EnterpriseEntity> {
 
     boolean accept(String id);
 
-    EnteroriseInfo findById(String id);
+    EnterpriseInfoVo findById(String id);
 
     void review(EnteroriseReviewEntity enterprise);
 }

@@ -12,10 +12,8 @@ import java.util.List;
 public class PublisherBean {
 
     private String account;
-    private String companyInfo;
+    private String companyName;
     private String legalRepName;
-    private String inOrderId;
-    private String outOrderId;
     private List<HandlerBean> handler;
 
     public String getAccount() {
@@ -26,12 +24,12 @@ public class PublisherBean {
         this.account = account;
     }
 
-    public String getCompanyInfo() {
-        return companyInfo;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setCompanyInfo(String companyInfo) {
-        this.companyInfo = companyInfo;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getLegalRepName() {
@@ -40,22 +38,6 @@ public class PublisherBean {
 
     public void setLegalRepName(String legalRepName) {
         this.legalRepName = legalRepName;
-    }
-
-    public String getInOrderId() {
-        return inOrderId;
-    }
-
-    public void setInOrderId(String inOrderId) {
-        this.inOrderId = inOrderId;
-    }
-
-    public String getOutOrderId() {
-        return outOrderId;
-    }
-
-    public void setOutOrderId(String outOrderId) {
-        this.outOrderId = outOrderId;
     }
 
     public List<HandlerBean> getHandler() {

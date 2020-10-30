@@ -8,6 +8,7 @@ import java.util.List;
 
 public class BankInfoRespond {
 
+    private String id;
     // 账户类型 1 提现户 2 签收户
     private Integer type;
     //银行新增来源 1：企业使命认证 2：银行卡管理
@@ -58,6 +59,14 @@ public class BankInfoRespond {
     private ChannelInfo channelInfo;
 
     private List<HashMap<String,String>> applyStatusHistory;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Integer getType() {
         return type;
