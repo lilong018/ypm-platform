@@ -126,6 +126,10 @@ public class EnterpriseInfoVo {
         Map<String, String> legalBMap = ImageUtil.getImageMap(companyInfo.getLegalRepIdPicBackUrl());
         this.legalrepidpicbackurl = legalBMap.get("imageData");
         List<Channels> channels = enterpriseResults.getChannels();
+        if (channels != null && channels.size() > 0){
+            Map<String, BankInfo> banks = channels.get(0).getBanks();
+
+        }
         for (Channels channel : channels) {
 
         }
