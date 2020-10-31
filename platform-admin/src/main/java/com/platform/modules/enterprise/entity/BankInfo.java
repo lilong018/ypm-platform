@@ -1,6 +1,9 @@
 package com.platform.modules.enterprise.entity;
 
+import com.platform.modules.responseEntity.ChannelInfo;
+
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,39 +14,35 @@ import java.util.Map;
  **/
 public class BankInfo {
 
-    private String accountName;
+    private Handler handler;
 
-    private String accountNumber;
-
-    private int applyStatus;
-
-    private Map<String,ApplyStatus> applyStatusHistory;
-
-    private int channelType;
-
-    private String cityId;
-
-    private String cityName;
+    private List<AuditResult> auditResult;
 
     private String comment;
 
-    private Date createTimeInMillis;
+    private Integer type;
 
-    private String entId;
+    private Integer source;
 
-    private Handler handler;
+    private String name;
 
-    private String handlerEmail;
+    private String number;
 
-    private String handlerId;
+    private String accountName;
+
+    private String accountNumber;
 
     private String handlerName;
 
     private String handlerPhoneNo;
 
-    private String name;
+    private String handlerId;
 
-    private String number;
+    private String handlerEmail;
+
+    private String handlerIdPicFrontUrl;//暂留字段
+
+    private String handlerIdPicBackUrl;//暂留字段
 
     private String occBankChildCode;
 
@@ -59,9 +58,73 @@ public class BankInfo {
 
     private String provinceName;
 
-    private int source;
+    private String cityId;
 
-    private int type;
+    private String cityName;
+
+    private Integer applyStatus;
+
+    private Date createTimeInMillis;
+
+    private ChannelInfo channelInfo;
+
+    private Map<String,ApplyStatus> applyStatusHistory;
+
+    public Handler getHandler() {
+        return handler;
+    }
+
+    public void setHandler(Handler handler) {
+        this.handler = handler;
+    }
+
+    public List<AuditResult> getAuditResult() {
+        return auditResult;
+    }
+
+    public void setAuditResult(List<AuditResult> auditResult) {
+        this.auditResult = auditResult;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getSource() {
+        return source;
+    }
+
+    public void setSource(Integer source) {
+        this.source = source;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
     public String getAccountName() {
         return accountName;
@@ -77,94 +140,6 @@ public class BankInfo {
 
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
-    }
-
-    public int getApplyStatus() {
-        return applyStatus;
-    }
-
-    public void setApplyStatus(int applyStatus) {
-        this.applyStatus = applyStatus;
-    }
-
-    public Map<String, ApplyStatus> getApplyStatusHistory() {
-        return applyStatusHistory;
-    }
-
-    public void setApplyStatusHistory(Map<String, ApplyStatus> applyStatusHistory) {
-        this.applyStatusHistory = applyStatusHistory;
-    }
-
-    public int getChannelType() {
-        return channelType;
-    }
-
-    public void setChannelType(int channelType) {
-        this.channelType = channelType;
-    }
-
-    public String getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(String cityId) {
-        this.cityId = cityId;
-    }
-
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Date getCreateTimeInMillis() {
-        return createTimeInMillis;
-    }
-
-    public void setCreateTimeInMillis(Date createTimeInMillis) {
-        this.createTimeInMillis = createTimeInMillis;
-    }
-
-    public String getEntId() {
-        return entId;
-    }
-
-    public void setEntId(String entId) {
-        this.entId = entId;
-    }
-
-    public Handler getHandler() {
-        return handler;
-    }
-
-    public void setHandler(Handler handler) {
-        this.handler = handler;
-    }
-
-    public String getHandlerEmail() {
-        return handlerEmail;
-    }
-
-    public void setHandlerEmail(String handlerEmail) {
-        this.handlerEmail = handlerEmail;
-    }
-
-    public String getHandlerId() {
-        return handlerId;
-    }
-
-    public void setHandlerId(String handlerId) {
-        this.handlerId = handlerId;
     }
 
     public String getHandlerName() {
@@ -183,20 +158,36 @@ public class BankInfo {
         this.handlerPhoneNo = handlerPhoneNo;
     }
 
-    public String getName() {
-        return name;
+    public String getHandlerId() {
+        return handlerId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setHandlerId(String handlerId) {
+        this.handlerId = handlerId;
     }
 
-    public String getNumber() {
-        return number;
+    public String getHandlerEmail() {
+        return handlerEmail;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setHandlerEmail(String handlerEmail) {
+        this.handlerEmail = handlerEmail;
+    }
+
+    public String getHandlerIdPicFrontUrl() {
+        return handlerIdPicFrontUrl;
+    }
+
+    public void setHandlerIdPicFrontUrl(String handlerIdPicFrontUrl) {
+        this.handlerIdPicFrontUrl = handlerIdPicFrontUrl;
+    }
+
+    public String getHandlerIdPicBackUrl() {
+        return handlerIdPicBackUrl;
+    }
+
+    public void setHandlerIdPicBackUrl(String handlerIdPicBackUrl) {
+        this.handlerIdPicBackUrl = handlerIdPicBackUrl;
     }
 
     public String getOccBankChildCode() {
@@ -255,19 +246,51 @@ public class BankInfo {
         this.provinceName = provinceName;
     }
 
-    public int getSource() {
-        return source;
+    public String getCityId() {
+        return cityId;
     }
 
-    public void setSource(int source) {
-        this.source = source;
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
     }
 
-    public int getType() {
-        return type;
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public Integer getApplyStatus() {
+        return applyStatus;
+    }
+
+    public void setApplyStatus(Integer applyStatus) {
+        this.applyStatus = applyStatus;
+    }
+
+    public Date getCreateTimeInMillis() {
+        return createTimeInMillis;
+    }
+
+    public void setCreateTimeInMillis(Date createTimeInMillis) {
+        this.createTimeInMillis = createTimeInMillis;
+    }
+
+    public ChannelInfo getChannelInfo() {
+        return channelInfo;
+    }
+
+    public void setChannelInfo(ChannelInfo channelInfo) {
+        this.channelInfo = channelInfo;
+    }
+
+    public Map<String, ApplyStatus> getApplyStatusHistory() {
+        return applyStatusHistory;
+    }
+
+    public void setApplyStatusHistory(Map<String, ApplyStatus> applyStatusHistory) {
+        this.applyStatusHistory = applyStatusHistory;
     }
 }

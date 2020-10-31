@@ -1,7 +1,9 @@
 package com.platform.modules.enterprise.entity;
 
 import com.platform.common.utils.ImageUtil;
+import com.platform.common.utils.StringUtil;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -101,6 +103,8 @@ public class EnterpriseInfoVo {
      */
     private String idcardexpirationdate;
 
+    private List<ChannelVo> channelVos;
+
 
     public EnterpriseInfoVo() {
         super();
@@ -126,16 +130,34 @@ public class EnterpriseInfoVo {
         Map<String, String> legalBMap = ImageUtil.getImageMap(companyInfo.getLegalRepIdPicBackUrl());
         this.legalrepidpicbackurl = legalBMap.get("imageData");
         List<Channels> channels = enterpriseResults.getChannels();
-        if (channels != null && channels.size() > 0){
-            Map<String, BankInfo> banks = channels.get(0).getBanks();
-
-        }
+        List<ChannelVo> channelVos = new ArrayList<ChannelVo>();
         for (Channels channel : channels) {
-
+            ChannelVo channelVo = new ChannelVo();
+            channelVo.setValidEnt(channel.getValidEnt());
+            channelVo.setEntRole(channel.getEntRole());
+            channelVo.setType(channel.getType());
+            Map<String, BankInfo> banks = channel.getBanks();
+            for (Map.Entry<String, BankInfo> entry : banks.entrySet()) {
+                BankInfo bankInfo = entry.getValue();
+                //经办人信息
+                if (StringUtil.isNotEmpty(bankInfo.getHandlerId())){
+                    this.handlerId = bankInfo.getHandlerId();
+                    this.handlerName = bankInfo.getHandlerName();
+                    this.handlerEmail = bankInfo.getHandlerEmail();
+                    this.handlerPhone = bankInfo.getHandlerPhoneNo();
+                    this.createTime = bankInfo.getCreateTimeInMillis();
+                }
+                //银行信息
+                channelVo.setBankId(entry.getKey());
+                channelVo.setBankName(bankInfo.getName());
+                channelVo.setBankAccountName(bankInfo.getAccountName());
+                channelVo.setBankAccountNumber(bankInfo.getAccountNumber());
+                channelVo.setBankType(bankInfo.getType());
+                channelVo.setBankType(bankInfo.getApplyStatus());
+            }
+            channelVos.add(channelVo);
         }
-        //经办人信息
-//        this.handlerId =
-
+        this.channelVos = channelVos;
     }
 
     public String getId() {
@@ -320,5 +342,13 @@ public class EnterpriseInfoVo {
 
     public void setBusinesslicenseurl(String businesslicenseurl) {
         this.businesslicenseurl = businesslicenseurl;
+    }
+
+    public List<ChannelVo> getChannelVos() {
+        return channelVos;
+    }
+
+    public void setChannelVos(List<ChannelVo> channelVos) {
+        this.channelVos = channelVos;
     }
 }

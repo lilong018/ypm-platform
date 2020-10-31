@@ -198,13 +198,13 @@
                         </td>
                     </tr>
 
-                    <tr v-for="channel in enterprise.channels" v-if="channelType==1" >
-                        <td  colspan="4" v-for="bank in channel.banks" >
+                    <tr v-for="channel in enterprise.channelVos" >
+                        <td  colspan="4" >
                             <div  class="col-3">
                                 <div class="form-group">
                                     <div class="col-sm-5 pr-0 pt-1">开户行全称：</div>
                                     <div class="col-sm-7  pl-0 pr-0">
-                                        <span>{{ bank.name }}</span>
+                                        <span>{{ channel.bankName }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -212,7 +212,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-5  pr-0 pt-1">银行行号：</div>
                                     <div class="col-sm-7  pl-0 pr-0">
-                                        <span>{{ bank.number }}</span>
+                                        <span>{{ channel.bankNumber }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-5 pr-0 pt-1">银行账号：</div>
                                     <div class="col-sm-7  pl-0 pr-0">
-                                        <span>{{ bank.accountnumber }}</span>
+                                        <span>{{ channel.bankAccountNumber }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -228,7 +228,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-5 pr-0 pt-1">户名：</div>
                                     <div class="col-sm-7  pl-0 pr-0">
-                                        <span>{{ bank.accountname }}</span>
+                                        <span>{{ channel.bankAccountName }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -236,7 +236,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-5 pr-0 pt-1">角色类型：</div>
                                     <div class="col-sm-7  pl-0 pr-0">
-                                        <span>{{ bank.type }}</span>
+                                        <span>{{ channel.bankType }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -244,7 +244,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-5 pr-0 pt-1">状态：</div>
                                     <div class="col-sm-7  pl-0 pr-0">
-                                        <span>{{ bank.status }}</span>
+                                        <span>{{ channel.bankStatus }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -304,7 +304,7 @@
                                         <span>提交企业资料</span>
                                     </div>
                                     <div class="col-sm-6  pl-0 pr-0">
-                                        <span>2020-07-20 12:25:13</span>
+                                        <span>{{ enterprise.createTime }}</span>
                                     </div>
                                 </div>
                             </div>
