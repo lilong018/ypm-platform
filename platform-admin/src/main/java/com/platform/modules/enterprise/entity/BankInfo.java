@@ -32,18 +32,6 @@ public class BankInfo {
 
     private String accountNumber;
 
-    private String handlerName;
-
-    private String handlerPhoneNo;
-
-    private String handlerId;
-
-    private String handlerEmail;
-
-    private String handlerIdPicFrontUrl;//暂留字段
-
-    private String handlerIdPicBackUrl;//暂留字段
-
     private String occBankChildCode;
 
     private String occBankChildName;
@@ -140,54 +128,6 @@ public class BankInfo {
 
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
-    }
-
-    public String getHandlerName() {
-        return handlerName;
-    }
-
-    public void setHandlerName(String handlerName) {
-        this.handlerName = handlerName;
-    }
-
-    public String getHandlerPhoneNo() {
-        return handlerPhoneNo;
-    }
-
-    public void setHandlerPhoneNo(String handlerPhoneNo) {
-        this.handlerPhoneNo = handlerPhoneNo;
-    }
-
-    public String getHandlerId() {
-        return handlerId;
-    }
-
-    public void setHandlerId(String handlerId) {
-        this.handlerId = handlerId;
-    }
-
-    public String getHandlerEmail() {
-        return handlerEmail;
-    }
-
-    public void setHandlerEmail(String handlerEmail) {
-        this.handlerEmail = handlerEmail;
-    }
-
-    public String getHandlerIdPicFrontUrl() {
-        return handlerIdPicFrontUrl;
-    }
-
-    public void setHandlerIdPicFrontUrl(String handlerIdPicFrontUrl) {
-        this.handlerIdPicFrontUrl = handlerIdPicFrontUrl;
-    }
-
-    public String getHandlerIdPicBackUrl() {
-        return handlerIdPicBackUrl;
-    }
-
-    public void setHandlerIdPicBackUrl(String handlerIdPicBackUrl) {
-        this.handlerIdPicBackUrl = handlerIdPicBackUrl;
     }
 
     public String getOccBankChildCode() {

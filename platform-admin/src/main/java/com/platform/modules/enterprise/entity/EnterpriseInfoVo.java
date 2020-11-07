@@ -129,6 +129,11 @@ public class EnterpriseInfoVo {
         this.legalrepidpicfronturl = legalFMap.get("imageData");
         Map<String, String> legalBMap = ImageUtil.getImageMap(companyInfo.getLegalRepIdPicBackUrl());
         this.legalrepidpicbackurl = legalBMap.get("imageData");
+        this.handlerId = companyInfo.getHandlerId();
+        this.handlerName = companyInfo.getHandlerName();
+        this.handlerEmail = companyInfo.getHandlerEmail();
+        this.handlerPhone = companyInfo.getHandlerPhoneNo();
+
         List<Channels> channels = enterpriseResults.getChannels();
         List<ChannelVo> channelVos = new ArrayList<ChannelVo>();
         for (Channels channel : channels) {
@@ -139,21 +144,14 @@ public class EnterpriseInfoVo {
             Map<String, BankInfo> banks = channel.getBanks();
             for (Map.Entry<String, BankInfo> entry : banks.entrySet()) {
                 BankInfo bankInfo = entry.getValue();
-                //经办人信息
-                if (StringUtil.isNotEmpty(bankInfo.getHandlerId())){
-                    this.handlerId = bankInfo.getHandlerId();
-                    this.handlerName = bankInfo.getHandlerName();
-                    this.handlerEmail = bankInfo.getHandlerEmail();
-                    this.handlerPhone = bankInfo.getHandlerPhoneNo();
-                    this.createTime = bankInfo.getCreateTimeInMillis();
-                }
                 //银行信息
                 channelVo.setBankId(entry.getKey());
                 channelVo.setBankName(bankInfo.getName());
                 channelVo.setBankAccountName(bankInfo.getAccountName());
                 channelVo.setBankAccountNumber(bankInfo.getAccountNumber());
                 channelVo.setBankType(bankInfo.getType());
-                channelVo.setBankType(bankInfo.getApplyStatus());
+                channelVo.setBankStatus(bankInfo.getApplyStatus());
+                channelVo.setBankNumber(bankInfo.getNumber());
             }
             channelVos.add(channelVo);
         }

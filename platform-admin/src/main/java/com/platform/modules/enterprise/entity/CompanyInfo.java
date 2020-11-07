@@ -11,7 +11,19 @@ public class CompanyInfo {
     private String name;
     //统一社会信用代码-营业执照
     private String uscc;
-    //公司详细地址
+    //注册省份
+    private String regProvince;
+    //注册城市
+    private String regCity;
+    //注册地区
+    private String regArea;
+    //注册详细地址
+    private String regAddress;
+    //省
+    private String province;
+    //市
+    private String city;
+    //公司详细地址（经营地址）
     private String address;
     //营业执照图片地址
     private String businessLicenseUrl;
@@ -23,14 +35,21 @@ public class CompanyInfo {
     private String legalRepId;
     //法定代表人手机号
     private String legalRepPhoneNo;
-    //法定代表人身份证正面照片地址
+    //法定代表人正面截图base64
     private String legalRepIdPicFrontUrl;
-    //法定代表人身份证背面照片地址
+    //法定代表人背面截图base64
     private String legalRepIdPicBackUrl;
-    //省
-    private String province;
-    //市
-    private String city;
+    //经办人姓名
+    private String handlerName;
+    //经办人身份证号
+    private String handlerId;
+    //经办人手机号
+    private String handlerPhoneNo;
+    //经办人邮箱（已废弃）
+    private String handlerEmail;
+    //经办人微信号
+    private String handlerWeChat;
+
     //营业执照到期时间
     private String businessExpirationDate;
     //法定代表人身份证到期时间
@@ -50,6 +69,54 @@ public class CompanyInfo {
 
     public void setUscc(String uscc) {
         this.uscc = uscc;
+    }
+
+    public String getRegProvince() {
+        return regProvince;
+    }
+
+    public void setRegProvince(String regProvince) {
+        this.regProvince = regProvince;
+    }
+
+    public String getRegCity() {
+        return regCity;
+    }
+
+    public void setRegCity(String regCity) {
+        this.regCity = regCity;
+    }
+
+    public String getRegArea() {
+        return regArea;
+    }
+
+    public void setRegArea(String regArea) {
+        this.regArea = regArea;
+    }
+
+    public String getRegAddress() {
+        return regAddress;
+    }
+
+    public void setRegAddress(String regAddress) {
+        this.regAddress = regAddress;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getAddress() {
@@ -116,20 +183,44 @@ public class CompanyInfo {
         this.legalRepIdPicBackUrl = legalRepIdPicBackUrl;
     }
 
-    public String getProvince() {
-        return province;
+    public String getHandlerName() {
+        return handlerName;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
+    public void setHandlerName(String handlerName) {
+        this.handlerName = handlerName;
     }
 
-    public String getCity() {
-        return city;
+    public String getHandlerId() {
+        return handlerId;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setHandlerId(String handlerId) {
+        this.handlerId = handlerId;
+    }
+
+    public String getHandlerPhoneNo() {
+        return handlerPhoneNo;
+    }
+
+    public void setHandlerPhoneNo(String handlerPhoneNo) {
+        this.handlerPhoneNo = handlerPhoneNo;
+    }
+
+    public String getHandlerEmail() {
+        return handlerEmail;
+    }
+
+    public void setHandlerEmail(String handlerEmail) {
+        this.handlerEmail = handlerEmail;
+    }
+
+    public String getHandlerWeChat() {
+        return handlerWeChat;
+    }
+
+    public void setHandlerWeChat(String handlerWeChat) {
+        this.handlerWeChat = handlerWeChat;
     }
 
     public String getBusinessExpirationDate() {

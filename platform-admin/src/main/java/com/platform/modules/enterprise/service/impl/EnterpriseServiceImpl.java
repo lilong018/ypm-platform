@@ -112,7 +112,7 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
                                 vo.setStatus(bank.getApplyStatus());
                                 int bankType = bank.getType();
                                 if (bankType == 1){
-                                    vo.setRoleName("买卖");
+                                    vo.setRoleName("卖方");
                                 }else if (bankType == 2){
                                     vo.setRoleName("买方");
                                 }
