@@ -8,6 +8,7 @@ import com.platform.modules.bill.entity.BankListVo;
 import com.platform.modules.bill.entity.BillEntity;
 import com.platform.modules.bill.entity.BillResults;
 import com.platform.modules.bill.service.BillService;
+import com.platform.modules.enterprise.entity.EnteroriseReviewEntity;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -88,6 +89,15 @@ public class BillController {
     public R delete(@RequestBody String[] ids){
         billService.removeByIds(Arrays.asList(ids));
 
+        return R.ok();
+    }
+
+    /**
+     * 信息
+     */
+    @RequestMapping("/audit")
+    public R accept(@RequestBody EnteroriseReviewEntity req){
+        boolean flag = billService.audit(req);
         return R.ok();
     }
 

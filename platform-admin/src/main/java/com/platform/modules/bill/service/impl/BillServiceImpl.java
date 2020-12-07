@@ -1,6 +1,7 @@
 package com.platform.modules.bill.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -12,6 +13,7 @@ import com.platform.modules.bill.entity.BankListVo;
 import com.platform.modules.bill.entity.BillEntity;
 import com.platform.modules.bill.entity.BillResults;
 import com.platform.modules.bill.service.BillService;
+import com.platform.modules.enterprise.entity.EnteroriseReviewEntity;
 import com.platform.modules.response.CommonPageResults;
 import com.platform.modules.response.CommonResponse;
 import org.springframework.stereotype.Service;
@@ -105,6 +107,33 @@ public class BillServiceImpl extends ServiceImpl<BillDao, BillEntity> implements
             e.printStackTrace();
         }
         return vo;
+    }
+
+    @Override
+    public boolean audit(EnteroriseReviewEntity revie) {
+        Map<String, String> headerMap = new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
+        headerMap.put("x-auth-token", AuthService.getToken());
+        Map<String, String> urlParams = new HashMap<String, String>();
+        urlParams.put("channelType","1");
+        params.put("result",revie.getStatus());
+        List<String> reason = new ArrayList<>();
+        params.put("reason",reason);
+        params.put("comment","测试备注功能！");
+
+        String address = UrlConstans.BASEURL +UrlConstans.BILLS +"/" + revie.getId()+"/audit";
+        try {
+            String res = HttpUtil.put(address, headerMap, urlParams, JSON.toJSONString(params));
+            Map<String, Object> map = JSONObject.parseObject(res, new TypeReference<Map<String, Object>>() {
+            });
+            Integer statusCode = (Integer) map.get("statusCode");
+            if (statusCode == 0){
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 
