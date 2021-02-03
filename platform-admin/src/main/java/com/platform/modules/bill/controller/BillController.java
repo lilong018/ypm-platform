@@ -6,9 +6,8 @@ import com.platform.common.utils.StringUtil;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.modules.bill.entity.BankListVo;
 import com.platform.modules.bill.entity.BillEntity;
-import com.platform.modules.bill.entity.BillResults;
 import com.platform.modules.bill.service.BillService;
-import com.platform.modules.enterprise.entity.EnteroriseReviewEntity;
+import com.platform.modules.enterprise.entity.ReviewEntity;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -96,7 +95,7 @@ public class BillController {
      * 信息
      */
     @RequestMapping("/audit")
-    public R accept(@RequestBody EnteroriseReviewEntity req){
+    public R accept(@RequestBody ReviewEntity req){
         boolean flag = billService.audit(req);
         return R.ok();
     }

@@ -143,6 +143,11 @@ public class BillEntity implements Serializable {
 	 */
 	private String publisherid;
 
+	/**
+	 * 备注
+	 */
+	private String comment;
+
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}
@@ -393,5 +398,13 @@ public class BillEntity implements Serializable {
 
 	public void setPublisherid(String publisherid) {
 		this.publisherid = publisherid;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 }

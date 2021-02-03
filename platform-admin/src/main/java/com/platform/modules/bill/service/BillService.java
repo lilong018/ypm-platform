@@ -4,8 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.platform.common.utils.PageUtils;
 import com.platform.modules.bill.entity.BankListVo;
 import com.platform.modules.bill.entity.BillEntity;
-import com.platform.modules.bill.entity.BillResults;
-import com.platform.modules.enterprise.entity.EnteroriseReviewEntity;
+import com.platform.modules.enterprise.entity.ReviewEntity;
 
 import java.util.Map;
 
@@ -24,6 +23,6 @@ public interface BillService extends IService<BillEntity> {
 
     BankListVo findById(String id);
 
-    boolean audit(EnteroriseReviewEntity revie);
+    boolean audit(ReviewEntity revie);
 }
 

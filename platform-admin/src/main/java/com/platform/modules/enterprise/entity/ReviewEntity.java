@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @description
  * @time 2020/7/20 18:00
  */
-public class EnteroriseReviewEntity {
+public class ReviewEntity {
     private String id;
     private String[] reasons;
     private String remark;

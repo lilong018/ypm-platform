@@ -13,7 +13,7 @@ import com.platform.modules.bill.entity.BankListVo;
 import com.platform.modules.bill.entity.BillEntity;
 import com.platform.modules.bill.entity.BillResults;
 import com.platform.modules.bill.service.BillService;
-import com.platform.modules.enterprise.entity.EnteroriseReviewEntity;
+import com.platform.modules.enterprise.entity.ReviewEntity;
 import com.platform.modules.response.CommonPageResults;
 import com.platform.modules.response.CommonResponse;
 import org.springframework.stereotype.Service;
@@ -110,7 +110,7 @@ public class BillServiceImpl extends ServiceImpl<BillDao, BillEntity> implements
     }
 
     @Override
-    public boolean audit(EnteroriseReviewEntity revie) {
+    public boolean audit(ReviewEntity revie) {
         Map<String, String> headerMap = new HashMap<>();
         Map<String, Object> params = new HashMap<>();
         headerMap.put("x-auth-token", AuthService.getToken());

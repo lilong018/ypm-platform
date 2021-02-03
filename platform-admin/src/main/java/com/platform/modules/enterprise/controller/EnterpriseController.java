@@ -4,8 +4,7 @@ import com.platform.common.utils.PageUtils;
 import com.platform.common.utils.R;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.modules.bank.service.BankService;
-import com.platform.modules.enterprise.entity.EnteroriseInfo;
-import com.platform.modules.enterprise.entity.EnteroriseReviewEntity;
+import com.platform.modules.enterprise.entity.ReviewEntity;
 import com.platform.modules.enterprise.entity.EnterpriseEntity;
 import com.platform.modules.enterprise.entity.EnterpriseInfoVo;
 import com.platform.modules.enterprise.service.EnterpriseService;
@@ -104,7 +103,7 @@ public class EnterpriseController {
      * 保存
      */
     @RequestMapping("/review")
-    public R pass(@RequestBody EnteroriseReviewEntity req){
+    public R pass(@RequestBody ReviewEntity req){
         enterpriseService.review(req);
         return R.ok();
     }

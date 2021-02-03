@@ -192,7 +192,7 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
     }
 
     @Override
-    public void review(EnteroriseReviewEntity enteroriseRevie) {
+    public void review(ReviewEntity enteroriseRevie) {
         Map<String, String> headerMap = new HashMap<>();
         Map<String, Object> params = new HashMap<>();
         headerMap.put("x-auth-token", AuthService.getToken());
