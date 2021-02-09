@@ -92,11 +92,21 @@ public class BillController {
     }
 
     /**
+     * 保存
+     */
+    @RequestMapping("/review")
+    public R pass(@RequestBody ReviewEntity reviewEntity){
+        billService.review(reviewEntity);
+        return R.ok();
+    }
+
+    /**
      * 信息
      */
-    @RequestMapping("/audit")
-    public R accept(@RequestBody ReviewEntity req){
-        boolean flag = billService.audit(req);
+    @RequestMapping("/accept/{id}")
+    public R accept(@PathVariable("id") String id){
+        System.out.println(id);
+        boolean flag = billService.accept(id);
         return R.ok();
     }
 

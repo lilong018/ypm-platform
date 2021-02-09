@@ -35,7 +35,10 @@ public class BankListVo {
         this.duedate = billResults.getBill().getDueDate();
         this.amount = billResults.getBill().getAmount();
         this.feededuction = billResults.getBill().getFeeDeduction();
-        this.status = billResults.getBill().getStatus();
+        this.status = billResults.getAuditResult().getResult();
+        //客服信息
+        this.customerId = billResults.getHandler().getId();
+        this.customerName = billResults.getHandler().getName();
     }
 
     public BankListVo(BillResults billResults,String billId) {
@@ -89,6 +92,9 @@ public class BankListVo {
         }
         this.endorsebankAccount = billResults.getBill().getEndorseBank().getAccountNumber();
         this.endorsebankId = billResults.getBill().getEndorseBank().getId();
+        //客服信息
+        this.customerId = billResults.getHandler().getId();
+        this.customerName = billResults.getHandler().getName();
     }
 
     /**
@@ -251,6 +257,14 @@ public class BankListVo {
      * 经办人电话号码
      */
     private String handlerPhoneNo;
+    /**
+     * 客服id
+     */
+    private String customerId;
+    /**
+     * 经客服名称
+     */
+    private String customerName;
 
 
 
@@ -572,5 +586,21 @@ public class BankListVo {
 
     public void setHandlerPhoneNo(String handlerPhoneNo) {
         this.handlerPhoneNo = handlerPhoneNo;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 }

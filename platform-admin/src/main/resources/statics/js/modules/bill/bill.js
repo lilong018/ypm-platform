@@ -75,19 +75,11 @@ $(function () {
                 width: 80,
                 formatter: function (cellvalue, options, rowObject) {
                     if (cellvalue == 0) {
-                        return "待审核"
+                        return "审核未通过"
                     } else if (cellvalue == 1) {
-                        return "审核中";
-                    } else if (cellvalue == 2) {
-                        return "审核通过且已上架";
-                    } else if (cellvalue == 3) {
-                        return "审核未通过";
-                    } else if (cellvalue == 4) {
-                        return "交易中";
-                    } else if (cellvalue == 5) {
-                        return "已交易";
+                        return "审核通过";
                     } else {
-                        return "未知";
+                        return "待审核";
                     }
                 }
             },
@@ -256,6 +248,7 @@ var vm = new Vue({
             }).trigger("reloadGrid");
         },
         acceptBillTask: function (id) {
+            console.log("领取任务："+id);
             $.get(baseURL + "bill/bill/accept/"+id, function(r){
                 vm.reload();
             });

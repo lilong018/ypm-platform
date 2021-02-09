@@ -23,6 +23,8 @@ public interface BillService extends IService<BillEntity> {
 
     BankListVo findById(String id);
 
-    boolean audit(ReviewEntity revie);
+    void review(ReviewEntity bill);
+
+    boolean accept(String id);
 }
 

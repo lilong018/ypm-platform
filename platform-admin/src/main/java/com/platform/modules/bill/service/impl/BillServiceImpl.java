@@ -110,26 +110,40 @@ public class BillServiceImpl extends ServiceImpl<BillDao, BillEntity> implements
     }
 
     @Override
-    public boolean audit(ReviewEntity revie) {
+    public void review(ReviewEntity reviewEntity) {
         Map<String, String> headerMap = new HashMap<>();
         Map<String, Object> params = new HashMap<>();
         headerMap.put("x-auth-token", AuthService.getToken());
         Map<String, String> urlParams = new HashMap<String, String>();
         urlParams.put("channelType","1");
-        params.put("result",revie.getStatus());
-        List<String> reason = new ArrayList<>();
-        params.put("reason",reason);
-        params.put("comment","测试备注功能！");
+        params.put("result",reviewEntity.getStatus());
+        if (reviewEntity.getReasons()!=null && reviewEntity.getReasons().length > 0){
+            params.put("reason",reviewEntity.getReasons());
+        }
+        if (StringUtil.isNotEmpty(reviewEntity.getRemark())){
+            params.put("comment",reviewEntity.getRemark());
+        }
 
-        String address = UrlConstans.BASEURL +UrlConstans.BILLS +"/" + revie.getId()+"/audit";
+        String address = UrlConstans.BASEURL +UrlConstans.BILLS +"/" + reviewEntity.getId()+"/audit";
+
         try {
             String res = HttpUtil.put(address, headerMap, urlParams, JSON.toJSONString(params));
-            Map<String, Object> map = JSONObject.parseObject(res, new TypeReference<Map<String, Object>>() {
-            });
-            Integer statusCode = (Integer) map.get("statusCode");
-            if (statusCode == 0){
-                return true;
-            }
+            System.err.printf(res);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean accept(String id) {
+        Map<String, String> headerMap = new HashMap<>();
+        headerMap.put("x-auth-token", AuthService.getToken());
+        Map<String, String> urlParams = new HashMap<String, String>();
+        urlParams.put("channelType","1");
+        String address = UrlConstans.BASEURL+UrlConstans.BILLS+"/"+id+"/accept";
+        try {
+            String res = HttpUtil.put(address, headerMap, urlParams, null);
+            System.err.println(res);
         } catch (Exception e) {
             e.printStackTrace();
         }
