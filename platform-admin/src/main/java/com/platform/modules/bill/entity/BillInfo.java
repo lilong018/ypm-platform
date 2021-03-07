@@ -29,7 +29,7 @@ public class BillInfo {
     private String dueDate;
     private String frontPictureUrl;
     private List<HashMap<String,String >> backPictures;
-    private Integer channelType;
+    private List<Integer> channelType;
     private BankInfoRespond transferBank;
     private BankInfoRespond endorseBank;
     private Integer returnDrawerCount;
@@ -161,11 +161,11 @@ public class BillInfo {
         this.backPictures = backPictures;
     }
 
-    public Integer getChannelType() {
+    public List<Integer> getChannelType() {
         return channelType;
     }
 
-    public void setChannelType(Integer channelType) {
+    public void setChannelType(List<Integer> channelType) {
         this.channelType = channelType;
     }
 

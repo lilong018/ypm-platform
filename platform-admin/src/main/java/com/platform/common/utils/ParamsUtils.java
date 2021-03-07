@@ -32,6 +32,7 @@ public class ParamsUtils {
         Integer start = (pageNumber - 1) * pageSize;
         urlParams.put("start", String.valueOf(start));
         urlParams.put("count", String.valueOf(pageSize));
+//        urlParams.put("count", "1");
         //票据查询相关字段 params.get(Constant.PAGE) != null
         if (params.get("platformId")!=null){
             urlParams.put("platformId", String.valueOf(params.get("platformId")));

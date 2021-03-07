@@ -1,6 +1,7 @@
 package com.platform.modules.enums;
 
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -37,11 +38,15 @@ public enum ChannelEnum {
         this.name = name;
     }
 
-    public static String getNameByCode(Integer code){
+    public static String getNameByCode(List<Integer> codes){
+        StringBuffer channelName = new StringBuffer();
         for (ChannelEnum channelEnum : ChannelEnum.values()){
-            if (Objects.equals(channelEnum.getCode(), code)){
-                return channelEnum.getName();
+            for (Integer code : codes) {
+                if (Objects.equals(channelEnum.getCode(), code)){
+                    channelName.append(channelEnum.getName());
+                }
             }
+            return channelName.toString();
         }
         return null;
     }

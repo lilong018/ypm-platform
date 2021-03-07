@@ -153,7 +153,7 @@ public class BankListVo {
     /**
      * 担保渠道
      */
-    private Integer channeltype;
+    private List<Integer> channeltype;
 
     private String channelName;
     /**
@@ -372,11 +372,11 @@ public class BankListVo {
         this.coverbackpictures = coverbackpictures;
     }
 
-    public Integer getChanneltype() {
+    public List<Integer> getChanneltype() {
         return channeltype;
     }
 
-    public void setChanneltype(Integer channeltype) {
+    public void setChanneltype(List<Integer> channeltype) {
         this.channeltype = channeltype;
     }
 
