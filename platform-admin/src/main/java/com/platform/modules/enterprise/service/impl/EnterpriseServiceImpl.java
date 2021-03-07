@@ -83,7 +83,7 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
         PageUtils page = null;
         try {
             String res = HttpUtil.get(UrlConstans.BASEURL + UrlConstans.ENTERPRISE, headerMap, urlParams, null);
-            System.out.println(res);
+            System.err.println(res);
             EnterpriseRespond respond = JSON.parseObject(res, EnterpriseRespond.class);
             if (respond.getStatusCode() == 0){
                 EnterprisePayload payload = respond.getPayload();
@@ -107,8 +107,10 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
                             //查找注册来源为企业实名认证的银行
                             if (bank.getSource() == 1){
                                 Handler handler = bank.getHandler();
-                                vo.setHandlerId(handler.getId());
-                                vo.setHandlerName(handler.getName());
+                                if(handler != null){
+                                    vo.setHandlerId(handler.getId());
+                                    vo.setHandlerName(handler.getName());
+                                }
                                 vo.setStatus(bank.getApplyStatus());
                                 int bankType = bank.getType();
                                 if (bankType == 1){
